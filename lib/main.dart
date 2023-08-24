@@ -1,10 +1,15 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:skill_race/firebase_options.dart';
 import 'package:skill_race/router.dart';
+import 'package:skill_race/theme.dart';
 
-void main() {
+Future<void> main()async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -16,7 +21,7 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
     final botToastBuilder = BotToastInit();
     return ScreenUtilInit(
-      designSize: const Size(1080,2340 ),//note 8 pro screen width and hight
+      designSize: const Size(375,812 ),//form figma pages desgin
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context , child) {
@@ -26,6 +31,72 @@ class MyApp extends ConsumerWidget {
               child = botToastBuilder(context, child);
               return child;
             },
+             theme: ThemeData(
+          fontFamily: 'Poppins',
+          useMaterial3: true,
+          colorScheme: lightColorScheme,
+          textTheme: TextTheme(
+              headlineSmall:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+              displayLarge:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+              displaySmall: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
+              ),
+              titleLarge: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+                fontWeight: FontWeight.w400,
+              ),
+              titleSmall:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+              labelSmall: TextStyle(
+                fontSize: 14.sp,
+                  color: Theme.of(context).colorScheme.onTertiaryContainer,
+                  fontWeight: FontWeight.w400),
+              titleMedium: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontWeight: FontWeight.w400),
+              labelMedium: TextStyle(
+                  color: Theme.of(context).colorScheme.shadow,
+                  fontWeight: FontWeight.w400),
+            )
+        ),
+        darkTheme: ThemeData(
+            fontFamily: 'Poppins',
+            useMaterial3: true,
+            colorScheme: darkColorScheme,
+            scaffoldBackgroundColor: Colors.white,
+            textTheme: TextTheme(
+              headlineSmall:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+              displayLarge:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+              displaySmall: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
+              ),
+              titleLarge: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+                fontWeight: FontWeight.w400,
+              ),
+              titleSmall:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+              labelSmall: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontWeight: FontWeight.w400),
+              titleMedium: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontWeight: FontWeight.w400),
+              labelMedium: TextStyle(
+                  color: Theme.of(context).colorScheme.shadow,
+                  fontWeight: FontWeight.w400),
+            )),
+       
+       
+        themeMode: ThemeMode.light,
         );
       }
     );
