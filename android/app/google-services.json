@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "468683543701",
+    "project_id": "skill-race-e16d3",
+    "storage_bucket": "skill-race-e16d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468683543701:android:f9c40c010d91d3ad32779c",
+        "android_client_info": {
+          "package_name": "com.example.skill_race"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468683543701-7cakfiqohvgp00ra6m7876t55q7belpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwzhWCvy2ct-VtF4pbA56GUyP2spr7eV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468683543701-7cakfiqohvgp00ra6m7876t55q7belpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
