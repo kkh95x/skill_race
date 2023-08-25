@@ -5,9 +5,9 @@ import 'package:skill_race/core/presentation/widget/gardian_text_color.dart';
 import 'package:skill_race/gen/assets.gen.dart';
 
 final onboardingPagesList = <Widget>[
-  getOnboardingPageTemplate(title: "Need A Job?",subTitle: "subTitle",imagePath: Assets.images.png.pagOne.path),
-    getOnboardingPageTemplate(title: "pageTow",subTitle: "subTitle",imagePath: Assets.images.png.paeTow.path),
-      getOnboardingPageTemplate(title: "pageThree",subTitle: "subTitle",imagePath: Assets.images.png.pageThree.path)
+  getOnboardingPageTemplate(title: "Need A Job?",subTitle:  'You can find more than one job through our app easily.',imagePath: Assets.images.png.pagOne.path),
+    getOnboardingPageTemplate(title: "pageTow",subTitle: "You can choose the right employee to provide the service you need.",imagePath: Assets.images.png.paeTow.path),
+      getOnboardingPageTemplate(title: "pageThree",subTitle: "You can use our app free for  fisrt \n3 Months just Get Start",imagePath: Assets.images.png.pageThree.path)
 
 
 ];
@@ -51,7 +51,8 @@ Widget getOnboardingPageTemplate({required String title,required String subTitle
         child: Align(
           alignment: Alignment.center,
           child: Text(
-            'You can find more than one job through our app easily.',
+            subTitle,
+           
             style:TextStyle(
 fontSize : 12.sp,
 fontWeight :FontWeight.w400,
