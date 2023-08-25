@@ -24,6 +24,7 @@ class MyApp extends ConsumerWidget {
       designSize: const Size(375,812 ),//form figma pages desgin
       minTextAdapt: true,
       splitScreenMode: true,
+      
       builder: (context , child) {
         return MaterialApp.router(
           routerConfig: router,
@@ -35,7 +36,10 @@ class MyApp extends ConsumerWidget {
           fontFamily: 'Poppins',
           useMaterial3: true,
           colorScheme: lightColorScheme,
+                      scaffoldBackgroundColor: Colors.white,
+
           textTheme: TextTheme(
+            
               headlineSmall:
                   TextStyle(color: Theme.of(context).colorScheme.onBackground),
               displayLarge:
@@ -67,7 +71,6 @@ class MyApp extends ConsumerWidget {
             fontFamily: 'Poppins',
             useMaterial3: true,
             colorScheme: darkColorScheme,
-            scaffoldBackgroundColor: Colors.white,
             textTheme: TextTheme(
               headlineSmall:
                   TextStyle(color: Theme.of(context).colorScheme.onBackground),
