@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skill_race/core/presentation/widget/gardian_text_color.dart';
-import 'package:skill_race/gen/assets.gen.dart';
-import 'package:skill_race/onboarding/application/onboarding_providers.dart';
+
 import 'package:skill_race/onboarding/domain/page_items.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
 import 'package:skill_race/testi_page.dart';
