@@ -8,8 +8,8 @@ import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
 
 class TestPage extends StatelessWidget {
   const TestPage({super.key});
-  static String get routName => "test";
-  static String get routePath => "/$routName";
+  static String get routeName => "test";
+  static String get routePath => "/$routeName";
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,18 @@ class TestPage extends StatelessWidget {
                   title: "reset",
                   onPressed: () {},
                 ),
-                DynamicInput(placeholder: "placeholder",control: "text",title: "job",type: Type.text,),
-                DropdownSearchWidget(formControlName: "text", placeholder: "placeholder", item: ["item","dsf","SDfsdf"],title: "job",)
+                DynamicInput(
+                  placeholder: "placeholder",
+                  control: "text",
+                  title: "job",
+                  type: Type.text,
+                ),
+                DropdownSearchWidget(
+                  formControlName: "text",
+                  placeholder: "placeholder",
+                  item: ["item", "dsf", "SDfsdf"],
+                  title: "job",
+                )
               ],
             ),
           ),

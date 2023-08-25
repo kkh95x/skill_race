@@ -14,11 +14,14 @@ dependencies:
   firebase_core: ^2.15.1
   flutter:
     sdk: flutter
+  flutter_onboarding_slider: ^1.0.10
   flutter_riverpod: ^2.3.7
   flutter_screenutil: ^5.9.0
   flutter_svg: null
   go_router: ^10.1.0
   lottie: ^2.6.0
+
+  onboarding_animation: ^0.0.3
   reactive_date_time_picker: ^3.0.0
   reactive_dropdown_search: ^3.0.0
   reactive_forms: ^16.1.0
@@ -47,6 +50,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/images/svg/onboarding/
+    - assets/images/png/
+    - assets/json/
+    - assets/icons/
+
 
   fonts:
     - family: Poppins
