@@ -1,12 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
 import 'package:skill_race/core/presentation/widget/gardian_text_color.dart';
 
 import 'package:skill_race/onboarding/domain/page_items.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
+import 'package:skill_race/src/auth/presentation/pages/auth_flow_page.dart';
 import 'package:skill_race/testi_page.dart';
+import '../../../core/presentation/widget/dynamic-Input.dart';
 
 class OnboardingPage extends ConsumerWidget {
   const OnboardingPage({super.key});
@@ -15,7 +19,16 @@ class OnboardingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isGetStarted=ValueNotifier<bool>(false); 
     final pageController = PageController(initialPage: 0);
+    pageController.addListener(() {
+    if(  pageController.positions.isNotEmpty&& pageController.position.maxScrollExtent==pageController.position.pixels ){
+      isGetStarted.value=true;
+    }else{
+            isGetStarted.value=false;
+
+    }
+    },);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -37,11 +50,46 @@ class OnboardingPage extends ConsumerWidget {
                     Theme.of(context).colorScheme.primary,
               ),
             ),
-            _next(context, () {
+            SizedBox(height: 34.h,),
+            ValueListenableBuilder(
+              valueListenable: isGetStarted,
+              builder:(context, value, child)  {
+                return Visibility(
+                  visible:value,
+                  child:AnimatedSize(
+                    duration:const Duration(milliseconds: 300),
+                    child: SizedBox(
+                      width:value?null:20.w,
+                      child: DynamicButton(
+                        
+                        title:"Get Started",
+                        onPressed: (){
+                                      context.pushReplacement(AuthFlowPage.routePath);
+                                      
+                        
+                      }),
+                    ),
+                  )
+                
+                 );
+              }
+            ),
+            ValueListenableBuilder(
+              valueListenable: isGetStarted,
+              builder:(context, value, child)  {
+                return Visibility(
+                  visible:!value,
+                  child:_next(context, () {
               pageController.nextPage(
                   duration: const Duration(milliseconds: 100),
                   curve: Curves.linear);
+            
             }),
+                
+                 );
+              }
+            ),
+            
             SizedBox(
               height: 50.h,
             )
@@ -54,10 +102,10 @@ class OnboardingPage extends ConsumerWidget {
 
   Widget _skipButton({required BuildContext context}) {
     return Container(
-      margin: EdgeInsets.only(top: 34.h, right: 17.w),
+      margin: EdgeInsets.only( right: 17.w),
       child: InkWell(
         onTap: () {
-          context.push(TestPage.routePath);
+          context.pushReplacement(AuthFlowPage.routePath);
         },
         child: Text('Skip',
             style: TextStyle(
