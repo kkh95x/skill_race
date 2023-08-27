@@ -17,8 +17,8 @@ FormGroup userForm(UserFormRef ref, {AppUser? user})=>FormGroup({
   }),
     "sginUp":FormGroup({
       "phone":FormControl<PhoneNumber>(),
-      "email":FormControl<String>(),})
-     
+      "email":FormControl<String>(),}),
+     "confirmCode":FormControl<String>()
   
 });
 

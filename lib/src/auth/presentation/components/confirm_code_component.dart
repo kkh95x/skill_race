@@ -5,38 +5,38 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:skill_race/core/presentation/widget/dynamic-Input.dart';
 import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
 import 'package:skill_race/src/auth/presentation/components/auth_page_template_component.dart';
+import 'package:skill_race/src/auth/presentation/widgets/otp_widget.dart';
 import 'package:skill_race/src/user/application/user_form.dart';
 
-class SginUpWithEmailComponent extends ConsumerWidget {
-  const SginUpWithEmailComponent({super.key});
+class ConfirmCodeComponent extends ConsumerWidget {
+  const ConfirmCodeComponent({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final form = ref.read(userFormProvider());
 
     return AuthPageTemplateComponent(
-      title: "Sgin Up",
+      addLogo: false,
+      title: "Confirm Code",
       child: ReactiveForm(
-        formGroup: form.control("sginUp") as FormGroup,
+        formGroup: form,
         child: Column(
           children: [
+            SizedBox(height: 45.h,),
             const Text(
-              "Enter your  Email Address for the verfication process, we will send 4 digit code to your number.",
+             "Enter 4 digit code thatyou received on your phone number.",
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: 20.h,
+              height: 48.h,
             ),
-            DynamicInput(
-                title: "E-mail", control: "email", placeholder: "Email"),
+            OTPWidget(formControlle: "confirmCode"),
+            // DynamicInput(
+            //     title: "E-mail", control: "confirmCode", placeholder: "Email"),
             SizedBox(
               height: 10.h,
             ),
-            // DynamicInput(
-            // title: "Phone Number",
-            // control: "phone",
-            // type: Type.phoneNumber,
-            // placeholder: "Phone Number"),
+           
             SizedBox(
               height: 36.h,
             ),

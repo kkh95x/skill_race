@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skill_race/src/auth/presentation/components/sgin_up_with_email_component.dart';
+import 'package:skill_race/src/auth/presentation/components/confirm_code_component.dart';
 
 class AuthFlowPage extends ConsumerWidget {
   const AuthFlowPage({super.key});
@@ -15,7 +15,7 @@ class AuthFlowPage extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       
-      body:SginUpWithEmailComponent()
+      body:ConfirmCodeComponent()
     );
   }
 }
