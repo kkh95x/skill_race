@@ -11,11 +11,31 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  $AssetsIconsPngGen get png => const $AssetsIconsPngGen();
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   $AssetsImagesPngGen get png => const $AssetsImagesPngGen();
   $AssetsImagesSvgGen get svg => const $AssetsImagesSvgGen();
+}
+
+class $AssetsIconsPngGen {
+  const $AssetsIconsPngGen();
+
+  /// File path: assets/icons/png/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/icons/png/logo.png');
+
+  /// File path: assets/icons/png/logo_white.png
+  AssetGenImage get logoWhite =>
+      const AssetGenImage('assets/icons/png/logo_white.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [logo, logoWhite];
 }
 
 class $AssetsImagesPngGen {
@@ -66,6 +86,7 @@ class $AssetsImagesSvgOnboardingGen {
 class Assets {
   Assets._();
 
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 

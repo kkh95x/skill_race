@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:skill_race/src/user/domain/certificate_info.dart';
 import 'package:skill_race/src/user/domain/edacation_info.dart';
 import 'package:skill_race/src/user/domain/job_info.dart';
-import 'package:skill_race/src/user/domain/price_info.dart';
 
 part 'app_user.freezed.dart';
 
