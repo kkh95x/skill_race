@@ -18,7 +18,14 @@ FormGroup userForm(UserFormRef ref, {AppUser? user})=>FormGroup({
     "sginUp":FormGroup({
       "phone":FormControl<PhoneNumber>(),
       "email":FormControl<String>(),}),
-     "confirmCode":FormControl<String>()
+     "confirmCode":FormControl<String>(),
+     "enterPassword":FormGroup({
+    "password":FormControl<String>(validators: [Validators.required,Validators.minLength(8),Validators.pattern(r'^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),]),
+      "rePassword":FormControl<String>(validators: [Validators.required,Validators.minLength(8),Validators.pattern(r'^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),]),
+       "see":FormControl<bool>(value: false),
+     },validators: [
+        Validators.mustMatch("password", "rePassword")
+      ])
   
 });
 

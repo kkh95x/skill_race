@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:skill_race/core/presentation/widget/dynamic-Input.dart';
 import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
 import 'package:skill_race/src/auth/presentation/components/auth_page_template_component.dart';
 import 'package:skill_race/src/auth/presentation/widgets/otp_widget.dart';
