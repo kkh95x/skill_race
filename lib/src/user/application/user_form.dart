@@ -25,7 +25,8 @@ FormGroup userForm(UserFormRef ref, {AppUser? user})=>FormGroup({
        "see":FormControl<bool>(value: false),
      },validators: [
         Validators.mustMatch("password", "rePassword")
-      ])
+      ]),
+      "Interests":FormControl<List<String>>()
   
 });
 

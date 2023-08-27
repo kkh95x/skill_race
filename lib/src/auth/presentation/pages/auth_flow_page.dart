@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skill_race/src/auth/presentation/components/Interests_auth_component.dart';
 import 'package:skill_race/src/auth/presentation/components/confirm_code_component.dart';
 import 'package:skill_race/src/auth/presentation/components/enter_password_new_user.dart';
 
@@ -16,7 +17,7 @@ class AuthFlowPage extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       
-      body:EnterNewPasswordComponent()
+      body:InterestsPageComponent()
     );
   }
 }
