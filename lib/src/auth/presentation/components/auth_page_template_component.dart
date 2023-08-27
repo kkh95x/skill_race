@@ -12,6 +12,7 @@ class AuthPageTemplateComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
               Container(
