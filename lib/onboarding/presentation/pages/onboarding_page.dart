@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
 import 'package:skill_race/core/presentation/widget/gardian_text_color.dart';
 
@@ -10,7 +11,6 @@ import 'package:skill_race/onboarding/domain/page_items.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
 import 'package:skill_race/src/auth/presentation/pages/auth_flow_page.dart';
 import 'package:skill_race/testi_page.dart';
-import '../../../core/presentation/widget/dynamic-Input.dart';
 
 class OnboardingPage extends ConsumerWidget {
   const OnboardingPage({super.key});
@@ -19,6 +19,7 @@ class OnboardingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+   
     final isGetStarted=ValueNotifier<bool>(false); 
     final pageController = PageController(initialPage: 0);
     pageController.addListener(() {
@@ -56,19 +57,17 @@ class OnboardingPage extends ConsumerWidget {
               builder:(context, value, child)  {
                 return Visibility(
                   visible:value,
-                  child:AnimatedSize(
-                    duration:const Duration(milliseconds: 300),
-                    child: SizedBox(
-                      width:value?null:20.w,
-                      child: DynamicButton(
-                        
-                        title:"Get Started",
-                        onPressed: (){
-                                      context.pushReplacement(AuthFlowPage.routePath);
-                                      
-                        
-                      }),
-                    ),
+                  child:SizedBox(
+                    width:value?null:20.w,
+                    child: DynamicButton(
+                      
+                      title:"Get Started",
+                      onPressed: (){
+                         SharedPreferences.getInstance().then((value) => value.setBool("isB", true));
+                                    context.pushReplacement(AuthFlowPage.routePath);
+                                    
+                      
+                    }),
                   )
                 
                  );

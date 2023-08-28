@@ -13,11 +13,11 @@ class FirebaseAppUserRepository implements AppUserRepository {
   final FirebaseFirestore _firestore;
   FirebaseAppUserRepository(this._firestore);
   @override
-  Future<AppUser?> create(AppUser appUser) async {
+  Future<AppUser> create(AppUser appUser) async {
     var newDocRef = _firestore.collection(Collections.users).doc();
     final userID = newDocRef.id;
     final newUser = appUser.copyWith(id: userID);
-    newDocRef.set(newUser.toJson());
+    await newDocRef.set(newUser.toJson());
     return newUser;
   }
 
@@ -37,5 +37,15 @@ class FirebaseAppUserRepository implements AppUserRepository {
         .collection(Collections.users)
         .doc(appUser.id)
         .set(appUser.toJson());
+  }
+  
+  @override
+  Future<AppUser?> getByEmail(String email)async {
+   final query = await _firestore.collection(Collections.users).where("email",isEqualTo:email ).get();
+    if (query.docs.isNotEmpty) {
+      return AppUser.fromJson(query.docs.first.data())
+          .copyWith(id: query.docs.first.id);
+    }
+    return null;
   }
 }

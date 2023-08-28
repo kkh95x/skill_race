@@ -16,7 +16,7 @@ class AppUser with _$AppUser {
     @Default(false) bool isOnline,
     String? phone,
     String? email,
-    required DateTime birthDay,
+    DateTime? birthDay,
    required String fullname,
     String? password,
     List<String>? interests,//اهتمامات

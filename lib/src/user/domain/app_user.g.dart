@@ -12,7 +12,9 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
       isOnline: json['isOnline'] as bool? ?? false,
       phone: json['phone'] as String?,
       email: json['email'] as String?,
-      birthDay: DateTime.parse(json['birthDay'] as String),
+      birthDay: json['birthDay'] == null
+          ? null
+          : DateTime.parse(json['birthDay'] as String),
       fullname: json['fullname'] as String,
       password: json['password'] as String?,
       interests: (json['interests'] as List<dynamic>?)
@@ -43,7 +45,7 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'isOnline': instance.isOnline,
       'phone': instance.phone,
       'email': instance.email,
-      'birthDay': instance.birthDay.toIso8601String(),
+      'birthDay': instance.birthDay?.toIso8601String(),
       'fullname': instance.fullname,
       'password': instance.password,
       'interests': instance.interests,
