@@ -13,6 +13,7 @@ _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
           : AppUser.fromJson(json['currentUser'] as Map<String, dynamic>),
       id: json['id'] as String?,
       email: json['email'] as String?,
+      fullName: json['fullName'] as String?,
     );
 
 Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
       'currentUser': instance.currentUser,
       'id': instance.id,
       'email': instance.email,
+      'fullName': instance.fullName,
     };
 
 const _$AuthStatusEnumMap = {

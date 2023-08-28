@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +10,11 @@ import 'package:skill_race/onboarding/domain/page_items.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
 import 'package:skill_race/src/auth/presentation/pages/auth_flow_page.dart';
 import 'package:skill_race/testi_page.dart';
+
+final isOnboarding=FutureProvider<bool?>((ref)async {
+  return (await SharedPreferences.getInstance()).getBool("isB");
+
+});
 
 class OnboardingPage extends ConsumerWidget {
   const OnboardingPage({super.key});
@@ -32,7 +36,9 @@ class OnboardingPage extends ConsumerWidget {
     },);
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: 
+        
+        Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             _skipButton(context: context),

@@ -6,41 +6,33 @@ import 'package:skill_race/gen/assets.gen.dart';
 import 'package:skill_race/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:skill_race/src/auth/presentation/pages/auth_flow_page.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
   static String get routeName=>"splash";
   static String get routePath=>"/$routeName"; 
 
+    
+    
+ 
+
   @override
-  State<SplashPage> createState() => _SplashPageState();
-}
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_){
 
-class _SplashPageState extends State<SplashPage> {
-  
-
-@override
-  void initState() {
-    Future.delayed(const Duration(seconds: 3),() {
+Future.delayed(const Duration(seconds: 3),() {
       SharedPreferences.getInstance().then((shared){
         print("isB: ${shared.getBool("isB")}");
      if( shared.getBool("isB")==null){
-      if(mounted){
-      context.push(OnboardingPage.routePath);}
+      if(context.mounted){
+      context.go(OnboardingPage.routePath);}
      }else{
-      if(mounted){
-      context.push(AuthFlowPage.routePath);}
+      if(context.mounted){
+      context.go(AuthFlowPage.routePath);}
       
      }
     });
     },);
-    
-    super.initState();
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    
+});
 
     return Scaffold(body: Center(child: Assets.icons.png.logo.image(),));
   }

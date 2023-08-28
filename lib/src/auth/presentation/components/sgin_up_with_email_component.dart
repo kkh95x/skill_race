@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:skill_race/core/presentation/widget/dynamic-Input.dart';
 import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
+import 'package:skill_race/src/auth/application/auth_notifer.dart';
+import 'package:skill_race/src/auth/application/auth_state.dart';
 import 'package:skill_race/src/auth/presentation/components/auth_page_template_component.dart';
 import 'package:skill_race/src/user/application/user_form.dart';
 
@@ -16,6 +18,9 @@ class SginUpWithEmailComponent extends ConsumerWidget {
 
     return AuthPageTemplateComponent(
       title: "Sgin Up",
+      onTap: () {
+        ref.read(userAuthNotifer.notifier).changeState(AuthStatus.unAtuth);
+      },
       child: ReactiveForm(
         formGroup: form.control("sginUp") as FormGroup,
         child: Column(
@@ -44,7 +49,10 @@ class SginUpWithEmailComponent extends ConsumerWidget {
               return DynamicButton(
                 title: "Sgin Up",
                 isDisabled: !formGroup.valid,
-                onPressed: () {},
+                onPressed: () {
+                  
+                  ref.read(userAuthNotifer.notifier).changeState(AuthStatus.confirmEmail);
+                },
               );
             }),
 

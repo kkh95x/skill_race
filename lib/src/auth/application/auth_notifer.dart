@@ -51,19 +51,20 @@ UserService _userService;
  
   Future<void> sginInWithFacebook()async{
     BotToast.showLoading();
-    final usercredential =await _userService.signInWithFacebook();
-    if(usercredential.user!=null){
-      final id=usercredential.user?.uid;
-      debugPrint("---> user facebook info ${usercredential.user}");
-      state =AuthState(state: AuthStatus.newPasswordEntry,id: id);
-      BotToast.closeAllLoading();
-      BotToast.showText(text: "login facbook seccssfully");
+    // final usercredential =await _userService.signInWithFacebook();
+    // if(usercredential.user!=null){
+    //   final id=usercredential.user?.uid;
+    //   debugPrint("---> user facebook info ${usercredential.user}");
+    //   state =AuthState(state: AuthStatus.newPasswordEntry,id: id);
+    //   BotToast.closeAllLoading();
+    //   BotToast.showText(text: "login facbook seccssfully");
 
-    }else{
+    // }else{
+      await Future.delayed(const Duration(seconds: 1));
        BotToast.closeAllLoading();
-      BotToast.showText(text: "login facbook rejected");
+      BotToast.showText(text: "login facbook not support");
 
-    }
+    // }
 
   
   }
@@ -76,7 +77,7 @@ Future<void> sginInWithGoogle()async{
       debugPrint("----> user facebook info ${usercredential.user}");
       final user=await _userService.getUserFromCloud(email??"");
       if(user!=null){
-        state =AuthState(state: AuthStatus.auth,id: user.id,email: usercredential.user?.email);
+        state =AuthState(state: AuthStatus.auth,id: user.id,email: usercredential.user?.email,fullName:usercredential.user?.displayName );
            _userService.saveUserLocaly(user.id);
 
 
@@ -134,7 +135,10 @@ Future<void> logOut()async{
     BotToast.showText(text: "some thing worng");
   }
 
-  
 
 }
+
+  void changeState(AuthStatus newState){
+    state=AuthState(state: newState);
+  }
 }

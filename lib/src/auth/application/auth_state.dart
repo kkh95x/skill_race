@@ -15,6 +15,7 @@ class AuthState with _$AuthState {
    AppUser? currentUser,
    String? id,
    String? email, 
+   String? fullName,
     
   }) = _AuthState;
 

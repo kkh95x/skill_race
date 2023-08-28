@@ -11,6 +11,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsHomeIconGen {
+  const $AssetsHomeIconGen();
+
+  /// File path: assets/home_icon/home.svg
+  SvgGenImage get home => const SvgGenImage('assets/home_icon/home.svg');
+
+  /// File path: assets/home_icon/massenger.svg
+  SvgGenImage get massenger =>
+      const SvgGenImage('assets/home_icon/massenger.svg');
+
+  /// File path: assets/home_icon/more.svg
+  SvgGenImage get more => const SvgGenImage('assets/home_icon/more.svg');
+
+  /// File path: assets/home_icon/profile.svg
+  SvgGenImage get profile => const SvgGenImage('assets/home_icon/profile.svg');
+
+  /// File path: assets/home_icon/saved.svg
+  SvgGenImage get saved => const SvgGenImage('assets/home_icon/saved.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [home, massenger, more, profile, saved];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -86,6 +109,7 @@ class $AssetsImagesSvgOnboardingGen {
 class Assets {
   Assets._();
 
+  static const $AssetsHomeIconGen homeIcon = $AssetsHomeIconGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }

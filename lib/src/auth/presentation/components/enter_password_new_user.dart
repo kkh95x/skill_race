@@ -14,6 +14,8 @@ class EnterNewPasswordComponent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final form = ref.read(userFormProvider());
+    // final fullName=ref.read(userAuthNotifer).fullName;
+    // form.control("enterPassword.fullname").value=fullName;
 
     return AuthPageTemplateComponent(
       addLogo: false,

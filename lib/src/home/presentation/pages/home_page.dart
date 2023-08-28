@@ -10,11 +10,13 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
+    final user=ref.read(userAuthNotifer).currentUser;
     return  Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text("Welcome ${user?.fullname??""}"),
           const  Text("home Page",style: TextStyle(color: Colors.black),),
             DynamicButton
           
