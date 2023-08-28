@@ -8,6 +8,7 @@ import 'package:skill_race/core/presentation/widget/gardian_text_color.dart';
 
 import 'package:skill_race/onboarding/domain/page_items.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
+import 'package:skill_race/router.dart';
 import 'package:skill_race/src/auth/presentation/pages/auth_flow_page.dart';
 import 'package:skill_race/testi_page.dart';
 
@@ -70,7 +71,8 @@ class OnboardingPage extends ConsumerWidget {
                       title:"Get Started",
                       onPressed: (){
                          SharedPreferences.getInstance().then((value) => value.setBool("isB", true));
-                                    context.pushReplacement(AuthFlowPage.routePath);
+                         isBording=true;
+                                    context.go(AuthFlowPage.routePath);
                                     
                       
                     }),

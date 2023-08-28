@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skill_race/gen/assets.gen.dart';
 import 'package:skill_race/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:skill_race/router.dart';
 import 'package:skill_race/src/auth/presentation/pages/auth_flow_page.dart';
 
 class SplashPage extends StatelessWidget {
@@ -23,9 +24,12 @@ Future.delayed(const Duration(seconds: 3),() {
       SharedPreferences.getInstance().then((shared){
         print("isB: ${shared.getBool("isB")}");
      if( shared.getBool("isB")==null){
+      isSplashed=true;
       if(context.mounted){
       context.go(OnboardingPage.routePath);}
      }else{
+      isSplashed=true;
+      isBording=true;
       if(context.mounted){
       context.go(AuthFlowPage.routePath);}
       

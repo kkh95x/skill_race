@@ -5,7 +5,7 @@ import 'package:skill_race/src/auth/application/auth_notifer.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
-  static String get routeName=>"home";
+  static String get routeName=>"user-home";
   static String get routePath=>"/$routeName";
 
   @override

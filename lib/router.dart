@@ -31,8 +31,8 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
       ).animate(animation), child: child),
   );
 }
-bool _isSplashed=false;
-
+bool isSplashed=false;
+bool isBording=false;
 
 final homeKey=GlobalKey<NavigatorState>();
 final mainkey=GlobalKey<NavigatorState>();
@@ -44,7 +44,7 @@ final routerProvider = StateProvider<GoRouter>((ref) {
     debugLogDiagnostics: true,
     
     initialLocation:SplashPage.routePath ,
-    observers:[BotToastNavigatorObserver(),GoRouterObserver()],
+    observers:[BotToastNavigatorObserver()],
 
     routes: [
       ShellRoute(
@@ -103,52 +103,31 @@ final routerProvider = StateProvider<GoRouter>((ref) {
       builder: (context, state) =>  const HomePageNavigation(child: HomePage(),)),
   ],
   redirect: (context, state) {
+    if(!isSplashed&&! isBording){
+      return null;
+    }
+    else if(isSplashed && !isBording){
+      return null;
+
+    }else{
+
+final isSplash =state.matchedLocation==SplashPage.routePath;
+final isLoging=state.matchedLocation==AuthFlowPage.routePath;
+final isAuth=authState==AuthStatus.auth;
+if(isSplash){
+  return AuthFlowPage.routePath;
+}
+if(isLoging){
+  return isAuth?HomePage.routePath:AuthFlowPage.routePath;
+}
+
+return isAuth?null:AuthFlowPage.routePath;
+
+
+    }
     
 
-
-    final isLoading=authState==AuthStatus.loading;
-     final isLoginig=state.matchedLocation==AuthFlowPage.routePath;
-    final isAuth=authState==AuthStatus.auth;
-    final isHome=state.matchedLocation==HomePage.routePath;
-    final isSplash=state.matchedLocation==SplashPage.routePath;
-
-   if(isSplash){
-      _isSplashed=true;
-      return  null;
-    }
-    if(isSplash&&_isSplashed){
-      return isAuth?HomePage.routePath:AuthFlowPage.routePath;
-
-    }
-    if(isLoginig){
-      return isAuth?HomePage.routePath:null;
-    }
-     
-
-
-    return isAuth?null:AuthFlowPage.routePath;
 
    
   },);
 });
-class GoRouterObserver extends NavigatorObserver {
-  @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('MyTest didPush: $route');
-  }
-
-  @override
-  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('MyTest didPop: $route');
-  }
-
-  @override
-  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('MyTest didRemove: $route');
-  }
-
-  @override
-  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
-    print('MyTest didReplace: $newRoute');
-  }
-}
