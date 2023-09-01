@@ -103,25 +103,25 @@ final routerProvider = StateProvider<GoRouter>((ref) {
       builder: (context, state) =>  const HomePageNavigation(child: HomePage(),)),
   ],
   redirect: (context, state) {
-    if(!isSplashed&&! isBording){
-      return null;
-    }
-    else if(isSplashed && !isBording){
-      return null;
+    // if(!isSplashed){
+    //   return null;
+    // }
+    // else if(isSplashed && !isBording){
+    //   return null;
 
-    }else{
+    // }else{
 
-final isSplash =state.matchedLocation==SplashPage.routePath;
-final isLoging=state.matchedLocation==AuthFlowPage.routePath;
-final isAuth=authState==AuthStatus.auth;
-if(isSplash){
-  return AuthFlowPage.routePath;
-}
-if(isLoging){
-  return isAuth?HomePage.routePath:AuthFlowPage.routePath;
-}
+// final isSplash =state.matchedLocation==SplashPage.routePath;
+// final isLoging=state.matchedLocation==AuthFlowPage.routePath;
+// final isAuth=authState==AuthStatus.auth;
+// if(isSplash){
+//   return AuthFlowPage.routePath;
+// }
+// if(isLoging){
+//   return isAuth?HomePage.routePath:AuthFlowPage.routePath;
+// }
 
-return isAuth?null:AuthFlowPage.routePath;
+// return isAuth?null:HomePage.routePath;
 
 
     }
@@ -129,5 +129,7 @@ return isAuth?null:AuthFlowPage.routePath;
 
 
    
-  },);
+  // },
+  
+  );
 });
