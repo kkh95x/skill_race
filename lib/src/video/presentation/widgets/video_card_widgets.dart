@@ -5,14 +5,15 @@ import 'package:skill_race/gen/assets.gen.dart';
 import 'package:skill_race/src/video/application/video_controller_provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
-class VideoCard extends ConsumerWidget {
+import 'circle_image_animation.dart';
+class VideoCard extends ConsumerStatefulWidget {
   const VideoCard({super.key, required this.url,  this.onTapAi,
    this.onTapJob,
    this.onTapJobComint,
    this.onTapJobMe,
    this.onTapJobMore,
    this.onTapLike,
+   this.onTapFilter
   
   
   });
@@ -25,9 +26,23 @@ class VideoCard extends ConsumerWidget {
   final void Function()? onTapJobComint;
   final void Function()? onTapJobMore;
 
+    final void Function()? onTapFilter;
+
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-     final controller= ref.watch(videoController(url));
+  ConsumerState<VideoCard> createState() => _VideoCardState();
+}
+
+class _VideoCardState extends ConsumerState<VideoCard> {
+  @override
+  void dispose() {
+    super.dispose();
+    ref.watch(videoController(widget.url)).value?.pause();
+  }
+
+  @override
+  Widget build(BuildContext contextf) {
+     final controller= ref.watch(videoController(widget.url));
     return Stack(
       children: [
         controller.when(
@@ -82,11 +97,18 @@ class VideoCard extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  IconButton(onPressed: () {
+                    
+                  }, icon: Icon( Icons.camera_enhance_outlined,
+                  size: 40.sp,
+                  color: Colors.white.withOpacity(.8),)),
+
+                  const Spacer(),
                   GestureDetector(
                       onTap: ()async {
-                        if(onTapAi!=null){
+                        if(widget.onTapAi!=null){
                           await controller.value?.pause();
-                          onTapAi?.call();
+                          widget.onTapAi?.call();
                         }
                       },
                       child: Assets.icons.png.ai.image(
@@ -100,9 +122,9 @@ class VideoCard extends ConsumerWidget {
                   GestureDetector(
                       onTap:
                        ()async {
-                        if(onTapJob!=null){
+                        if(widget.onTapJob!=null){
                           await controller.value?.pause();
-                          onTapJob?.call();
+                          widget.onTapJob?.call();
                         }
                       },
                       child: Assets.icons.png.job
@@ -173,11 +195,22 @@ class VideoCard extends ConsumerWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+
+                  IconButton(onPressed:() async{
+                    if(widget.onTapFilter!=null){
+                          await controller.value?.pause();
+                          widget.onTapFilter?.call();
+                        }
+                  },
+                  
+                  icon:  Icon(Icons.filter_alt_outlined, size: 40.sp,
+                  color: Colors.white.withOpacity(.8),),),
+                  const Spacer(),
                   GestureDetector(
           onTap:  ()async {
-                        if(onTapLike!=null){
+                        if(widget.onTapLike!=null){
                           await controller.value?.pause();
-                          onTapLike?.call();
+                          widget.onTapLike?.call();
                         }
                       },
           child: Assets.icons.png.loveWhite.image(height: 50.r, width: 50.r)),
@@ -193,9 +226,9 @@ class VideoCard extends ConsumerWidget {
                   ),
                    GestureDetector(
           onTap:  ()async {
-                        if(onTapJobComint!=null){
+                        if(widget.onTapJobComint!=null){
                           await controller.value?.pause();
-                          onTapJobComint?.call();
+                          widget.onTapJobComint?.call();
                         }
                       },
           
@@ -213,9 +246,9 @@ class VideoCard extends ConsumerWidget {
                  GestureDetector(
           onTap: 
            ()async {
-                        if(onTapJobMe!=null){
+                        if(widget.onTapJobMe!=null){
                           await controller.value?.pause();
-                          onTapJobMe?.call();
+                          widget.onTapJobMe?.call();
                         }
                       }
           ,child: Assets.icons.png.jobMe.image(height: 60.r, width: 60.r)),
@@ -232,9 +265,9 @@ class VideoCard extends ConsumerWidget {
                  GestureDetector(
           onTap:
            ()async {
-                        if(onTapJobMore!=null){
+                        if(widget.onTapJobMore!=null){
                           await controller.value?.pause();
-                          onTapJobMore?.call();
+                          widget.onTapJobMore?.call();
                         }
                       }
           
@@ -243,6 +276,24 @@ class VideoCard extends ConsumerWidget {
                       Icons.more_horiz,
                       color: Colors.white,
                       size: 50.sp,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20.h),
+                    child: CircleImageAnimation(
+                      child:  Container(
+                        padding: EdgeInsets.all(10.sp),
+                        
+                        decoration: const BoxDecoration(shape: BoxShape.circle ,color:Colors.black),
+                        child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60.r),
+                              child: CachedNetworkImage(
+                                  width: 30.r,
+                                  height: 30.r,
+                                  imageUrl:
+                                      "https://images.nightcafe.studio/jobs/1dg6rpsglt7JUxmlLlau/1dg6rpsglt7JUxmlLlau--1--gck8s.jpg?tr=w-1600,c-at_max"),
+                            ),
+                      ),
                     ),
                   )
                 ],

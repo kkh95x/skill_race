@@ -74,6 +74,7 @@ Future<void> sginInWithGoogle()async{
   final usercredential =await _userService.signInWithGoogle();
     if(usercredential.user!=null){
       final email=usercredential.user?.email;
+      
       debugPrint("----> user facebook info ${usercredential.user}");
       final user=await _userService.getUserFromCloud(email??"");
       if(user!=null){

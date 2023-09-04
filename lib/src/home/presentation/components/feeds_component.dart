@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:skill_race/src/home/presentation/pages/filter_page.dart';
+import 'package:skill_race/src/home/presentation/pages/need_employ_page.dart';
 import 'package:skill_race/src/user/application/user_un_auth_helper.dart';
 import 'package:skill_race/src/video/application/video_controller_provider.dart';
 import 'package:skill_race/src/video/presentation/widgets/video_card_widgets.dart';
@@ -28,7 +31,9 @@ class FeedsComponent extends ConsumerWidget {
 
       },
       onTapJob: () {
-                ref.read(userUnAuthHelper(context));
+                // ref.read(userUnAuthHelper(context));
+                          context.push(NeedEmpolyPage.routePath);
+
 
       },
       onTapJobComint: () {
@@ -42,6 +47,10 @@ class FeedsComponent extends ConsumerWidget {
       onTapJobMore: () {
                 ref.read(userUnAuthHelper(context));
 
+      },
+      //FilterPage
+      onTapFilter: () {
+        context.push(FilterPage.routePath);
       },
       );
     },

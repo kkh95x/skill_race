@@ -14,6 +14,7 @@ class HomePageNavigation extends StatelessWidget {
 SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(children: [
        
         child,

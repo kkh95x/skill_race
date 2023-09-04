@@ -36,6 +36,8 @@ Future.delayed(const Duration(seconds: 2),() {
     },);
 });
 
-    return Scaffold(body: Center(child: Assets.icons.png.logo.image(),));
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(child: Assets.icons.png.logoWhite.image(),));
   }
 }

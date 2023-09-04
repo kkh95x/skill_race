@@ -78,9 +78,22 @@ class $AssetsIconsPngGen {
   AssetGenImage get loveWhite =>
       const AssetGenImage('assets/icons/png/love_white.png');
 
+  /// File path: assets/icons/png/notification.png
+  AssetGenImage get notification =>
+      const AssetGenImage('assets/icons/png/notification.png');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [ai, comint, job, jobMe, logo, logoWhite, loveRed, loveWhite];
+  List<AssetGenImage> get values => [
+        ai,
+        comint,
+        job,
+        jobMe,
+        logo,
+        logoWhite,
+        loveRed,
+        loveWhite,
+        notification
+      ];
 }
 
 class $AssetsImagesPngGen {

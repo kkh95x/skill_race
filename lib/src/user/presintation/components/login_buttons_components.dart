@@ -13,8 +13,8 @@ class LoginButtonsComponent extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(height: 20.h,),
-          Text("You Need Sgin in First.."),
-          Divider()
+          const Text("You Need Sgin in First.."),
+          const Divider()
 ,          SignInButton(
       Buttons.email,
       onPressed: () {},

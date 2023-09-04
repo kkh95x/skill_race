@@ -7,6 +7,7 @@ import 'package:skill_race/splash.dart';
 import 'package:skill_race/src/auth/application/auth_notifer.dart';
 import 'package:skill_race/src/auth/application/auth_state.dart';
 import 'package:skill_race/src/auth/presentation/pages/auth_flow_page.dart';
+import 'package:skill_race/src/home/presentation/pages/filter_page.dart';
 import 'package:skill_race/src/home/presentation/pages/home_navigation_page.dart';
 import 'package:skill_race/src/home/presentation/pages/home_page.dart';
 import 'package:skill_race/src/home/presentation/pages/messages_page.dart';
@@ -14,6 +15,7 @@ import 'package:skill_race/src/home/presentation/pages/more_page.dart';
 import 'package:skill_race/src/home/presentation/pages/profile_page.dart';
 import 'package:skill_race/src/home/presentation/pages/saved_page.dart';
 import 'package:skill_race/testi_page.dart';
+import './src/home/presentation/pages/need_employ_page.dart';
 CustomTransitionPage buildPageWithDefaultTransition<T>({
   required BuildContext context, 
   required GoRouterState state, 
@@ -93,38 +95,51 @@ final routerProvider = StateProvider<GoRouter>((ref) {
       builder: (context, state) =>const AuthFlowPage(),),
       
       
-// SplashPage
+// SplashPage FilterPage
       
+      GoRoute(
+        // parentNavigatorKey: homeKey,
+        parentNavigatorKey: mainkey,
+        path: FilterPage.routePath,//name: HomePage.routeName,
+      builder: (context, state) =>  const FilterPage()),
      GoRoute(path: SplashPage.routePath,name: SplashPage.routeName,
       builder: (context, state) =>const SplashPage(),),
-       GoRoute(
-        parentNavigatorKey: homeKey,
-        path: HomePage.routePath,//name: HomePage.routeName,
-      builder: (context, state) =>  const HomePageNavigation(child: HomePage(),)),
+ GoRoute(
+        // parentNavigatorKey: homeKey,
+        parentNavigatorKey: mainkey,
+        path: NeedEmpolyPage.routePath,//name: HomePage.routeName,
+      builder: (context, state) =>  const NeedEmpolyPage()),
+    
+
+    
+      //  GoRoute(
+      //   parentNavigatorKey: homeKey,
+      //   path: HomePage.routePath,//name: HomePage.routeName,
+      // builder: (context, state) =>  const HomePageNavigation(child: HomePage(),)),
   ],
-  redirect: (context, state) {
-    // if(!isSplashed){
-    //   return null;
-    // }
-    // else if(isSplashed && !isBording){
-    //   return null;
+//   redirect: (context, state) {
+//     // if(!isSplashed){
+//     //   return null;
+//     // }
+//     // else if(isSplashed && !isBording){
+//     //   return null;
 
-    // }else{
+//     // }else{
 
-// final isSplash =state.matchedLocation==SplashPage.routePath;
-// final isLoging=state.matchedLocation==AuthFlowPage.routePath;
-// final isAuth=authState==AuthStatus.auth;
-// if(isSplash){
-//   return AuthFlowPage.routePath;
-// }
-// if(isLoging){
-//   return isAuth?HomePage.routePath:AuthFlowPage.routePath;
-// }
+// // final isSplash =state.matchedLocation==SplashPage.routePath;
+// // final isLoging=state.matchedLocation==AuthFlowPage.routePath;
+// // final isAuth=authState==AuthStatus.auth;
+// // if(isSplash){
+// //   return AuthFlowPage.routePath;
+// // }
+// // if(isLoging){
+// //   return isAuth?HomePage.routePath:AuthFlowPage.routePath;
+// // }
 
-// return isAuth?null:HomePage.routePath;
+// // return isAuth?null:HomePage.routePath;
 
 
-    }
+//     }
     
 
 
