@@ -25,7 +25,7 @@ mixin _$AppUser {
   bool get isOnline => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  DateTime get birthDay => throw _privateConstructorUsedError;
+  DateTime? get birthDay => throw _privateConstructorUsedError;
   String get fullname => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   List<String>? get interests => throw _privateConstructorUsedError; //اهتمامات
@@ -55,7 +55,7 @@ abstract class $AppUserCopyWith<$Res> {
       bool isOnline,
       String? phone,
       String? email,
-      DateTime birthDay,
+      DateTime? birthDay,
       String fullname,
       String? password,
       List<String>? interests,
@@ -89,7 +89,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? isOnline = null,
     Object? phone = freezed,
     Object? email = freezed,
-    Object? birthDay = null,
+    Object? birthDay = freezed,
     Object? fullname = null,
     Object? password = freezed,
     Object? interests = freezed,
@@ -123,10 +123,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      birthDay: null == birthDay
+      birthDay: freezed == birthDay
           ? _value.birthDay
           : birthDay // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       bool isOnline,
       String? phone,
       String? email,
-      DateTime birthDay,
+      DateTime? birthDay,
       String fullname,
       String? password,
       List<String>? interests,
@@ -232,7 +232,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? isOnline = null,
     Object? phone = freezed,
     Object? email = freezed,
-    Object? birthDay = null,
+    Object? birthDay = freezed,
     Object? fullname = null,
     Object? password = freezed,
     Object? interests = freezed,
@@ -266,10 +266,10 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      birthDay: null == birthDay
+      birthDay: freezed == birthDay
           ? _value.birthDay
           : birthDay // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -327,7 +327,7 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
       this.isOnline = false,
       this.phone,
       this.email,
-      required this.birthDay,
+      this.birthDay,
       required this.fullname,
       this.password,
       final List<String>? interests,
@@ -360,7 +360,7 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
   @override
   final String? email;
   @override
-  final DateTime birthDay;
+  final DateTime? birthDay;
   @override
   final String fullname;
   @override
@@ -522,7 +522,7 @@ abstract class _AppUser implements AppUser {
       final bool isOnline,
       final String? phone,
       final String? email,
-      required final DateTime birthDay,
+      final DateTime? birthDay,
       required final String fullname,
       final String? password,
       final List<String>? interests,
@@ -548,7 +548,7 @@ abstract class _AppUser implements AppUser {
   @override
   String? get email;
   @override
-  DateTime get birthDay;
+  DateTime? get birthDay;
   @override
   String get fullname;
   @override

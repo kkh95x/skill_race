@@ -20,6 +20,7 @@ FormGroup userForm(UserFormRef ref, {AppUser? user})=>FormGroup({
       "email":FormControl<String>(),}),
      "confirmCode":FormControl<String>(),
      "enterPassword":FormGroup({
+      "fullname":FormControl<String>(validators: [Validators.required]),
     "password":FormControl<String>(validators: [Validators.required,Validators.minLength(8),Validators.pattern(r'^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),]),
       "rePassword":FormControl<String>(validators: [Validators.required,Validators.minLength(8),Validators.pattern(r'^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),]),
        "see":FormControl<bool>(value: false),

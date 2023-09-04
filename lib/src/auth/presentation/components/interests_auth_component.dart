@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:skill_race/collections.dart';
 import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
+import 'package:skill_race/src/auth/application/auth_notifer.dart';
 import 'package:skill_race/src/auth/presentation/components/auth_page_template_component.dart';
 import 'package:skill_race/src/user/application/user_form.dart';
 
@@ -78,6 +79,8 @@ class InterestsPageComponent extends ConsumerWidget {
                                 onPressed: () {
                                   if(( (form.control("Interests").value as List<String>?) ??[]).isEmpty){
                                     BotToast.showText(text: "You Must Have Select one Interests or more",duration:const Duration(seconds: 5),clickClose: true);
+                                  }else{
+                                    ref.read(userAuthNotifer.notifier).addInterstsToUserAndCreateIt(form);
                                   }
                                 
                               },),

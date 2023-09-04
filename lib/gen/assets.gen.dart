@@ -11,6 +11,29 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsHomeIconGen {
+  const $AssetsHomeIconGen();
+
+  /// File path: assets/home_icon/home.svg
+  SvgGenImage get home => const SvgGenImage('assets/home_icon/home.svg');
+
+  /// File path: assets/home_icon/massenger.svg
+  SvgGenImage get massenger =>
+      const SvgGenImage('assets/home_icon/massenger.svg');
+
+  /// File path: assets/home_icon/more.svg
+  SvgGenImage get more => const SvgGenImage('assets/home_icon/more.svg');
+
+  /// File path: assets/home_icon/profile.svg
+  SvgGenImage get profile => const SvgGenImage('assets/home_icon/profile.svg');
+
+  /// File path: assets/home_icon/saved.svg
+  SvgGenImage get saved => const SvgGenImage('assets/home_icon/saved.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [home, massenger, more, profile, saved];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -27,6 +50,19 @@ class $AssetsImagesGen {
 class $AssetsIconsPngGen {
   const $AssetsIconsPngGen();
 
+  /// File path: assets/icons/png/ai.png
+  AssetGenImage get ai => const AssetGenImage('assets/icons/png/ai.png');
+
+  /// File path: assets/icons/png/comint.png
+  AssetGenImage get comint =>
+      const AssetGenImage('assets/icons/png/comint.png');
+
+  /// File path: assets/icons/png/job.png
+  AssetGenImage get job => const AssetGenImage('assets/icons/png/job.png');
+
+  /// File path: assets/icons/png/job_me.png
+  AssetGenImage get jobMe => const AssetGenImage('assets/icons/png/job_me.png');
+
   /// File path: assets/icons/png/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/icons/png/logo.png');
 
@@ -34,8 +70,30 @@ class $AssetsIconsPngGen {
   AssetGenImage get logoWhite =>
       const AssetGenImage('assets/icons/png/logo_white.png');
 
+  /// File path: assets/icons/png/love_red.png
+  AssetGenImage get loveRed =>
+      const AssetGenImage('assets/icons/png/love_red.png');
+
+  /// File path: assets/icons/png/love_white.png
+  AssetGenImage get loveWhite =>
+      const AssetGenImage('assets/icons/png/love_white.png');
+
+  /// File path: assets/icons/png/notification.png
+  AssetGenImage get notification =>
+      const AssetGenImage('assets/icons/png/notification.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [logo, logoWhite];
+  List<AssetGenImage> get values => [
+        ai,
+        comint,
+        job,
+        jobMe,
+        logo,
+        logoWhite,
+        loveRed,
+        loveWhite,
+        notification
+      ];
 }
 
 class $AssetsImagesPngGen {
@@ -86,6 +144,7 @@ class $AssetsImagesSvgOnboardingGen {
 class Assets {
   Assets._();
 
+  static const $AssetsHomeIconGen homeIcon = $AssetsHomeIconGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
