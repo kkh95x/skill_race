@@ -50,6 +50,9 @@ class $AssetsImagesGen {
 class $AssetsIconsPngGen {
   const $AssetsIconsPngGen();
 
+  /// File path: assets/icons/png/Plus.png
+  AssetGenImage get plus => const AssetGenImage('assets/icons/png/Plus.png');
+
   /// File path: assets/icons/png/ai.png
   AssetGenImage get ai => const AssetGenImage('assets/icons/png/ai.png');
 
@@ -84,6 +87,7 @@ class $AssetsIconsPngGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        plus,
         ai,
         comint,
         job,
@@ -144,9 +148,13 @@ class $AssetsImagesSvgOnboardingGen {
 class Assets {
   Assets._();
 
+  static const String countries = 'assets/countries.json';
   static const $AssetsHomeIconGen homeIcon = $AssetsHomeIconGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+
+  /// List of all assets
+  List<String> get values => [countries];
 }
 
 class AssetGenImage {

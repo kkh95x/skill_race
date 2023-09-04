@@ -61,12 +61,11 @@ class FilterComponent extends ConsumerWidget {
                 ],),
                 SizedBox(height: 80.h,),
             
-              SizedBox(height: 40.h,),
                 ReactiveFormConsumer(
                   builder: (context, formGroup, child) {
                     
                     return const DropdownSearchWidget(
-                      
+                      title: "Specialization",
                       placeholder: "intersts",
                       formControlName: FilterFormKeys.intersts,
                       
@@ -78,7 +77,7 @@ class FilterComponent extends ConsumerWidget {
                       item:interestsList );
                   }
                 ),
-                SizedBox(height: 40.h,),
+                SizedBox(height: 20.h,),
                 ReactiveFormConsumer(
                   builder: (context, formGroup, child) {
                   bool isOpen;
@@ -97,6 +96,7 @@ class FilterComponent extends ConsumerWidget {
                     return Visibility(
                       visible: isOpen,
                       child:  DropdownSearchWidget(
+                        title: "Sub Specialization",
                         placeholder: "details",
                         formControlName: FilterFormKeys.subIntersts,          
                         item:supList??[] ),

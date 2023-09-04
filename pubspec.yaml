@@ -66,6 +66,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/countries.json
     - assets/images/svg/onboarding/
     - assets/images/png/
     - assets/json/
