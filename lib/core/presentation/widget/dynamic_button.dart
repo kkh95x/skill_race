@@ -23,6 +23,7 @@ class DynamicButton extends ConsumerWidget {
   final bool isDisabled;
   final TextStyle? style;
 
+
   @override
   Widget build(BuildContext context, ref) {
 
@@ -33,7 +34,7 @@ class DynamicButton extends ConsumerWidget {
         return Container(
        width: MediaQuery.of(context).size.width,
           height: height.h,
-          margin: EdgeInsets.symmetric(horizontal: 16.w),
+          // margin: EdgeInsets.symmetric(horizontal: 16.w),
           decoration: BoxDecoration(
             gradient:  LinearGradient(
               colors: [Theme.of(context).colorScheme.secondary,Theme.of(context).colorScheme.primary], // Define your gradient colors

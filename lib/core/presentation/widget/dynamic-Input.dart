@@ -125,7 +125,7 @@ class DynamicInput extends ConsumerWidget {
                       errorMaxLines: 1,
                       fillColor: Theme.of(context).colorScheme.onPrimary,
                       contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-                    labelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(color: Theme.of(context).colorScheme.onPrimary, ),
+                    labelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer, ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(radius))),
@@ -162,7 +162,7 @@ class DynamicInput extends ConsumerWidget {
                         onChanged: onchange,
                         autofocus: autoFoucs,
                         maxLines: multiLine == true ? 5 : 1,
-                        style: Theme.of(context).textTheme.labelSmall,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
                         formControlName: control,
                         keyboardType:
                             type == Type.text ? TextInputType.text : TextInputType.number,

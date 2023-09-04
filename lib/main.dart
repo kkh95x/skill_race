@@ -27,6 +27,7 @@ class MyApp extends ConsumerWidget {
       
       builder: (context , child) {
         return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           routerConfig: router,
           builder: (context, child) {
               child = botToastBuilder(context, child);

@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,7 +53,7 @@ class DropdownSearchWidget extends ConsumerWidget {
                   ),
                 ],
               )),
-        Container(
+        SizedBox(
           height: 50.h,
           // width: width,
           child: ReactiveDropdownSearch<String, String>(
@@ -96,8 +97,10 @@ class DropdownSearchWidget extends ConsumerWidget {
               ),
             ),
             popupProps: PopupPropsMultiSelection.menu(
+              
                 showSelectedItems: true,
                 showSearchBox: search!,
+                
                 searchFieldProps: TextFieldProps(
                   autofocus: true,
                   decoration: InputDecoration(
@@ -133,6 +136,10 @@ class DropdownSearchWidget extends ConsumerWidget {
                 constraints: BoxConstraints(maxHeight: maxheight!),
                 listViewProps: const ListViewProps()),
             items: item,
+            filterFn: (item, filter) {
+              return item.toLowerCase().contains(filter.toLowerCase());
+              
+            },
             focusNode: FocusNode(),
             showClearButton: true,
             // dropdownSearchTextStyle:
