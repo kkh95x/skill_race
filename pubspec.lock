@@ -361,6 +361,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.6"
+  easy_image_viewer:
+    dependency: "direct main"
+    description:
+      name: easy_image_viewer
+      sha256: "8d11a4630e9beb7aacf043c98da2dd4b3bc3b47aa4073d2016ba696376161272"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   fake_async:
     dependency: transitive
     description:
@@ -502,6 +510,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.3.1"
+  flutter_launcher_icons:
+    dependency: "direct main"
+    description:
+      name: flutter_launcher_icons
+      sha256: "526faf84284b86a4cb36d20a5e45147747b7563d921373d4ee0559c54fcdbcea"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -701,6 +717,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      sha256: a72242c9a0ffb65d03de1b7113bc4e189686fc07c7147b8b41811d0dd0e0d9bf
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.17"
+  insta_like_button:
+    dependency: "direct main"
+    description:
+      name: insta_like_button
+      sha256: "3195ddb12ce8b2b7bedf13e56e25fc7bbd46b98c217f9692f98b938f42eba380"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   intl:
     dependency: transitive
     description:
@@ -1234,6 +1266,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+  star_rating:
+    dependency: "direct main"
+    description:
+      name: star_rating
+      sha256: "8944bad655403a2f92a80903db669532f72616e3ba2939b9bc25dc2156c41d5c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.11.0"
   state_notifier:
     dependency: transitive
     description:
@@ -1402,6 +1442,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.18"
+  visibility_detector:
+    dependency: "direct main"
+    description:
+      name: visibility_detector
+      sha256: dd5cc11e13494f432d15939c3aa8ae76844c42b723398643ce9addb88a5ed420
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0+2"
   watcher:
     dependency: transitive
     description:

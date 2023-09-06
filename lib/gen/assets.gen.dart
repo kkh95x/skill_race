@@ -27,11 +27,15 @@ class $AssetsHomeIconGen {
   /// File path: assets/home_icon/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/home_icon/profile.svg');
 
+  /// File path: assets/home_icon/realls.svg
+  SvgGenImage get realls => const SvgGenImage('assets/home_icon/realls.svg');
+
   /// File path: assets/home_icon/saved.svg
   SvgGenImage get saved => const SvgGenImage('assets/home_icon/saved.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [home, massenger, more, profile, saved];
+  List<SvgGenImage> get values =>
+      [home, massenger, more, profile, realls, saved];
 }
 
 class $AssetsIconsGen {
@@ -85,6 +89,12 @@ class $AssetsIconsPngGen {
   AssetGenImage get notification =>
       const AssetGenImage('assets/icons/png/notification.png');
 
+  /// File path: assets/icons/png/saved.png
+  AssetGenImage get saved => const AssetGenImage('assets/icons/png/saved.png');
+
+  /// File path: assets/icons/png/send.png
+  AssetGenImage get send => const AssetGenImage('assets/icons/png/send.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         plus,
@@ -96,7 +106,9 @@ class $AssetsIconsPngGen {
         logoWhite,
         loveRed,
         loveWhite,
-        notification
+        notification,
+        saved,
+        send
       ];
 }
 

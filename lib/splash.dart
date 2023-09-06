@@ -38,6 +38,6 @@ Future.delayed(const Duration(seconds: 2),() {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(child: Assets.icons.png.logoWhite.image(),));
+      body: Center(child: Assets.icons.png.logo.image(),));
   }
 }

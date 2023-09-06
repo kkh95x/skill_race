@@ -6,16 +6,27 @@ import 'package:skill_race/src/home/presentation/pages/need_employ_page.dart';
 import 'package:skill_race/src/user/application/user_un_auth_helper.dart';
 import 'package:skill_race/src/video/application/video_controller_provider.dart';
 import 'package:skill_race/src/video/presentation/widgets/video_card_widgets.dart';
-const urls=[
+List<String> urls=[
 "https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/Download%20(1).mp4?alt=media&token=9e952105-bf77-41a3-a437-805a452e252b",
 "https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/Download%20(2).mp4?alt=media&token=c81cc4ac-8c42-4759-8625-f35ee877370f",
 "https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/Download.mp4?alt=media&token=7e8cf9ed-28c9-4efe-9770-bd4d4e213214"
 ];
-class FeedsComponent extends ConsumerWidget {
+class FeedsComponent extends ConsumerStatefulWidget  {
   const FeedsComponent({super.key});
+  @override
+  ConsumerState<FeedsComponent> createState() => _FeedsComponentState();
+}
+
+class _FeedsComponentState extends ConsumerState<FeedsComponent> {
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  void initState() {
+
+  
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
      ref.read(videoController(urls[0]));
      ref.read(videoController(urls[1]));
      ref.read(videoController(urls[2]));

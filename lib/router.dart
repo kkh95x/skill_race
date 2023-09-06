@@ -13,7 +13,9 @@ import 'package:skill_race/src/home/presentation/pages/home_page.dart';
 import 'package:skill_race/src/home/presentation/pages/messages_page.dart';
 import 'package:skill_race/src/home/presentation/pages/more_page.dart';
 import 'package:skill_race/src/home/presentation/pages/profile_page.dart';
+import 'package:skill_race/src/video/presentation/pages/realls_page.dart';
 import 'package:skill_race/src/home/presentation/pages/saved_page.dart';
+import 'package:skill_race/src/video/presentation/pages/single_video_page.dart';
 import 'package:skill_race/testi_page.dart';
 import './src/home/presentation/pages/need_employ_page.dart';
 CustomTransitionPage buildPageWithDefaultTransition<T>({
@@ -49,6 +51,21 @@ final routerProvider = StateProvider<GoRouter>((ref) {
     observers:[BotToastNavigatorObserver()],
 
     routes: [
+      GoRoute(path: SingleVideoPage.routePath,
+      name: SingleVideoPage.routeName,
+      builder: (context, state) => SingleVideoPage(url: state.extra.toString()),
+       pageBuilder: (context, state) {
+          final args = state.extra! as String;
+          return buildPageWithDefaultTransition<void>(
+            context: context,
+            state: state,
+            child: SingleVideoPage(url: args),
+          );
+        },
+      
+      ),
+
+     
       ShellRoute(
         navigatorKey: homeKey,
 
@@ -56,8 +73,11 @@ final routerProvider = StateProvider<GoRouter>((ref) {
         builder: (context, state, child) =>  HomePageNavigation(child: child),
       // pageBuilder: (context, state, child) =>   buildPageWithDefaultTransition(context: context, state: state, child: HomePageNavigation(child: child)) ,
         routes: [
-        
-
+         GoRoute(        
+        path: ReallsPage.routePath,
+        parentNavigatorKey: homeKey,
+        name: ReallsPage.routeName,
+      builder: (context, state) =>const ReallsPage(),),
       GoRoute(
         parentNavigatorKey: homeKey,
         path: HomePage.routePath,//name: HomePage.routeName,
