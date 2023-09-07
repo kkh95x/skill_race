@@ -62,20 +62,38 @@ class FilterComponent extends ConsumerWidget {
                 SizedBox(height: 80.h,),
             
                 ReactiveFormConsumer(
-                  builder: (context, formGroup, child) {
-                    
-                    return const DropdownSearchWidget(
-                      title: "Specialization",
-                      placeholder: "intersts",
-                      formControlName: FilterFormKeys.intersts,
-                      
-             
-            
-            
-          
-          
-                      item:interestsList );
+
+                   
+                  builder: (context, formGroup, child) {  
+ 
+                    return Wrap(
+                      children: interestsList.map((e) {
+                                            final isSelected=form.control(FilterFormKeys.intersts).value==e;
+                        return Container(
+                          padding: EdgeInsets.all(10.sp),margin: EdgeInsets.all(5.sp),
+                          decoration:  BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.r),
+            gradient: isSelected? LinearGradient(
+              colors: [Theme.of(context).colorScheme.secondary,Theme.of(context).colorScheme.primary], // Define your gradient colors
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+            ):null,
+            border: Border.all(color:Theme.of(context).colorScheme.secondary,style: BorderStyle.solid)
+            ),
+                          child: GestureDetector( onTap: () {
+                          form.control(FilterFormKeys.intersts).value=e;//FilterFormKeys.subIntersts
+                        form.control(FilterFormKeys.subIntersts).reset();
+                      },child:Text(e,style: TextStyle(color: isSelected?Colors.white:null),)));}).toList(),
+
+                    ) ;                 
+                  //   return const DropdownSearchWidget(
+                  //     title: "Specialization",
+                  //     placeholder: "intersts",
+                  //     formControlName: FilterFormKeys.intersts,               
+                  //     item:interestsList );
                   }
+
+
                 ),
                 SizedBox(height: 20.h,),
                 ReactiveFormConsumer(
@@ -93,9 +111,11 @@ class FilterComponent extends ConsumerWidget {
                   }else{
                     isOpen=false;
                   }
-                    return Visibility(
-                      visible: isOpen,
-                      child:  DropdownSearchWidget(
+                    return AnimatedCrossFade(
+                      crossFadeState: isOpen?CrossFadeState.showFirst:CrossFadeState.showSecond,
+                     duration: const Duration(milliseconds: 300),
+                    secondChild: const SizedBox(),
+                      firstChild:  DropdownSearchWidget(
                         title: "Sub Specialization",
                         placeholder: "details",
                         formControlName: FilterFormKeys.subIntersts,          

@@ -9,6 +9,7 @@ class DynamicButton extends ConsumerWidget {
     required this.onPressed,
     this.radius = 4,
     this.height = 50,
+    this.isExpandedWidth=true,
 
     this.type=ButtonTypes.primary,
     this.isDisabled = false,
@@ -22,6 +23,7 @@ class DynamicButton extends ConsumerWidget {
   final ButtonTypes type;
   final bool isDisabled;
   final TextStyle? style;
+  final bool  isExpandedWidth;
 
 
   @override
@@ -32,7 +34,7 @@ class DynamicButton extends ConsumerWidget {
 
       case ButtonTypes.primary:
         return Container(
-       width: MediaQuery.of(context).size.width,
+       width:isExpandedWidth? MediaQuery.of(context).size.width:null,
           height: height.h,
           // margin: EdgeInsets.symmetric(horizontal: 16.w),
           decoration: BoxDecoration(
@@ -60,7 +62,7 @@ class DynamicButton extends ConsumerWidget {
     );
     case ButtonTypes.secondary:
      return Container(
-       width: MediaQuery.of(context).size.width,
+       width:isExpandedWidth? MediaQuery.of(context).size.width:null,
           height: height.h,
           padding: EdgeInsets.all(0.5.sp),
           margin: EdgeInsets.symmetric(horizontal: 16.w),
