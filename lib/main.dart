@@ -40,7 +40,7 @@ class MyApp extends ConsumerWidget {
           fontFamily: 'Poppins',
           useMaterial3: true,
           colorScheme: lightColorScheme,
-                      scaffoldBackgroundColor: Colors.white,
+ scaffoldBackgroundColor: Colors.white,
 
           textTheme: TextTheme(
             

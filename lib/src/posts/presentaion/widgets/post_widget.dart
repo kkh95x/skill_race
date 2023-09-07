@@ -5,10 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skill_race/core/presentation/widget/starts_rating_widget.dart';
 import 'package:skill_race/gen/assets.gen.dart';
-import 'package:skill_race/src/home/presentation/pages/home_page.dart';
 import 'package:skill_race/src/images/presentation/components/images_post_component.dart';
 import 'package:skill_race/src/posts/presentaion/widgets/profile_pic_name_spcial.dart';
-import 'package:skill_race/src/video/application/video_controller_provider.dart';
 import 'package:skill_race/src/video/presentation/widgets/post_video_card.dart';
 
 enum PostType { video, photos }

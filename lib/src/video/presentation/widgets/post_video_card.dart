@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:skill_race/src/home/presentation/components/bottom_nave_bar_component.dart';
-import 'package:skill_race/src/video/presentation/components/feeds_component.dart';
+
 import 'package:skill_race/src/video/application/video_controller_provider.dart';
 import 'package:skill_race/src/video/presentation/pages/single_video_page.dart';
 import 'package:video_player/video_player.dart';

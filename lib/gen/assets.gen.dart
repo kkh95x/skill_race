@@ -64,11 +64,18 @@ class $AssetsIconsPngGen {
   AssetGenImage get comint =>
       const AssetGenImage('assets/icons/png/comint.png');
 
+  /// File path: assets/icons/png/edit.png
+  AssetGenImage get edit => const AssetGenImage('assets/icons/png/edit.png');
+
   /// File path: assets/icons/png/job.png
   AssetGenImage get job => const AssetGenImage('assets/icons/png/job.png');
 
   /// File path: assets/icons/png/job_me.png
   AssetGenImage get jobMe => const AssetGenImage('assets/icons/png/job_me.png');
+
+  /// File path: assets/icons/png/location.png
+  AssetGenImage get location =>
+      const AssetGenImage('assets/icons/png/location.png');
 
   /// File path: assets/icons/png/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/icons/png/logo.png');
@@ -89,6 +96,9 @@ class $AssetsIconsPngGen {
   AssetGenImage get notification =>
       const AssetGenImage('assets/icons/png/notification.png');
 
+  /// File path: assets/icons/png/play.png
+  AssetGenImage get play => const AssetGenImage('assets/icons/png/play.png');
+
   /// File path: assets/icons/png/saved.png
   AssetGenImage get saved => const AssetGenImage('assets/icons/png/saved.png');
 
@@ -100,13 +110,16 @@ class $AssetsIconsPngGen {
         plus,
         ai,
         comint,
+        edit,
         job,
         jobMe,
+        location,
         logo,
         logoWhite,
         loveRed,
         loveWhite,
         notification,
+        play,
         saved,
         send
       ];

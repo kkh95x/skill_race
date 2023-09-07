@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:skill_race/src/video/presentation/components/feeds_component.dart';
-import 'package:skill_race/src/home/presentation/components/profile_component.dart';
+import 'package:skill_race/src/user/presintation/components/profile_component.dart';
 
 class ReallsPage extends StatelessWidget {
   const ReallsPage({super.key ,});
@@ -18,10 +18,10 @@ class ReallsPage extends StatelessWidget {
         if(index==0){
           return const FeedsComponent();
         }else{
-          return const ProfileComponent();
+          return const SizedBox();
         }
       },
-      itemCount: 2,)
+      itemCount: 1,)
       
     );
   }

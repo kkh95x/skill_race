@@ -12,7 +12,7 @@ import 'package:skill_race/src/home/presentation/pages/home_navigation_page.dart
 import 'package:skill_race/src/home/presentation/pages/home_page.dart';
 import 'package:skill_race/src/home/presentation/pages/messages_page.dart';
 import 'package:skill_race/src/home/presentation/pages/more_page.dart';
-import 'package:skill_race/src/home/presentation/pages/profile_page.dart';
+import 'package:skill_race/src/user/presintation/pages/profile_page.dart';
 import 'package:skill_race/src/video/presentation/pages/realls_page.dart';
 import 'package:skill_race/src/home/presentation/pages/saved_page.dart';
 import 'package:skill_race/src/video/presentation/pages/single_video_page.dart';

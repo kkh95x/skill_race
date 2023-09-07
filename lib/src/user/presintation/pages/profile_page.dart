@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_race/src/user/presintation/components/profile_component.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -6,8 +7,7 @@ class ProfilePage extends StatelessWidget {
  static String get routePath=>"/$routeName";
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Profile Page  soon ...."),
-    );
+    return  const ProfileComponent() ; 
+    
   }
 }

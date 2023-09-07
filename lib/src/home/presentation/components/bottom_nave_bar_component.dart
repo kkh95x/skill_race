@@ -6,7 +6,7 @@ import 'package:skill_race/gen/assets.gen.dart';
 import 'package:skill_race/src/home/presentation/pages/home_page.dart';
 import 'package:skill_race/src/home/presentation/pages/messages_page.dart';
 import 'package:skill_race/src/home/presentation/pages/more_page.dart';
-import 'package:skill_race/src/home/presentation/pages/profile_page.dart';
+import 'package:skill_race/src/user/presintation/pages/profile_page.dart';
 import 'package:skill_race/src/home/presentation/pages/saved_page.dart';
 import 'package:skill_race/src/video/presentation/pages/realls_page.dart';
 
@@ -32,19 +32,19 @@ class BottomNaveBarComponent extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(colors: [Colors.black,Colors.transparent],begin: Alignment.bottomCenter,end: Alignment.topCenter)
+        // gradient: LinearGradient(colors: [Colors.black,Colors.transparent],begin: Alignment.bottomCenter,end: Alignment.topCenter)
       ),
       child: BottomNavigationBar(
-        backgroundColor: Colors.transparent,
+        // backgroundColor: Colors.black,
         // selectedIconTheme:IconThemeData(color: Theme.of(context).primaryColor),
         showSelectedLabels: true,
         // showUnselectedLabels: true,
         elevation: 0.0,
       
         // fixedColor: Colors.transparent,primaryContainer
-      // unselectedLabelStyle:TextStyle(color: Color(0xff767676)),
-      // unselectedIconTheme: IconThemeData(color: Theme.of(context).colorScheme.primaryContainer),
-      unselectedItemColor:Colors.white,
+      // unselectedLabelStyle:TextStyle(color: Theme.of(context).colorScheme.primaryContainer ),
+      unselectedIconTheme: IconThemeData(color: Theme.of(context).colorScheme.primaryContainer),
+      unselectedItemColor: Theme.of(context).colorScheme.primaryContainer,
       // Theme.of(context).colorScheme.primaryContainer ,
       // unselectedIconTheme: IconThemeData(color: Colors.white),
       
@@ -65,7 +65,7 @@ class BottomNaveBarComponent extends ConsumerWidget {
               icon: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Assets.homeIcon.home.svg(color: Colors.white),
+                  Assets.homeIcon.home.svg(),
                
                 ],
               ),
@@ -77,14 +77,14 @@ class BottomNaveBarComponent extends ConsumerWidget {
             BottomNavigationBarItem(
               
               label: 'Reels',
-              icon: Assets.homeIcon.realls.svg(width: 19.r,height: 20.r,color: Colors.white),
+              icon: Assets.homeIcon.realls.svg(width: 19.r,height: 20.r,color:  Theme.of(context).colorScheme.primaryContainer),
                 activeIcon: Assets.homeIcon.realls.svg(colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn,),width: 19.r,height: 20.r), 
       
              
             ),
              BottomNavigationBarItem(
               label: 'Saved',
-              icon:   Assets.homeIcon.saved.svg(color: Colors.white),
+              icon:   Assets.homeIcon.saved.svg( ),
                           activeIcon: Assets.homeIcon.saved.svg(colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn)),  
               
              
@@ -92,21 +92,21 @@ class BottomNaveBarComponent extends ConsumerWidget {
              BottomNavigationBarItem(
               
               label: 'Messages',
-              icon: Assets.homeIcon.massenger.svg(color: Colors.white),
+              icon: Assets.homeIcon.massenger.svg( ),
                                       activeIcon: Assets.homeIcon.massenger.svg(colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn)),  
       
              
             ),
              BottomNavigationBarItem(
               label: 'Profile',
-              icon:  Assets.homeIcon.profile.svg(color: Colors.white),
+              icon:  Assets.homeIcon.profile.svg( ),
                                       activeIcon: Assets.homeIcon.profile.svg(colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn)),  
       
              
             ),
            BottomNavigationBarItem(
               label: 'More',
-              icon:    Assets.homeIcon.more.svg(color: Colors.white),
+              icon:    Assets.homeIcon.more.svg( ),
                                       activeIcon: Assets.homeIcon.more.svg(colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn)),  
       
              
