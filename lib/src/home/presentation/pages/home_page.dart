@@ -57,7 +57,7 @@ class HomePage extends ConsumerWidget {
           SizedBox(height: 16.h,),
 
           ListView.separated(
-            separatorBuilder: (context, index) => Divider(),
+            separatorBuilder: (context, index) => const Divider(),
             physics:const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: postsData.length,
@@ -67,12 +67,12 @@ class HomePage extends ConsumerWidget {
 
         
          ),
-         Divider(),
+         const Divider(),
 
          Container(
           margin: EdgeInsets.symmetric(vertical: 50.h),
           alignment: Alignment.center,
-          child: Text("- Thats All -"),
+          child: const Text("- Thats All -"),
          )
         ]),
       )

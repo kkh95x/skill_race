@@ -41,7 +41,7 @@ bool isBording=false;
 final homeKey=GlobalKey<NavigatorState>();
 final mainkey=GlobalKey<NavigatorState>();
 final routerProvider = StateProvider<GoRouter>((ref) {
- final authState=ref.watch(userAuthNotifer).state;
+//  final authState=ref.read(userAuthNotifer).state;
 
   return GoRouter(
         navigatorKey: mainkey,
