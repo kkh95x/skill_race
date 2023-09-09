@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sign_in_button/sign_in_button.dart';
-class LoginButtonsComponent extends StatelessWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../auth/application/auth_notifer.dart';
+class LoginButtonsComponent extends ConsumerWidget{
   const LoginButtonsComponent({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height/2,
@@ -17,15 +20,25 @@ class LoginButtonsComponent extends StatelessWidget {
           const Divider()
 ,          SignInButton(
       Buttons.email,
-      onPressed: () {},
+      onPressed: () {
+                context.pop();
+
+      },
     ),
     SignInButton(
       Buttons.google,
-      onPressed: () {},
+      onPressed: () async{
+         ref.read(userAuthNotifer.notifier).sginInWithGoogle();
+        context.pop();
+       
+      },
     ),
     SignInButton(
       Buttons.facebook,
-      onPressed: () {},
+      onPressed: () {
+                context.pop();
+
+      },
     )
         ],
       ),

@@ -37,7 +37,7 @@ Future.delayed(const Duration(seconds: 2),() {
 });
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(child: Assets.icons.png.logo.image(),));
   }
 }

@@ -10,10 +10,14 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:skill_race/router.dart';
+import 'package:skill_race/splash.dart';
 // import 'package:reactive_forms/reactive_forms.dart';
 import 'package:skill_race/src/auth/application/auth_state.dart';
 import 'package:skill_race/src/auth/application/auth_user_service.dart';
+import 'package:skill_race/src/auth/presentation/pages/auth_flow_page.dart';
 import 'package:skill_race/src/user/domain/app_user.dart';
 
 final userAuthNotifer=StateNotifierProvider<AuthNotifer,AuthState>((ref) => AuthNotifer(ref.read(userServiceProvider)));
@@ -29,7 +33,7 @@ class AuthNotifer extends StateNotifier<AuthState>{
         state=const AuthState(state: AuthStatus.unAtuth);
         
       }else{
- _userService.getUserFromCloud(userId).then((user) {
+      _userService.getUserFromCloud(userId).then((user) {
      if(user==null){
       state =const AuthState(state: AuthStatus.unAtuth);
      }
@@ -75,7 +79,7 @@ Future<void> sginInWithGoogle()async{
     if(usercredential.user!=null){
       final email=usercredential.user?.email;
       
-      debugPrint("----> user facebook info ${usercredential.user}");
+      debugPrint("----> user google info ${usercredential.user}");
       final user=await _userService.getUserFromCloud(email??"");
       if(user!=null){
         state =AuthState(state: AuthStatus.auth,id: user.id,email: usercredential.user?.email,fullName:usercredential.user?.displayName );
@@ -84,11 +88,19 @@ Future<void> sginInWithGoogle()async{
 
       }else{
       state =AuthState(state: AuthStatus.newPasswordEntry,id: user?.id,email: usercredential.user?.email);
+         BotToast.closeAllLoading();
+          final context=mainkey.currentState?.context;
+          if(context!=null&& context.mounted){
+            context.push(AuthFlowPage.routePath);
+          }
+          
+       // ignore: use_build_context_synchronously
 
-      }
+       
+       }
+      
 
-      BotToast.closeAllLoading();
-      BotToast.showText(text: "login google seccssfully");
+      // BotToast.showText(text: "login google seccssfully");
 
     }else{
        BotToast.closeAllLoading();
@@ -97,7 +109,9 @@ Future<void> sginInWithGoogle()async{
     }
   }catch(e){
     // BotToast.showText(text: e.toString());
-     BotToast.showText(text: "login google rejected");
+
+    print("Error: ${e.toString()}");
+     BotToast.showText(text: e.toString());
   }
    BotToast.closeAllLoading();
 }
@@ -132,6 +146,9 @@ Future<void> logOut()async{
   if(removed??false){
     BotToast.closeAllLoading();
     state=const AuthState(state: AuthStatus.unAtuth);
+    BotToast.showText(text: "logout seccessfully");
+    // if(context.mounted){
+    // context.push(SplashPage.routePath);}
   }else{
     BotToast.showText(text: "some thing worng");
   }
