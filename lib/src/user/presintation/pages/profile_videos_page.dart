@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_pinput/reactive_pinput.dart';
 import 'package:skill_race/src/user/application/get_may_video_provider.dart';
@@ -29,7 +30,11 @@ class ProfileVideosPage extends ConsumerWidget {
           starts: data[index].starts,
           title: data[index].title,
           url: data[index].url,
-
+onTapMore: () {
+  showBottomSheet(context: context, builder: (context) {
+                  return Container(height: 500.h,width: MediaQuery.of(context).size.width,alignment: Alignment.center, child: Text("More list soon...."));
+                },);
+},
         );
       },);
     }, error: (error, stackTrace) => Center(child: Text("Error:${error.toString()}"),), loading: () =>const Center(child: CircularProgressIndicator(),),);

@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skill_race/src/images/presentation/widgets/image_profile_card.dart';
 import 'package:skill_race/src/user/application/get_may_photos.dart';
 
@@ -31,7 +32,7 @@ class ProfilePhotosPage extends ConsumerWidget {
 
               onTapMore: () {
                 showBottomSheet(context: context, builder: (context) {
-                  return Text("More list soon....");
+                  return Container(height: 500.h,width: MediaQuery.of(context).size.width,alignment: Alignment.center, child: Text("More list soon...."));
                 },);
               },
           price: data[index].price,

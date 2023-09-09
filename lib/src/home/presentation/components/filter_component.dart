@@ -73,38 +73,40 @@ class FilterComponent extends ConsumerWidget {
                     children: interestsList.map((e) {
                       final isSelected =
                           form.control(FilterFormKeys.intersts).value == e;
-                      return Container(
+                      return GestureDetector(
+                        onTap: () {
+                              form.control(FilterFormKeys.intersts).value =
+                                  e; //FilterFormKeys.subIntersts
+                              form
+                                  .control(FilterFormKeys.subIntersts)
+                                  .reset();
+                            },
+                        child: Container(
                           padding: EdgeInsets.all(10.sp),
                           margin: EdgeInsets.all(5.sp),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.r),
-                              gradient: isSelected
-                                  ? LinearGradient(
-                                      colors: [
+                                borderRadius: BorderRadius.circular(20.r),
+                                gradient: isSelected
+                                    ? LinearGradient(
+                                        colors: [
+                                          Theme.of(context).colorScheme.secondary,
+                                          Theme.of(context).colorScheme.primary
+                                        ], // Define your gradient colors
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                      )
+                                    : null,
+                                border: Border.all(
+                                    color:
                                         Theme.of(context).colorScheme.secondary,
-                                        Theme.of(context).colorScheme.primary
-                                      ], // Define your gradient colors
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                    )
-                                  : null,
-                              border: Border.all(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  style: BorderStyle.solid)),
-                          child: GestureDetector(
-                              onTap: () {
-                                form.control(FilterFormKeys.intersts).value =
-                                    e; //FilterFormKeys.subIntersts
-                                form
-                                    .control(FilterFormKeys.subIntersts)
-                                    .reset();
-                              },
-                              child: Text(
+                                    style: BorderStyle.solid)),
+                          child: Text(
                                 e,
                                 style: TextStyle(
                                     color: isSelected ? Colors.white : null),
-                              )));
+                              ),
+                        ),
+                      );
                     }).toList(),
                   );
                   //   return const DropdownSearchWidget(
