@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skill_race/core/presentation/widget/starts_rating_widget.dart';
 import 'package:skill_race/gen/assets.gen.dart';
 import 'package:skill_race/src/images/presentation/components/images_post_component.dart';
-import 'package:skill_race/src/posts/presentaion/widgets/profile_pic_name_spcial.dart';
+import 'package:skill_race/src/project/presentaion/widgets/profile_pic_name_spcial.dart';
 import 'package:skill_race/src/video/presentation/widgets/post_video_card.dart';
 
 enum PostType { video, photos }

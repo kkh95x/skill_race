@@ -12,6 +12,7 @@ import 'package:skill_race/src/home/presentation/pages/home_navigation_page.dart
 import 'package:skill_race/src/home/presentation/pages/home_page.dart';
 import 'package:skill_race/src/home/presentation/pages/messages_page.dart';
 import 'package:skill_race/src/home/presentation/pages/more_page.dart';
+import 'package:skill_race/src/project/presentaion/pages/add_new_project_page.dart';
 import 'package:skill_race/src/user/presintation/pages/profile_page.dart';
 import 'package:skill_race/src/video/presentation/pages/realls_page.dart';
 import 'package:skill_race/src/home/presentation/pages/saved_page.dart';
@@ -41,7 +42,7 @@ bool isBording=false;
 final homeKey=GlobalKey<NavigatorState>();
 final mainkey=GlobalKey<NavigatorState>();
 final routerProvider = StateProvider<GoRouter>((ref) {
-//  final authState=ref.read(userAuthNotifer).state;
+ ref.read(userAuthNotifer).state;
 
   return GoRouter(
         navigatorKey: mainkey,
@@ -51,6 +52,13 @@ final routerProvider = StateProvider<GoRouter>((ref) {
     observers:[BotToastNavigatorObserver()],
 
     routes: [
+      
+      GoRoute(
+        parentNavigatorKey: mainkey,
+        path: AddNewProjectPage.routePath,name: AddNewProjectPage.routeName,
+      builder: (context, state) =>const AddNewProjectPage(),
+      ),
+
       GoRoute(path: SingleVideoPage.routePath,
       name: SingleVideoPage.routeName,
       builder: (context, state) => SingleVideoPage(url: state.extra.toString()),

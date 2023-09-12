@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
 import 'package:skill_race/src/home/presentation/components/appbar_component.dart';
+import 'package:skill_race/src/project/presentaion/pages/add_new_project_page.dart';
 import 'package:skill_race/src/video/presentation/components/feeds_component.dart';
-import 'package:skill_race/src/posts/presentaion/widgets/post_widget.dart';
+import 'package:skill_race/src/project/presentaion/widgets/post_widget.dart';
 const imagesPost=[
   "https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/futurist-thomas-frey-the-difference-between-human-creativity-and-generative-ai-creativity.jpg?alt=media&token=5ad605a6-dd3b-41d0-a908-6aa98a8d4b00",
 "https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/hq720.jpg?alt=media&token=270095ea-c84c-49f3-a8ef-aa67fb8e30e8",
@@ -50,7 +52,7 @@ class HomePage extends ConsumerWidget {
         child: Column(children:[
           DynamicButton(
              onPressed: () {
-               
+               context.push(AddNewProjectPage.routePath);
              },
              title: "Add New Project",
           ),

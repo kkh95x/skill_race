@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:skill_race/gen/assets.gen.dart';
 
 
-  AppBar  appBarComponent({required String title,required BuildContext context,bool showBack=false}) {
+  AppBar  appBarComponent({required String title,required BuildContext context,bool showBack=false,Function()? onBack}) {
     return AppBar(
           actions: [
             Container(
@@ -17,6 +17,7 @@ import 'package:skill_race/gen/assets.gen.dart';
             child: IconButton(
               onPressed: () {
                 context.pop();
+                onBack?.call();
               },
               icon: Icon(
                 Icons.arrow_back_ios,

@@ -27,7 +27,8 @@ class PostVideoCard extends ConsumerWidget {
       onVisibilityChanged: (info) {
         final isVisible = info.visibleFraction == 0.0;
         if (isVisible) {
-          controller.value?.pause();
+          if(controller.hasValue){
+          controller.value?.pause();}
         } else {}
 
         // if(info.visibleFraction<0.2){
