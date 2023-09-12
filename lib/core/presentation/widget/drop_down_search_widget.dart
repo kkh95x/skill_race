@@ -15,10 +15,11 @@ class DropdownSearchWidget extends ConsumerWidget {
       // this.width = 325,
       this.height = 61,
       this.maxheight = 350,
-      required this.item,
+      this.item,
       this.search = true,
       this.validationMessages,
       this.title,
+      this.asyncItems,
       this.readOnly = false})
       : super(key: key);
   final String formControlName;
@@ -26,7 +27,8 @@ class DropdownSearchWidget extends ConsumerWidget {
   final Map<String, String Function(Object)>? validationMessages;
   final double radius;
   final String placeholder;
-  final List<String> item;
+  final List<String>? item;
+  final Future<List<String>> Function(String pattren)? asyncItems;
   final double? maxheight;
   final bool? search;
   final String? title;
@@ -62,6 +64,7 @@ class DropdownSearchWidget extends ConsumerWidget {
               return Future.value(true);
             },
             formControlName: formControlName,
+            asyncItems: asyncItems,
             validationMessages: validationMessages ??
                 {
                   ValidationMessage.required: (error) => 'هذا الحقل مطلوب',
@@ -101,6 +104,7 @@ class DropdownSearchWidget extends ConsumerWidget {
                 showSelectedItems: true,
                 showSearchBox: search!,
                 
+                
                 searchFieldProps: TextFieldProps(
                   autofocus: true,
                   decoration: InputDecoration(
@@ -135,7 +139,7 @@ class DropdownSearchWidget extends ConsumerWidget {
                 fit: FlexFit.loose,
                 constraints: BoxConstraints(maxHeight: maxheight!),
                 listViewProps: const ListViewProps()),
-            items: item,
+            items: item??[],
             filterFn: (item, filter) {
               return item.toLowerCase().contains(filter.toLowerCase());
               

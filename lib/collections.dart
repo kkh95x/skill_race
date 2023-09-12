@@ -1,6 +1,9 @@
 class Collections {
   Collections._();
   static const String users = "users";
+  static const String specialization="specializations";
+    static const String postProject="postProject";
+
 }
 const interestsList=[
 "All Specializations",

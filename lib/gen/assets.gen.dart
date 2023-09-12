@@ -128,6 +128,10 @@ class $AssetsIconsPngGen {
 class $AssetsImagesPngGen {
   const $AssetsImagesPngGen();
 
+  /// File path: assets/images/png/alert_add_project.png
+  AssetGenImage get alertAddProject =>
+      const AssetGenImage('assets/images/png/alert_add_project.png');
+
   /// File path: assets/images/png/pae_tow.png
   AssetGenImage get paeTow =>
       const AssetGenImage('assets/images/png/pae_tow.png');
@@ -141,7 +145,8 @@ class $AssetsImagesPngGen {
       const AssetGenImage('assets/images/png/page_three.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [paeTow, pagOne, pageThree];
+  List<AssetGenImage> get values =>
+      [alertAddProject, paeTow, pagOne, pageThree];
 }
 
 class $AssetsImagesSvgGen {

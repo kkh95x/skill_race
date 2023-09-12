@@ -55,7 +55,7 @@ class DynamicInput extends ConsumerWidget {
     this.obscure = false,
     this.textInputAction = TextInputAction.next,
     this.crossAxisAlignment,
-    this.autoFoucs = true,
+    this.autoFoucs = false,
     this.onchange,
     this.validationMessages,
     this.fieldType = "تكون كلمة المرور",
