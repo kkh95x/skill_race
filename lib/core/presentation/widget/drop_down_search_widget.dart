@@ -18,6 +18,7 @@ class DropdownSearchWidget extends ConsumerWidget {
       this.item,
       this.search = true,
       this.validationMessages,
+      this.onTap,
       this.title,
       this.asyncItems,
       this.readOnly = false})
@@ -35,6 +36,7 @@ class DropdownSearchWidget extends ConsumerWidget {
   // final double width;
   final double height;
   final bool readOnly;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -56,13 +58,17 @@ class DropdownSearchWidget extends ConsumerWidget {
                 ],
               )),
         SizedBox(
-          height: 50.h,
+          // height: 50.h,
           // width: width,
           child: ReactiveDropdownSearch<String, String>(
             onBeforeChange: (prevItem, nextItem) {
               // ref.read(checkBoxesProvider.notifier).state = nextItem;
               return Future.value(true);
             },
+          onBeforePopupOpening: (selectedItem)async {
+            onTap?.call();
+            return true;
+          },
             formControlName: formControlName,
             asyncItems: asyncItems,
             validationMessages: validationMessages ??
@@ -80,7 +86,7 @@ class DropdownSearchWidget extends ConsumerWidget {
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0.h, horizontal: 16.w),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
-
+          
                 suffixIcon: placeholderIcon,
                 border: OutlineInputBorder(
                     borderSide: BorderSide.none,

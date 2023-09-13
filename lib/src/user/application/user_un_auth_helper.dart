@@ -8,14 +8,16 @@ import '../presintation/components/login_buttons_components.dart';
 final userUnAuthHelper=FutureProvider.autoDispose.family<void,BuildContext>((ref,context) {
 
   final userAuth=ref.read(userAuthNotifer);
-  if(userAuth.state==AuthStatus.unAtuth){
+  if(userAuth.state!=AuthStatus.auth){
 
+if(context.mounted){
  showBottomSheet(context: context, builder: (context) {
       return const LoginButtonsComponent();
     },);
     
 
   }
+}
 
 
 });

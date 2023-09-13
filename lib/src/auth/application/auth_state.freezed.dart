@@ -25,6 +25,7 @@ mixin _$AuthState {
   String? get id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
+  AccountType? get accountType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $AuthStateCopyWith<$Res> {
       AppUser? currentUser,
       String? id,
       String? email,
-      String? fullName});
+      String? fullName,
+      AccountType? accountType});
 
   $AppUserCopyWith<$Res>? get currentUser;
 }
@@ -65,6 +67,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? id = freezed,
     Object? email = freezed,
     Object? fullName = freezed,
+    Object? accountType = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -87,6 +90,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      accountType: freezed == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as AccountType?,
     ) as $Val);
   }
 
@@ -115,7 +122,8 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       AppUser? currentUser,
       String? id,
       String? email,
-      String? fullName});
+      String? fullName,
+      AccountType? accountType});
 
   @override
   $AppUserCopyWith<$Res>? get currentUser;
@@ -137,6 +145,7 @@ class __$$_AuthStateCopyWithImpl<$Res>
     Object? id = freezed,
     Object? email = freezed,
     Object? fullName = freezed,
+    Object? accountType = freezed,
   }) {
     return _then(_$_AuthState(
       state: null == state
@@ -159,6 +168,10 @@ class __$$_AuthStateCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      accountType: freezed == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as AccountType?,
     ));
   }
 }
@@ -171,7 +184,8 @@ class _$_AuthState implements _AuthState {
       this.currentUser,
       this.id,
       this.email,
-      this.fullName});
+      this.fullName,
+      this.accountType});
 
   factory _$_AuthState.fromJson(Map<String, dynamic> json) =>
       _$$_AuthStateFromJson(json);
@@ -186,10 +200,12 @@ class _$_AuthState implements _AuthState {
   final String? email;
   @override
   final String? fullName;
+  @override
+  final AccountType? accountType;
 
   @override
   String toString() {
-    return 'AuthState(state: $state, currentUser: $currentUser, id: $id, email: $email, fullName: $fullName)';
+    return 'AuthState(state: $state, currentUser: $currentUser, id: $id, email: $email, fullName: $fullName, accountType: $accountType)';
   }
 
   @override
@@ -203,13 +219,15 @@ class _$_AuthState implements _AuthState {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.fullName, fullName) ||
-                other.fullName == fullName));
+                other.fullName == fullName) &&
+            (identical(other.accountType, accountType) ||
+                other.accountType == accountType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, state, currentUser, id, email, fullName);
+  int get hashCode => Object.hash(
+      runtimeType, state, currentUser, id, email, fullName, accountType);
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +249,8 @@ abstract class _AuthState implements AuthState {
       final AppUser? currentUser,
       final String? id,
       final String? email,
-      final String? fullName}) = _$_AuthState;
+      final String? fullName,
+      final AccountType? accountType}) = _$_AuthState;
 
   factory _AuthState.fromJson(Map<String, dynamic> json) =
       _$_AuthState.fromJson;
@@ -246,6 +265,8 @@ abstract class _AuthState implements AuthState {
   String? get email;
   @override
   String? get fullName;
+  @override
+  AccountType? get accountType;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

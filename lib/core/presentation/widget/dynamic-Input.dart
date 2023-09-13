@@ -117,21 +117,31 @@ class DynamicInput extends ConsumerWidget {
                 )),
             type == Type.phoneNumber
                 ? ReactivePhoneFormField<PhoneNumber>(
+                  smartDashesType: SmartDashesType.enabled,
+                
+                  // strutStyle: StrutStyle(),
+                     countrySelectorNavigator: const CountrySelectorNavigator.draggableBottomSheet(searchBoxTextStyle: TextStyle(color: Colors.black)),
                   defaultCountry: IsoCode.TR,
                   formControlName: control,
                   
-                  focusNode: FocusNode(),
-                  decoration: InputDecoration(
-                      errorMaxLines: 1,
-                      fillColor: Theme.of(context).colorScheme.onPrimary,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-                    labelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer, ),
+                  // focusNode: FocusNode(),
+                 style: Theme.of(context).textTheme.labelSmall?.copyWith(color:Colors.black),
+                 countryCodeStyle: const TextStyle(color: Colors.black),
+                
+                 
+                  decoration:InputDecoration(
+                
+                        
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16),
+                        // fillColor: Theme.of(context).colorScheme.tertiaryContainer,
+                            
+                        labelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(color: Theme.of(context).colorScheme.onPrimary, ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(radius))),
                         filled: true,
-         
-                ))
+                      ))
                 
                 : type == Type.date
                     ? ReactiveDateTimePicker(

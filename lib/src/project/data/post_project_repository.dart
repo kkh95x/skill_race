@@ -5,6 +5,11 @@ import 'package:skill_race/src/project/domain/project.dart';
 
 abstract class PostProjectRepository{
   Future<void> create(PostProject postProject);
-  Future<List<PostProject>?> getAll();
-  Future<List<PostProject>?>getMin(String id);
+  Stream<List<PostProject>> getAll(int limit);
+  Stream<List<PostProject>> getAllVideo(int limit);
+
+  Stream<List<PostProject>>getMyVideo(String id, int limit);
+  Stream<List<PostProject>>getMyImages(String id, int limit);
+
+  Future<PostProject?>get(String id);
 }

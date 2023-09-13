@@ -13,8 +13,9 @@ final hiddenHelperControlls = StateProvider<bool>((ref) => true);
 final isMuteProvider = StateProvider<bool>((ref) => false);
 
 class PostVideoCard extends ConsumerWidget {
-  const PostVideoCard({super.key, required this.url});
+  const PostVideoCard({super.key, required this.url,required this.postId});
   final String url;
+  final String postId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,6 +42,7 @@ class PostVideoCard extends ConsumerWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.h),
         height: 500.h,
+
         width: MediaQuery.of(context).size.width,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20.r),
@@ -169,7 +171,7 @@ Future.delayed(
                               onPressed: () {
                                 data.pause();
                                 context.push(SingleVideoPage.routePath,
-                                    extra: url);
+                                    extra: postId);
                               },
                               icon: const Icon(Icons.zoom_out_map)))
                     ],
@@ -181,8 +183,11 @@ Future.delayed(
               );
             },
             loading: () {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Container(
+                color: Colors.black,
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
               );
             },
           ),

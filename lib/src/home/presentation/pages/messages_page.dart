@@ -13,11 +13,13 @@ class MessagesPage extends ConsumerWidget {
      final authState=ref.watch(userAuthNotifer).state;
     final  isAuth=authState==AuthStatus.auth;
 
-    if(!isAuth){
-      return const NeedSginUpComponent();
-    }
-    return const Center(
+    if(isAuth){
+      return const Center(
       child: Text("messages Page  soon ...."),
     );
+    }
+    return const NeedSginUpComponent();
+    
+    
   }
 }

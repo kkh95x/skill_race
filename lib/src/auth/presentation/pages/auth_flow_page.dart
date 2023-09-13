@@ -1,16 +1,17 @@
 
 
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:skill_race/src/auth/application/auth_notifer.dart';
 import 'package:skill_race/src/auth/application/auth_state.dart';
-import 'package:skill_race/src/auth/presentation/components/Interests_auth_component.dart';
-import 'package:skill_race/src/auth/presentation/components/confirm_code_component.dart';
-import 'package:skill_race/src/auth/presentation/components/enter_password_new_user.dart';
-import 'package:skill_race/src/auth/presentation/components/login_component.dart';
-import 'package:skill_race/src/auth/presentation/components/sgin_up_with_email_component.dart';
+import 'package:skill_race/src/auth/presentation/components/employee_auth_component.dart';
+import 'package:skill_race/src/auth/presentation/components/account_type_component.dart';
+import 'package:skill_race/src/auth/presentation/components/hiring_auth_component.dart';
+
+import 'package:skill_race/src/user/application/user_form.dart';
+import 'package:skill_race/src/user/presintation/components/need_sgin_up_component.dart';
 
 class AuthFlowPage extends ConsumerWidget {
   const AuthFlowPage({super.key});
@@ -20,34 +21,45 @@ class AuthFlowPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     final state= ref.watch(userAuthNotifer).state;
+            final form =ref.read(userFormProvider());
+
     return Scaffold(
       
-      body:_getStep(state)
+      body:ReactiveForm(formGroup: form,
+      
+      child:_getStep(state) ,)
+      
+      
     );
   }
   _getStep(AuthStatus status){
     switch(status){
 
       case AuthStatus.loading:
-        return CircularProgressIndicator();
+        return const CircularProgressIndicator();
       case AuthStatus.unAtuth:
-        return LoginComponent();
+        return const NeedSginUpComponent();
         
       case AuthStatus.auth:
-        return SizedBox();
+        return const SizedBox();
         
-      case AuthStatus.createAccountByEmail:
-        return SginUpWithEmailComponent();
+      // case AuthStatus.createAccountByEmail:
+      //   return SginUpWithEmailComponent();
         
-      case AuthStatus.confirmEmail:
-        return ConfirmCodeComponent();
+      // case AuthStatus.confirmEmail:
+      //   return ConfirmCodeComponent();
       
-      case AuthStatus.newPasswordEntry:
-        return EnterNewPasswordComponent();
+      // case AuthStatus.newPasswordEntry:
+      //   return EnterNewPasswordComponent();
         
-      case AuthStatus.iterestsEntery:
-        return InterestsPageComponent();
+      case AuthStatus.empolyeeEntery:
+        return const EmpEntryPageComponent();
       
      
-    }
+      case AuthStatus.selectType:
+       return const AccountTypeComponent();
+      case AuthStatus.hiringEntry:
+        return const HiringAuthComponent() ;
+        
+           }
 }}

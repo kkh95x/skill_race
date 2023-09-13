@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,10 @@ import 'package:skill_race/src/project/data/firestore_post_project_repository.da
 import 'package:skill_race/src/project/domain/project.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:skill_race/src/project/presentaion/pages/add_new_project_page.dart';
+import 'package:skill_race/src/user/domain/app_user.dart';
 final saveNewPostProvider=FutureProvider.autoDispose.family<void,BuildContext>((ref,context)async {
-
+final user=ref.read(userAuthNotifer).currentUser;
+if(user?.accountType==AccountType.employe){
   final form=ref.read(newProjectFromProvider);
   if(!form.valid){
     BotToast.showText(text: "Please Enter All Fildes First");
@@ -44,36 +47,44 @@ final saveNewPostProvider=FutureProvider.autoDispose.family<void,BuildContext>((
   }
     final now=DateTime.now();
 
-    PostProject post=PostProject(title: title, description: description, specialization: specialization.name, price: price, createdAt: now, userId: ref.read(userAuthNotifer).currentUser?.id??"", postProjectType: PostProjectType.images);
+    
+    final imagesUrl=<String>[];
+    String? videoUrl;
 
   PostProjectType postProjectType;
   if(type==AddPostMediaEnum.images){
     postProjectType=PostProjectType.images;
-    final urls=<String>[];
 
     for(int i=0;i<images.length;i++){
     final image=images[i];
-    final name="${now.toIso8601String()}.${image.split(".").last}";
+    final name="${i+10}${now.toIso8601String()}.${image.split(".").last}";
     final reff=  FirebaseStorage.instance.ref()
-        .child("postProject/${ref.read(userAuthNotifer).currentUser?.id}/images/$name");
+        .child("postProject/${user?.id}/images/$name");
      final  task=reff.putFile(File(image));
      final url=await uploade(task, i+1, images.length);
-     urls.add(url);
+     imagesUrl.add(url);
     }
-    post=post.copyWith(postProjectType: postProjectType,images: urls);
    
   }else{
     postProjectType=PostProjectType.video;
 final name="${now.toIso8601String()}.${video.split(".").last}";
     final reff=  FirebaseStorage.instance.ref()
-        .child("postProject/${ref.read(userAuthNotifer).currentUser?.id}/video/$name");
+        .child("postProject/${user?.id}/video/${Random().nextInt(100)}$name");
      final  task=reff.putFile(File(video));
-     final url=await uploade(task, 1, images.length);
-         post=post.copyWith(postProjectType: postProjectType,videoUrl: url);
+      videoUrl=await uploade(task, 1, images.length);
 
 
   }
   BotToast.showLoading();
+  final post=PostProject(title: title,
+     description: description,
+    videoUrl: videoUrl,
+    images: imagesUrl,
+      specialization: specialization.name, 
+      price: price, createdAt: now,
+       userId: user?.id??"", postProjectType: postProjectType);
+
+
   await ref.read(postProjectRepositoryProvider).create(post);
   BotToast.closeAllLoading();
   // BotToast.showText(text: "Saved");
@@ -96,7 +107,7 @@ final name="${now.toIso8601String()}.${video.split(".").last}";
     ),
   ),
  ) ,);
-
+}
 
 
 });

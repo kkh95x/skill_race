@@ -6,7 +6,7 @@ part of 'user_form.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userFormHash() => r'508b25c3ab96308fa99e1edcb3fa4159ab167c53';
+String _$userFormHash() => r'd4528aa5a8de5da4e41f89ad06fb373a71a32073';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-typedef UserFormRef = AutoDisposeProviderRef<FormGroup>;
+typedef UserFormRef = ProviderRef<FormGroup>;
 
 /// See also [userForm].
 @ProviderFor(userForm)
@@ -74,7 +74,7 @@ class UserFormFamily extends Family<FormGroup> {
 }
 
 /// See also [userForm].
-class UserFormProvider extends AutoDisposeProvider<FormGroup> {
+class UserFormProvider extends Provider<FormGroup> {
   /// See also [userForm].
   UserFormProvider({
     this.user,

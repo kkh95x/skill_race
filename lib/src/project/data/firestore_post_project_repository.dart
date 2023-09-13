@@ -19,16 +19,54 @@ class FirestorePostProjectRepository implements PostProjectRepository{
     await _firebaseFirestore.collection(Collections.postProject).add(postProject.toJson());
   }
 
-  @override
-  Future<List<PostProject>?> getAll() {
-    // TODO: implement getAll
-    throw UnimplementedError();
-  }
+  
 
   @override
-  Future<List<PostProject>?> getMin(String id) {
-    // TODO: implement getMin
-    throw UnimplementedError();
+  Stream<List<PostProject>> getMyVideo(String id,int limit) {
+    return _firebaseFirestore.collection(Collections.postProject)
+    .orderBy("createdAt",descending: true)
+    .where("userId",isEqualTo: id)
+    .where("postProjectType",isEqualTo: PostProjectType.video.name)
+    .limit(limit).snapshots().map((event) => event.docs.map((e) => PostProject.fromJson(e.data()).copyWith(id: e.id)).toList());
+  }
+  
+  @override
+  Stream<List<PostProject>> getAll(int limit) {
+    return _firebaseFirestore.collection(Collections.postProject)
+    .orderBy("createdAt",descending: true)
+    .limit(limit).snapshots().map((event) => event.docs.map((e) => PostProject.fromJson(e.data()).copyWith(id: e.id)).toList());
+  }
+  
+  @override
+  Future<PostProject?> get(String id)async {
+
+
+   final respone=await _firebaseFirestore.collection(Collections.postProject).doc(id).get();
+   if(respone.exists){
+    return PostProject.fromJson(respone.data() as Map<String ,Object?>).copyWith(id: respone.id);
+   }else{
+    return null;
+   }
+  }
+  
+  @override
+  Stream<List<PostProject>> getMyImages(String id, int limit) {
+   return _firebaseFirestore.collection(Collections.postProject)
+    .orderBy("createdAt",descending: true)
+    .where("userId",isEqualTo: id)
+    .where("postProjectType",isEqualTo: PostProjectType.images.name)
+    .limit(limit).snapshots().map((event) => event.docs.map((e) => PostProject.fromJson(e.data()).copyWith(id: e.id)).toList());
+  
+  }
+  
+  @override
+  Stream<List<PostProject>> getAllVideo(int limit) {
+   return _firebaseFirestore.collection(Collections.postProject)
+    .orderBy("createdAt",descending: true)
+     .where("postProjectType",isEqualTo: PostProjectType.video.name)
+
+    .limit(limit).snapshots().map((event) => event.docs.map((e) => PostProject.fromJson(e.data()).copyWith(id: e.id)).toList());
+ 
   }
 
 }

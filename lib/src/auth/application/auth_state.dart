@@ -16,6 +16,7 @@ class AuthState with _$AuthState {
    String? id,
    String? email, 
    String? fullName,
+   AccountType? accountType,
     
   }) = _AuthState;
 
@@ -28,10 +29,12 @@ enum AuthStatus{
   
   loading,
   unAtuth,
+  selectType,
   auth,
-  createAccountByEmail,
-  confirmEmail,
-  newPasswordEntry,
-  iterestsEntery,
+  // createAccountByEmail,
+  // confirmEmail,
+  // newPasswordEntry,
+  hiringEntry,
+  empolyeeEntery,
   
 }

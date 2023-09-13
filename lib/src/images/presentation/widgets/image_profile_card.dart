@@ -12,7 +12,7 @@ class ImageProfileCard extends ConsumerWidget {
   const ImageProfileCard({super.key,required this.starts,required this.title,required this.url,required this.price,required this.onTap,this.onTapMore});
  final  String url;
  final  String title;
- final  int price;
+ final  double price;
 final double starts;
 final void Function() onTap;
 final Function()? onTapMore;

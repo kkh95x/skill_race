@@ -46,14 +46,19 @@ Future<UserCredential> signInWithFacebook() async {
 
  } 
  Future<bool?> sginOut()async{
- _preferences.remove("isB");
   await GoogleSignIn().signOut();
+  await FirebaseAuth.instance.signOut(); 
   return  _preferences.remove(_key);
 
  } 
  
  Future<AppUser?>getUserFromCloud(String email)async{
-  return await _repository.getById(email);
+  return await _repository.getByEmail(email);
+
+
+ }
+ Future<AppUser?>getUserFromCloudById(String id)async{
+  return await _repository.getById(id);
 
 
  }

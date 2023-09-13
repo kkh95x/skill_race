@@ -40,7 +40,9 @@ class ImagesPostComponent extends ConsumerWidget {
                       
                       doubleTapZoomable: true);
                     },
-                    child: CachedNetworkImage(imageUrl: imagesUrl[index],fit: BoxFit.cover,alignment: Alignment.center,)),
+                    child: CachedNetworkImage(imageUrl: imagesUrl[index],fit: BoxFit.cover,
+                    placeholder: (context, url) =>Container(color: Colors.black,child:const Center(child: CircularProgressIndicator()),),
+                    alignment: Alignment.center,)),
                 ),
               );
             },),

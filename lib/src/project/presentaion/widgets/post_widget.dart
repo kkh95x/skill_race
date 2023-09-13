@@ -6,38 +6,43 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skill_race/core/presentation/widget/starts_rating_widget.dart';
 import 'package:skill_race/gen/assets.gen.dart';
 import 'package:skill_race/src/images/presentation/components/images_post_component.dart';
+import 'package:skill_race/src/project/domain/project.dart';
 import 'package:skill_race/src/project/presentaion/widgets/profile_pic_name_spcial.dart';
 import 'package:skill_race/src/video/presentation/widgets/post_video_card.dart';
 
-enum PostType { video, photos }
 
 class PostWidget extends ConsumerWidget {
   const PostWidget(
       {super.key,
-      required this.countents,
-      required this.picUrl,
+      required this.images,
+      // required this.picUrl,
       required this.price,
       required this.specialization,
       required this.starts,
+      required this.postId,
       required this.postType,
-      required this.username});
-  final String username;
+      this.video,
+      required this.userId});
+  final String userId;
   final String specialization;
-  final String picUrl;
+  // final String picUrl;
   //if Video is list from one item
-  final List<String> countents;
+  final List<String>? images;
+  final String? video;
   final double price;
   final double starts;
-  final PostType postType;
+  final String postId;
+  final PostProjectType postType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     return Column(
       children: [
         Row(
           children: [
             ProfilePicNameSpcialWidget(
-                imageUrl: picUrl, special: specialization, usename: username),
+                userId: userId,),
             const Spacer(),
             IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz))
           ],
@@ -47,10 +52,10 @@ class PostWidget extends ConsumerWidget {
         ),
         Stack(
           children: [
-            if (postType == PostType.video)
-              PostVideoCard(url: countents.first)
+            if (postType == PostProjectType.video)
+              PostVideoCard(url: video!,postId: postId,)
             else
-              ImagesPostComponent(imagesUrl: countents),
+              ImagesPostComponent(imagesUrl: images??[]),
             Positioned(
                 bottom: 10.h,
                 child: Container(

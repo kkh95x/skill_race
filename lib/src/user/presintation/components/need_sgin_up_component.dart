@@ -10,7 +10,6 @@ class NeedSginUpComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    ref.read(userUnAuthHelper(context));
     return Column(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,

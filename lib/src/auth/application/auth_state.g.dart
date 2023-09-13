@@ -14,6 +14,8 @@ _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
       id: json['id'] as String?,
       email: json['email'] as String?,
       fullName: json['fullName'] as String?,
+      accountType:
+          $enumDecodeNullable(_$AccountTypeEnumMap, json['accountType']),
     );
 
 Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
@@ -23,14 +25,19 @@ Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
       'id': instance.id,
       'email': instance.email,
       'fullName': instance.fullName,
+      'accountType': _$AccountTypeEnumMap[instance.accountType],
     };
 
 const _$AuthStatusEnumMap = {
   AuthStatus.loading: 'loading',
   AuthStatus.unAtuth: 'unAtuth',
+  AuthStatus.selectType: 'selectType',
   AuthStatus.auth: 'auth',
-  AuthStatus.createAccountByEmail: 'createAccountByEmail',
-  AuthStatus.confirmEmail: 'confirmEmail',
-  AuthStatus.newPasswordEntry: 'newPasswordEntry',
-  AuthStatus.iterestsEntery: 'iterestsEntery',
+  AuthStatus.hiringEntry: 'hiringEntry',
+  AuthStatus.empolyeeEntery: 'empolyeeEntery',
+};
+
+const _$AccountTypeEnumMap = {
+  AccountType.employe: 'employe',
+  AccountType.hiring: 'hiring',
 };

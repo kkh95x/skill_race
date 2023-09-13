@@ -14,10 +14,10 @@ class ProfilePage extends ConsumerWidget {
     final authState=ref.watch(userAuthNotifer).state;
     final  isAuth=authState==AuthStatus.auth;
 
-    if(!isAuth){
-      return const NeedSginUpComponent();
+    if(isAuth){
+      return const ProfileComponent ();
     }
-    return  const ProfileComponent() ; 
+    return  const NeedSginUpComponent() ; 
     
   }
 }
