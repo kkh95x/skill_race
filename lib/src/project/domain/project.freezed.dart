@@ -28,7 +28,7 @@ mixin _$PostProject {
   DateTime get createdAt => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   PostProjectType get postProjectType => throw _privateConstructorUsedError;
-  int get stars => throw _privateConstructorUsedError;
+  double get stars => throw _privateConstructorUsedError;
   int get likesCount => throw _privateConstructorUsedError;
   int get comintsCount => throw _privateConstructorUsedError;
   String? get supSpecialization => throw _privateConstructorUsedError;
@@ -56,7 +56,7 @@ abstract class $PostProjectCopyWith<$Res> {
       DateTime createdAt,
       String userId,
       PostProjectType postProjectType,
-      int stars,
+      double stars,
       int likesCount,
       int comintsCount,
       String? supSpecialization,
@@ -128,7 +128,7 @@ class _$PostProjectCopyWithImpl<$Res, $Val extends PostProject>
       stars: null == stars
           ? _value.stars
           : stars // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       likesCount: null == likesCount
           ? _value.likesCount
           : likesCount // ignore: cast_nullable_to_non_nullable
@@ -170,7 +170,7 @@ abstract class _$$_PostProjectCopyWith<$Res>
       DateTime createdAt,
       String userId,
       PostProjectType postProjectType,
-      int stars,
+      double stars,
       int likesCount,
       int comintsCount,
       String? supSpecialization,
@@ -240,7 +240,7 @@ class __$$_PostProjectCopyWithImpl<$Res>
       stars: null == stars
           ? _value.stars
           : stars // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       likesCount: null == likesCount
           ? _value.likesCount
           : likesCount // ignore: cast_nullable_to_non_nullable
@@ -277,7 +277,7 @@ class _$_PostProject implements _PostProject {
       required this.createdAt,
       required this.userId,
       required this.postProjectType,
-      this.stars = 0,
+      this.stars = 0.0,
       this.likesCount = 0,
       this.comintsCount = 0,
       this.supSpecialization,
@@ -306,7 +306,7 @@ class _$_PostProject implements _PostProject {
   final PostProjectType postProjectType;
   @override
   @JsonKey()
-  final int stars;
+  final double stars;
   @override
   @JsonKey()
   final int likesCount;
@@ -404,7 +404,7 @@ abstract class _PostProject implements PostProject {
       required final DateTime createdAt,
       required final String userId,
       required final PostProjectType postProjectType,
-      final int stars,
+      final double stars,
       final int likesCount,
       final int comintsCount,
       final String? supSpecialization,
@@ -431,7 +431,7 @@ abstract class _PostProject implements PostProject {
   @override
   PostProjectType get postProjectType;
   @override
-  int get stars;
+  double get stars;
   @override
   int get likesCount;
   @override

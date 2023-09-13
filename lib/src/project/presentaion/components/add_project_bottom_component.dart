@@ -13,24 +13,14 @@ class AddProjectBottomComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-  
-    
-      
 
-        // if(isLastPage){
-        //    return DynamicButton(
-        //     title: "Save",
-        //     onPressed: () {
-            
-        //   },);
-        // }
          return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
        children: [ TextButton(onPressed:isFirstPage?null: (){
            pc.previousPage(duration:const Duration(milliseconds: 200), curve: Curves.linear);
 
 
-          }, child:const Text("Back")),
+          }, child:const Text("Back",style: TextStyle(color: Colors.black),)),
             AnimatedCrossFade(firstChild:TextButton(onPressed: () {
             pc.nextPage(duration:const Duration(milliseconds: 200), curve: Curves.linear);
           }, child:const Text("Next")) , secondChild: DynamicButton(

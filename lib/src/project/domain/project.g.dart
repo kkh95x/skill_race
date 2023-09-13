@@ -17,7 +17,7 @@ _$_PostProject _$$_PostProjectFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String,
       postProjectType:
           $enumDecode(_$PostProjectTypeEnumMap, json['postProjectType']),
-      stars: json['stars'] as int? ?? 0,
+      stars: (json['stars'] as num?)?.toDouble() ?? 0.0,
       likesCount: json['likesCount'] as int? ?? 0,
       comintsCount: json['comintsCount'] as int? ?? 0,
       supSpecialization: json['supSpecialization'] as String?,

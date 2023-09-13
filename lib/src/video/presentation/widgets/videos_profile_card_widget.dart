@@ -9,11 +9,11 @@ import 'package:skill_race/gen/assets.gen.dart';
 import 'package:skill_race/src/video/application/video_thumbnail_provider.dart';
 
 class VideoProfileCard extends ConsumerWidget {
-  const VideoProfileCard({super.key,required this.starts,required this.title,required this.url,required this.price,required this.onTap,this.onTapMore});
+  const VideoProfileCard({super.key,required this.stars,required this.title,required this.url,required this.price,required this.onTap,this.onTapMore});
  final  String url;
  final  String title;
- final  int price;
-final double starts;
+ final  double price;
+final double stars;
 final void Function() onTap;
 final Function()? onTapMore;
   @override
@@ -59,7 +59,7 @@ final Function()? onTapMore;
             bottom: 8.h,
             right: 8.w,
           
-            child: StarsRatingWidget(rating: starts,starsSize: 15,)),
+            child: StarsRatingWidget(rating: stars,starsSize: 15,)),
           
           
             Align(

@@ -14,11 +14,12 @@ class FirebaseAppUserRepository implements AppUserRepository {
   FirebaseAppUserRepository(this._firestore);
   @override
   Future<AppUser> create(AppUser appUser) async {
-    var newDocRef = _firestore.collection(Collections.users).doc();
-    final userID = newDocRef.id;
-    final newUser = appUser.copyWith(id: userID);
-    await newDocRef.set(newUser.toJson());
-    return newUser;
+    final body=appUser.toJson();
+    await _firestore.collection(Collections.users).doc(appUser.id).set(body);
+    // final userID = newDocRef.id;
+    // final newUser = appUser.copyWith(id: userID);
+   
+    return appUser;
   }
 
   @override

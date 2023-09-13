@@ -27,17 +27,16 @@ mixin _$AppUser {
   String? get email => throw _privateConstructorUsedError;
   DateTime? get birthDay => throw _privateConstructorUsedError;
   String get fullname => throw _privateConstructorUsedError;
+  AccountType get accountType => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   List<String>? get interests => throw _privateConstructorUsedError; //اهتمامات
   String? get token => throw _privateConstructorUsedError;
-  JobInfo? get jobInfo => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   String? get imgUrl => throw _privateConstructorUsedError;
-  List<EdaucationInfo>? get educations => throw _privateConstructorUsedError;
-  String? get cvUrl => throw _privateConstructorUsedError;
-  List<CeritificateInfo>? get ceritificates =>
-      throw _privateConstructorUsedError; //شهادات
-  List<String>? get language => throw _privateConstructorUsedError;
+  Employee? get employee => throw _privateConstructorUsedError;
+  Hiring? get hiring => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,18 +56,19 @@ abstract class $AppUserCopyWith<$Res> {
       String? email,
       DateTime? birthDay,
       String fullname,
+      AccountType accountType,
       String? password,
       List<String>? interests,
       String? token,
-      JobInfo? jobInfo,
+      String? country,
+      String? city,
       String? bio,
       String? imgUrl,
-      List<EdaucationInfo>? educations,
-      String? cvUrl,
-      List<CeritificateInfo>? ceritificates,
-      List<String>? language});
+      Employee? employee,
+      Hiring? hiring});
 
-  $JobInfoCopyWith<$Res>? get jobInfo;
+  $EmployeeCopyWith<$Res>? get employee;
+  $HiringCopyWith<$Res>? get hiring;
 }
 
 /// @nodoc
@@ -91,16 +91,16 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? email = freezed,
     Object? birthDay = freezed,
     Object? fullname = null,
+    Object? accountType = null,
     Object? password = freezed,
     Object? interests = freezed,
     Object? token = freezed,
-    Object? jobInfo = freezed,
+    Object? country = freezed,
+    Object? city = freezed,
     Object? bio = freezed,
     Object? imgUrl = freezed,
-    Object? educations = freezed,
-    Object? cvUrl = freezed,
-    Object? ceritificates = freezed,
-    Object? language = freezed,
+    Object? employee = freezed,
+    Object? hiring = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -131,6 +131,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
               as String,
+      accountType: null == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as AccountType,
       password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -143,10 +147,14 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      jobInfo: freezed == jobInfo
-          ? _value.jobInfo
-          : jobInfo // ignore: cast_nullable_to_non_nullable
-              as JobInfo?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
       bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
@@ -155,34 +163,38 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      educations: freezed == educations
-          ? _value.educations
-          : educations // ignore: cast_nullable_to_non_nullable
-              as List<EdaucationInfo>?,
-      cvUrl: freezed == cvUrl
-          ? _value.cvUrl
-          : cvUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ceritificates: freezed == ceritificates
-          ? _value.ceritificates
-          : ceritificates // ignore: cast_nullable_to_non_nullable
-              as List<CeritificateInfo>?,
-      language: freezed == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      employee: freezed == employee
+          ? _value.employee
+          : employee // ignore: cast_nullable_to_non_nullable
+              as Employee?,
+      hiring: freezed == hiring
+          ? _value.hiring
+          : hiring // ignore: cast_nullable_to_non_nullable
+              as Hiring?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $JobInfoCopyWith<$Res>? get jobInfo {
-    if (_value.jobInfo == null) {
+  $EmployeeCopyWith<$Res>? get employee {
+    if (_value.employee == null) {
       return null;
     }
 
-    return $JobInfoCopyWith<$Res>(_value.jobInfo!, (value) {
-      return _then(_value.copyWith(jobInfo: value) as $Val);
+    return $EmployeeCopyWith<$Res>(_value.employee!, (value) {
+      return _then(_value.copyWith(employee: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HiringCopyWith<$Res>? get hiring {
+    if (_value.hiring == null) {
+      return null;
+    }
+
+    return $HiringCopyWith<$Res>(_value.hiring!, (value) {
+      return _then(_value.copyWith(hiring: value) as $Val);
     });
   }
 }
@@ -202,19 +214,21 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       String? email,
       DateTime? birthDay,
       String fullname,
+      AccountType accountType,
       String? password,
       List<String>? interests,
       String? token,
-      JobInfo? jobInfo,
+      String? country,
+      String? city,
       String? bio,
       String? imgUrl,
-      List<EdaucationInfo>? educations,
-      String? cvUrl,
-      List<CeritificateInfo>? ceritificates,
-      List<String>? language});
+      Employee? employee,
+      Hiring? hiring});
 
   @override
-  $JobInfoCopyWith<$Res>? get jobInfo;
+  $EmployeeCopyWith<$Res>? get employee;
+  @override
+  $HiringCopyWith<$Res>? get hiring;
 }
 
 /// @nodoc
@@ -234,16 +248,16 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? email = freezed,
     Object? birthDay = freezed,
     Object? fullname = null,
+    Object? accountType = null,
     Object? password = freezed,
     Object? interests = freezed,
     Object? token = freezed,
-    Object? jobInfo = freezed,
+    Object? country = freezed,
+    Object? city = freezed,
     Object? bio = freezed,
     Object? imgUrl = freezed,
-    Object? educations = freezed,
-    Object? cvUrl = freezed,
-    Object? ceritificates = freezed,
-    Object? language = freezed,
+    Object? employee = freezed,
+    Object? hiring = freezed,
   }) {
     return _then(_$_AppUser(
       id: freezed == id
@@ -274,6 +288,10 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
               as String,
+      accountType: null == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as AccountType,
       password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -286,10 +304,14 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      jobInfo: freezed == jobInfo
-          ? _value.jobInfo
-          : jobInfo // ignore: cast_nullable_to_non_nullable
-              as JobInfo?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
       bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
@@ -298,22 +320,14 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      educations: freezed == educations
-          ? _value._educations
-          : educations // ignore: cast_nullable_to_non_nullable
-              as List<EdaucationInfo>?,
-      cvUrl: freezed == cvUrl
-          ? _value.cvUrl
-          : cvUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ceritificates: freezed == ceritificates
-          ? _value._ceritificates
-          : ceritificates // ignore: cast_nullable_to_non_nullable
-              as List<CeritificateInfo>?,
-      language: freezed == language
-          ? _value._language
-          : language // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      employee: freezed == employee
+          ? _value.employee
+          : employee // ignore: cast_nullable_to_non_nullable
+              as Employee?,
+      hiring: freezed == hiring
+          ? _value.hiring
+          : hiring // ignore: cast_nullable_to_non_nullable
+              as Hiring?,
     ));
   }
 }
@@ -329,20 +343,17 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
       this.email,
       this.birthDay,
       required this.fullname,
+      required this.accountType,
       this.password,
       final List<String>? interests,
       this.token,
-      this.jobInfo,
+      this.country,
+      this.city,
       this.bio,
       this.imgUrl,
-      final List<EdaucationInfo>? educations,
-      this.cvUrl,
-      final List<CeritificateInfo>? ceritificates,
-      final List<String>? language})
-      : _interests = interests,
-        _educations = educations,
-        _ceritificates = ceritificates,
-        _language = language;
+      this.employee,
+      this.hiring})
+      : _interests = interests;
 
   factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
       _$$_AppUserFromJson(json);
@@ -364,6 +375,8 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
   @override
   final String fullname;
   @override
+  final AccountType accountType;
+  @override
   final String? password;
   final List<String>? _interests;
   @override
@@ -379,48 +392,21 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
   @override
   final String? token;
   @override
-  final JobInfo? jobInfo;
+  final String? country;
+  @override
+  final String? city;
   @override
   final String? bio;
   @override
   final String? imgUrl;
-  final List<EdaucationInfo>? _educations;
   @override
-  List<EdaucationInfo>? get educations {
-    final value = _educations;
-    if (value == null) return null;
-    if (_educations is EqualUnmodifiableListView) return _educations;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final Employee? employee;
   @override
-  final String? cvUrl;
-  final List<CeritificateInfo>? _ceritificates;
-  @override
-  List<CeritificateInfo>? get ceritificates {
-    final value = _ceritificates;
-    if (value == null) return null;
-    if (_ceritificates is EqualUnmodifiableListView) return _ceritificates;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-//شهادات
-  final List<String>? _language;
-//شهادات
-  @override
-  List<String>? get language {
-    final value = _language;
-    if (value == null) return null;
-    if (_language is EqualUnmodifiableListView) return _language;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final Hiring? hiring;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AppUser(id: $id, isActive: $isActive, isOnline: $isOnline, phone: $phone, email: $email, birthDay: $birthDay, fullname: $fullname, password: $password, interests: $interests, token: $token, jobInfo: $jobInfo, bio: $bio, imgUrl: $imgUrl, educations: $educations, cvUrl: $cvUrl, ceritificates: $ceritificates, language: $language)';
+    return 'AppUser(id: $id, isActive: $isActive, isOnline: $isOnline, phone: $phone, email: $email, birthDay: $birthDay, fullname: $fullname, accountType: $accountType, password: $password, interests: $interests, token: $token, country: $country, city: $city, bio: $bio, imgUrl: $imgUrl, employee: $employee, hiring: $hiring)';
   }
 
   @override
@@ -435,16 +421,16 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('birthDay', birthDay))
       ..add(DiagnosticsProperty('fullname', fullname))
+      ..add(DiagnosticsProperty('accountType', accountType))
       ..add(DiagnosticsProperty('password', password))
       ..add(DiagnosticsProperty('interests', interests))
       ..add(DiagnosticsProperty('token', token))
-      ..add(DiagnosticsProperty('jobInfo', jobInfo))
+      ..add(DiagnosticsProperty('country', country))
+      ..add(DiagnosticsProperty('city', city))
       ..add(DiagnosticsProperty('bio', bio))
       ..add(DiagnosticsProperty('imgUrl', imgUrl))
-      ..add(DiagnosticsProperty('educations', educations))
-      ..add(DiagnosticsProperty('cvUrl', cvUrl))
-      ..add(DiagnosticsProperty('ceritificates', ceritificates))
-      ..add(DiagnosticsProperty('language', language));
+      ..add(DiagnosticsProperty('employee', employee))
+      ..add(DiagnosticsProperty('hiring', hiring));
   }
 
   @override
@@ -463,20 +449,20 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
                 other.birthDay == birthDay) &&
             (identical(other.fullname, fullname) ||
                 other.fullname == fullname) &&
+            (identical(other.accountType, accountType) ||
+                other.accountType == accountType) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             const DeepCollectionEquality()
                 .equals(other._interests, _interests) &&
             (identical(other.token, token) || other.token == token) &&
-            (identical(other.jobInfo, jobInfo) || other.jobInfo == jobInfo) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.city, city) || other.city == city) &&
             (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
-            const DeepCollectionEquality()
-                .equals(other._educations, _educations) &&
-            (identical(other.cvUrl, cvUrl) || other.cvUrl == cvUrl) &&
-            const DeepCollectionEquality()
-                .equals(other._ceritificates, _ceritificates) &&
-            const DeepCollectionEquality().equals(other._language, _language));
+            (identical(other.employee, employee) ||
+                other.employee == employee) &&
+            (identical(other.hiring, hiring) || other.hiring == hiring));
   }
 
   @JsonKey(ignore: true)
@@ -490,16 +476,16 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
       email,
       birthDay,
       fullname,
+      accountType,
       password,
       const DeepCollectionEquality().hash(_interests),
       token,
-      jobInfo,
+      country,
+      city,
       bio,
       imgUrl,
-      const DeepCollectionEquality().hash(_educations),
-      cvUrl,
-      const DeepCollectionEquality().hash(_ceritificates),
-      const DeepCollectionEquality().hash(_language));
+      employee,
+      hiring);
 
   @JsonKey(ignore: true)
   @override
@@ -524,16 +510,16 @@ abstract class _AppUser implements AppUser {
       final String? email,
       final DateTime? birthDay,
       required final String fullname,
+      required final AccountType accountType,
       final String? password,
       final List<String>? interests,
       final String? token,
-      final JobInfo? jobInfo,
+      final String? country,
+      final String? city,
       final String? bio,
       final String? imgUrl,
-      final List<EdaucationInfo>? educations,
-      final String? cvUrl,
-      final List<CeritificateInfo>? ceritificates,
-      final List<String>? language}) = _$_AppUser;
+      final Employee? employee,
+      final Hiring? hiring}) = _$_AppUser;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
@@ -552,25 +538,25 @@ abstract class _AppUser implements AppUser {
   @override
   String get fullname;
   @override
+  AccountType get accountType;
+  @override
   String? get password;
   @override
   List<String>? get interests;
   @override //اهتمامات
   String? get token;
   @override
-  JobInfo? get jobInfo;
+  String? get country;
+  @override
+  String? get city;
   @override
   String? get bio;
   @override
   String? get imgUrl;
   @override
-  List<EdaucationInfo>? get educations;
+  Employee? get employee;
   @override
-  String? get cvUrl;
-  @override
-  List<CeritificateInfo>? get ceritificates;
-  @override //شهادات
-  List<String>? get language;
+  Hiring? get hiring;
   @override
   @JsonKey(ignore: true)
   _$$_AppUserCopyWith<_$_AppUser> get copyWith =>

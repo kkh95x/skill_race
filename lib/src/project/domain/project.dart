@@ -14,7 +14,7 @@ class PostProject with _$PostProject {
    required DateTime createdAt,
    required String userId,
    required PostProjectType postProjectType,
-   @Default(0) int stars,
+   @Default(0.0) double stars,
    @Default(0) int likesCount,
    @Default(0) int comintsCount,   
    String? supSpecialization,

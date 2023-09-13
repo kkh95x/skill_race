@@ -1,8 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:skill_race/src/employe/domain/employe.dart';
+import 'package:skill_race/src/hiring/domain/hiring.dart';
 import 'package:skill_race/src/user/domain/certificate_info.dart';
 import 'package:skill_race/src/user/domain/edacation_info.dart';
-import 'package:skill_race/src/user/domain/job_info.dart';
+import 'package:skill_race/src/user/domain/archifed/job_info.dart';
 
 part 'app_user.freezed.dart';
 
@@ -18,16 +20,21 @@ class AppUser with _$AppUser {
     String? email,
     DateTime? birthDay,
    required String fullname,
+   required AccountType accountType,
     String? password,
     List<String>? interests,//اهتمامات
     String? token,
-    JobInfo? jobInfo,
+    
+    String? country,
+    String? city,
     String? bio,
     String? imgUrl,
-    List<EdaucationInfo>? educations,
-    String? cvUrl,
-    List<CeritificateInfo>? ceritificates,//شهادات
-    List<String>? language,
+    Employee? employee,
+    Hiring? hiring
+    // List<EdaucationInfo>? educations,
+    // String? cvUrl,
+    // List<CeritificateInfo>? ceritificates,//شهادات
+    // List<String>? language,
 
 
     
@@ -35,4 +42,9 @@ class AppUser with _$AppUser {
 
   factory AppUser.fromJson(Map<String, Object?> json)
       => _$AppUserFromJson(json);
+}
+
+enum AccountType{
+  employe,
+  hiring
 }

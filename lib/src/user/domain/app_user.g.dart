@@ -16,26 +16,22 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
           ? null
           : DateTime.parse(json['birthDay'] as String),
       fullname: json['fullname'] as String,
+      accountType: $enumDecode(_$AccountTypeEnumMap, json['accountType']),
       password: json['password'] as String?,
       interests: (json['interests'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       token: json['token'] as String?,
-      jobInfo: json['jobInfo'] == null
-          ? null
-          : JobInfo.fromJson(json['jobInfo'] as Map<String, dynamic>),
+      country: json['country'] as String?,
+      city: json['city'] as String?,
       bio: json['bio'] as String?,
       imgUrl: json['imgUrl'] as String?,
-      educations: (json['educations'] as List<dynamic>?)
-          ?.map((e) => EdaucationInfo.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      cvUrl: json['cvUrl'] as String?,
-      ceritificates: (json['ceritificates'] as List<dynamic>?)
-          ?.map((e) => CeritificateInfo.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      language: (json['language'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+      employee: json['employee'] == null
+          ? null
+          : Employee.fromJson(json['employee'] as Map<String, dynamic>),
+      hiring: json['hiring'] == null
+          ? null
+          : Hiring.fromJson(json['hiring'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
@@ -47,14 +43,19 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'email': instance.email,
       'birthDay': instance.birthDay?.toIso8601String(),
       'fullname': instance.fullname,
+      'accountType': _$AccountTypeEnumMap[instance.accountType]!,
       'password': instance.password,
       'interests': instance.interests,
       'token': instance.token,
-      'jobInfo': instance.jobInfo,
+      'country': instance.country,
+      'city': instance.city,
       'bio': instance.bio,
       'imgUrl': instance.imgUrl,
-      'educations': instance.educations,
-      'cvUrl': instance.cvUrl,
-      'ceritificates': instance.ceritificates,
-      'language': instance.language,
+      'employee': instance.employee?.toJson(),
+      'hiring': instance.hiring?.toJson(),
     };
+
+const _$AccountTypeEnumMap = {
+  AccountType.employe: 'employe',
+  AccountType.hiring: 'hiring',
+};

@@ -42,7 +42,7 @@ bool isBording=false;
 final homeKey=GlobalKey<NavigatorState>();
 final mainkey=GlobalKey<NavigatorState>();
 final routerProvider = StateProvider<GoRouter>((ref) {
- ref.read(userAuthNotifer).state;
+// final userState= ref.watch(userAuthNotifer).state;
 
   return GoRouter(
         navigatorKey: mainkey,
@@ -61,6 +61,7 @@ final routerProvider = StateProvider<GoRouter>((ref) {
 
       GoRoute(path: SingleVideoPage.routePath,
       name: SingleVideoPage.routeName,
+      parentNavigatorKey: mainkey,
       builder: (context, state) => SingleVideoPage(url: state.extra.toString()),
        pageBuilder: (context, state) {
           final args = state.extra! as String;
@@ -111,6 +112,8 @@ final routerProvider = StateProvider<GoRouter>((ref) {
           path: MorePage.routePath,name: MorePage.routeName,
       builder: (context, state) =>const MorePage(),),
       ]),
+
+
       GoRoute(
         
         path: OnboardingPage.routePath,name: OnboardingPage.routeName,
@@ -120,6 +123,7 @@ final routerProvider = StateProvider<GoRouter>((ref) {
       builder: (context, state) =>const TestPage(),),
 
       GoRoute(path: AuthFlowPage.routePath,name: AuthFlowPage.routeName,
+      parentNavigatorKey: mainkey,
       builder: (context, state) =>const AuthFlowPage(),),
       
       
@@ -145,7 +149,14 @@ final routerProvider = StateProvider<GoRouter>((ref) {
       //   path: HomePage.routePath,//name: HomePage.routeName,
       // builder: (context, state) =>  const HomePageNavigation(child: HomePage(),)),
   ],
-//   redirect: (context, state) {
+  // redirect: (context, state) {
+
+  //   if(userState==AuthStatus.loading){
+  //     return SplashPage.routePath;
+  //   }else{
+  //     return null;
+  //   }
+  // }
 //     // if(!isSplashed){
 //     //   return null;
 //     // }

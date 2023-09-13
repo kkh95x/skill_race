@@ -39,7 +39,7 @@ class DynamicButton extends ConsumerWidget {
           // margin: EdgeInsets.symmetric(horizontal: 16.w),
           decoration: BoxDecoration(
             gradient:  LinearGradient(
-              colors: [Theme.of(context).colorScheme.secondary,Theme.of(context).colorScheme.primary], // Define your gradient colors
+              colors:isDisabled?[Colors.grey,Colors.grey]: [Theme.of(context).colorScheme.secondary,Theme.of(context).colorScheme.primary], // Define your gradient colors
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),
@@ -67,8 +67,9 @@ class DynamicButton extends ConsumerWidget {
           padding: EdgeInsets.all(0.5.sp),
           margin: EdgeInsets.symmetric(horizontal: 16.w),
           decoration: BoxDecoration(
-           gradient: LinearGradient(
-          colors:  [Theme.of(context).colorScheme.secondary,Theme.of(context).colorScheme.primary],),
+            border: Border.all(color:Theme.of(context).colorScheme.primary ),
+          //  gradient: LinearGradient(
+          // colors:  [Theme.of(context).colorScheme.secondary,Theme.of(context).colorScheme.primary],),
           borderRadius: BorderRadius.circular(20.r)
           ),
       child:ElevatedButton(
