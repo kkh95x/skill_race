@@ -59,6 +59,7 @@ class DynamicInput extends ConsumerWidget {
     this.onchange,
     this.validationMessages,
     this.fieldType = "تكون كلمة المرور",
+    this.fillColor
   });
   final String fieldType;
   final String? control;
@@ -84,6 +85,7 @@ class DynamicInput extends ConsumerWidget {
   final CrossAxisAlignment? crossAxisAlignment;
   final void Function(FormControl<Object?>)? onchange;
   final bool autoFoucs;
+  final Color? fillColor;
   PhoneNumberInputValidator? _getValidator() {
     List<PhoneNumberInputValidator> validators = [];
     validators.add(PhoneValidator.validMobile());
@@ -145,9 +147,13 @@ class DynamicInput extends ConsumerWidget {
                 
                 : type == Type.date
                     ? ReactiveDateTimePicker(
+                      
                       dateFormat: dateFormat,
-                      style: Theme.of(context).textTheme.labelSmall,
+                  
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+
                       formControlName: control,
+                    
                       decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         suffixIcon: placeholderIconPosition == IconPosition.end
@@ -158,10 +164,12 @@ class DynamicInput extends ConsumerWidget {
                             : null,
                         contentPadding:
                             const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16),
-                        fillColor: Theme.of(context).colorScheme.tertiaryContainer,
+                        // fillColor: Theme.of(context).colorScheme.tertiaryContainer,
+                        //  hintStyle: Theme.of(context).textTheme.bodyLarge.copyWith(color: Colors.b),
+
                         labelText:
                             '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
-                        labelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(color: Theme.of(context).colorScheme.onPrimary, ),
+                         labelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(color:Colors.black, ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(radius))),
@@ -177,7 +185,10 @@ class DynamicInput extends ConsumerWidget {
                         keyboardType:
                             type == Type.text ? TextInputType.text : TextInputType.number,
                         obscureText: obscure ? enable : false,
+                        
                         decoration: InputDecoration(
+                          fillColor:fillColor,
+                          
                           hintText: placeholder,
                           hintStyle: Theme.of(context).textTheme.bodyLarge,
                           contentPadding:

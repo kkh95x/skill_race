@@ -20,11 +20,11 @@ EdaucationInfo _$EdaucationInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EdaucationInfo {
-  String get name => throw _privateConstructorUsedError;
-  String? get unvircety => throw _privateConstructorUsedError;
+  String? get schoole => throw _privateConstructorUsedError;
+  String? get faculty => throw _privateConstructorUsedError;
+  String? get university => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
-  bool? get isgraduate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +39,11 @@ abstract class $EdaucationInfoCopyWith<$Res> {
       _$EdaucationInfoCopyWithImpl<$Res, EdaucationInfo>;
   @useResult
   $Res call(
-      {String name,
-      String? unvircety,
+      {String? schoole,
+      String? faculty,
+      String? university,
       DateTime? startDate,
-      DateTime? endDate,
-      bool? isgraduate});
+      DateTime? endDate});
 }
 
 /// @nodoc
@@ -59,20 +59,24 @@ class _$EdaucationInfoCopyWithImpl<$Res, $Val extends EdaucationInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? unvircety = freezed,
+    Object? schoole = freezed,
+    Object? faculty = freezed,
+    Object? university = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
-    Object? isgraduate = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      unvircety: freezed == unvircety
-          ? _value.unvircety
-          : unvircety // ignore: cast_nullable_to_non_nullable
+      schoole: freezed == schoole
+          ? _value.schoole
+          : schoole // ignore: cast_nullable_to_non_nullable
+              as String?,
+      faculty: freezed == faculty
+          ? _value.faculty
+          : faculty // ignore: cast_nullable_to_non_nullable
+              as String?,
+      university: freezed == university
+          ? _value.university
+          : university // ignore: cast_nullable_to_non_nullable
               as String?,
       startDate: freezed == startDate
           ? _value.startDate
@@ -82,10 +86,6 @@ class _$EdaucationInfoCopyWithImpl<$Res, $Val extends EdaucationInfo>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      isgraduate: freezed == isgraduate
-          ? _value.isgraduate
-          : isgraduate // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
   }
 }
@@ -99,11 +99,11 @@ abstract class _$$_EdaucationInfoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String? unvircety,
+      {String? schoole,
+      String? faculty,
+      String? university,
       DateTime? startDate,
-      DateTime? endDate,
-      bool? isgraduate});
+      DateTime? endDate});
 }
 
 /// @nodoc
@@ -117,20 +117,24 @@ class __$$_EdaucationInfoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? unvircety = freezed,
+    Object? schoole = freezed,
+    Object? faculty = freezed,
+    Object? university = freezed,
     Object? startDate = freezed,
     Object? endDate = freezed,
-    Object? isgraduate = freezed,
   }) {
     return _then(_$_EdaucationInfo(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      unvircety: freezed == unvircety
-          ? _value.unvircety
-          : unvircety // ignore: cast_nullable_to_non_nullable
+      schoole: freezed == schoole
+          ? _value.schoole
+          : schoole // ignore: cast_nullable_to_non_nullable
+              as String?,
+      faculty: freezed == faculty
+          ? _value.faculty
+          : faculty // ignore: cast_nullable_to_non_nullable
+              as String?,
+      university: freezed == university
+          ? _value.university
+          : university // ignore: cast_nullable_to_non_nullable
               as String?,
       startDate: freezed == startDate
           ? _value.startDate
@@ -140,10 +144,6 @@ class __$$_EdaucationInfoCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      isgraduate: freezed == isgraduate
-          ? _value.isgraduate
-          : isgraduate // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -152,29 +152,29 @@ class __$$_EdaucationInfoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_EdaucationInfo implements _EdaucationInfo {
   const _$_EdaucationInfo(
-      {required this.name,
-      this.unvircety,
+      {this.schoole,
+      this.faculty,
+      this.university,
       this.startDate,
-      this.endDate,
-      this.isgraduate});
+      this.endDate});
 
   factory _$_EdaucationInfo.fromJson(Map<String, dynamic> json) =>
       _$$_EdaucationInfoFromJson(json);
 
   @override
-  final String name;
+  final String? schoole;
   @override
-  final String? unvircety;
+  final String? faculty;
+  @override
+  final String? university;
   @override
   final DateTime? startDate;
   @override
   final DateTime? endDate;
-  @override
-  final bool? isgraduate;
 
   @override
   String toString() {
-    return 'EdaucationInfo(name: $name, unvircety: $unvircety, startDate: $startDate, endDate: $endDate, isgraduate: $isgraduate)';
+    return 'EdaucationInfo(schoole: $schoole, faculty: $faculty, university: $university, startDate: $startDate, endDate: $endDate)';
   }
 
   @override
@@ -182,20 +182,19 @@ class _$_EdaucationInfo implements _EdaucationInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EdaucationInfo &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.unvircety, unvircety) ||
-                other.unvircety == unvircety) &&
+            (identical(other.schoole, schoole) || other.schoole == schoole) &&
+            (identical(other.faculty, faculty) || other.faculty == faculty) &&
+            (identical(other.university, university) ||
+                other.university == university) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.isgraduate, isgraduate) ||
-                other.isgraduate == isgraduate));
+            (identical(other.endDate, endDate) || other.endDate == endDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, unvircety, startDate, endDate, isgraduate);
+  int get hashCode => Object.hash(
+      runtimeType, schoole, faculty, university, startDate, endDate);
 
   @JsonKey(ignore: true)
   @override
@@ -213,25 +212,25 @@ class _$_EdaucationInfo implements _EdaucationInfo {
 
 abstract class _EdaucationInfo implements EdaucationInfo {
   const factory _EdaucationInfo(
-      {required final String name,
-      final String? unvircety,
+      {final String? schoole,
+      final String? faculty,
+      final String? university,
       final DateTime? startDate,
-      final DateTime? endDate,
-      final bool? isgraduate}) = _$_EdaucationInfo;
+      final DateTime? endDate}) = _$_EdaucationInfo;
 
   factory _EdaucationInfo.fromJson(Map<String, dynamic> json) =
       _$_EdaucationInfo.fromJson;
 
   @override
-  String get name;
+  String? get schoole;
   @override
-  String? get unvircety;
+  String? get faculty;
+  @override
+  String? get university;
   @override
   DateTime? get startDate;
   @override
   DateTime? get endDate;
-  @override
-  bool? get isgraduate;
   @override
   @JsonKey(ignore: true)
   _$$_EdaucationInfoCopyWith<_$_EdaucationInfo> get copyWith =>

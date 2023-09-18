@@ -251,6 +251,15 @@ Future<void> logOut()async{
     
     state=AuthState(state: newState,currentUser: state.currentUser,id: state.id,email: state.email,fullName: state.fullName,accountType: state.accountType);
   }
+  Future<void> updateUser(AppUser user) async{
+    BotToast.showLoading();
+    final userUpdated=await _userService.updateUser(user);
+    state=state.copyWith(currentUser: userUpdated);
+    BotToast.closeAllLoading();
+    return;
+
+     
+  }
 
   
 }

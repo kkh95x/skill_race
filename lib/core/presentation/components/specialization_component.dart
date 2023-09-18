@@ -8,10 +8,11 @@ import 'package:skill_race/core/application/speicaization_provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:skill_race/core/domain/specialization.dart';
 class SpecilaizationComponent extends StatelessWidget {
-  const SpecilaizationComponent({super.key,required  this.formGroup,required this.controlName,required this.supControll,this.onPress});
+  const SpecilaizationComponent({super.key,required  this.formGroup,this.disposeString, required this.controlName,required this.supControll,this.onPress});
   final FormGroup formGroup;
   final String controlName;
   final String supControll;
+  final List<String>? disposeString;
   final Function()?  onPress;
   @override
   Widget build(BuildContext context) {
@@ -33,16 +34,18 @@ class SpecilaizationComponent extends StatelessWidget {
               )),
         Consumer(builder: (context, ref, child) {
           return ref.watch(specializationProvider).when(data: (data) {
+            List<Specialization> sp=disposeString==null?  data:data.where((element) => !disposeString!.contains(element.name)).toList();
           return  Column(
             children: [
               Wrap(
-                        children: data.map((e) {
+                        children: sp.map((e) {
                           final isSelected =
                               formGroup.control(controlName).value == e;
                           return GestureDetector(
                             onTap: () {
                                   formGroup.control(controlName).value =
                                       e; //FilterFormKeys.subIntersts
+                                    
                                   
                                 },
                             child: Container(

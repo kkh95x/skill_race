@@ -33,6 +33,7 @@ class HomePage extends ConsumerWidget {
       appBar: appBarComponent(title: "Home", context: context,showBack: false),
      body:SingleChildScrollView(
       physics:const  AlwaysScrollableScrollPhysics(),
+      controller: controller,
       child:Padding(
         padding:  EdgeInsets.symmetric(horizontal: 16.w,vertical: 12.h),
         child: Column(children:[
@@ -59,8 +60,15 @@ class HomePage extends ConsumerWidget {
             separatorBuilder: (context, index) => const Divider(),
             physics:const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: recipes.length,
+            itemCount: recipes.length+1,
             itemBuilder: (context, index) {
+              if(index==recipes.length){
+                return Container(
+                 margin: EdgeInsets.only(bottom: 100.h,top: 50.h),
+                 alignment: Alignment.center,
+                 child: const Text("- Thats All -"),
+                );
+              }
            return PostWidget(images:recipes[index].images ,
                       postId: recipes[index].id??"",
 
@@ -129,13 +137,7 @@ class HomePage extends ConsumerWidget {
 
         
          ,
-         const Divider(),
-
-         Container(
-          margin: EdgeInsets.only(bottom: 100.h,top: 50.h),
-          alignment: Alignment.center,
-          child: const Text("- Thats All -"),
-         )
+        
         ]),
       )
      )

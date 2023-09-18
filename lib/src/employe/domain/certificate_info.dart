@@ -9,8 +9,10 @@ part 'certificate_info.g.dart';
 class CeritificateInfo with _$CeritificateInfo {
   const factory CeritificateInfo({
     required String name,
-    DateTime? date,
-    String? trainedEntity,
+    required DateTime createdAt,
+    DateTime? startDate,
+     DateTime? endDate,
+    String? certificateFrom,
    
   }) = _CeritificateInfo;
 

@@ -94,7 +94,10 @@ final name="${now.toIso8601String()}.${video.split(".").last}";
       }
       form.reset();
       ref.read(pageIndexAddNewPost.notifier).state=0;
- BotToast.showWidget(toastBuilder: (cancelFunc) =>AlertDialog(
+ BotToast.showWidget(
+// allowClick: true,
+  
+  toastBuilder: (cancelFunc) =>AlertDialog(
   
   content: GestureDetector(
     onTap: cancelFunc,
@@ -118,17 +121,20 @@ BotToast.closeAllLoading();
 
 BotToast.showCustomLoading(toastBuilder: (cancelFunc) {
      
-      return Container(
+      return Material(
+                  borderRadius: BorderRadius.circular(20.r),
+elevation: 9,
+     child: Container(
         padding: EdgeInsets.all(50.sp),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
-          color: Colors.grey.shade400
+          color: Colors.grey.shade400,
+          // boxShadow: const [BoxShadow(color: Colors.black,blurRadius: 0.5,offset: Offset(-1, -1))]
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 10.h,),
 
             StreamBuilder(
               stream: task.snapshotEvents,
@@ -139,16 +145,28 @@ BotToast.showCustomLoading(toastBuilder: (cancelFunc) {
                 if(snapshot.data?.bytesTransferred!=null&&snapshot.data?.totalBytes!=null){
                   uploade=snapshot.data!.bytesTransferred/snapshot.data!.totalBytes;
                 }
-                return LinearProgressIndicator(
-                  value:  uploade,
-                 
+                return Column(
+                  children: [
+                                SizedBox(height: 10.h,),
+
+                    LinearProgressIndicator(
+                      value:  uploade,
+                     
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children:[
+                      Text("$count/$lenght"),
+                       Text("${(uploade *100).toInt()}%")
+                    ])
+                  ],
                 );
               }
             ),
-            Text("$lenght/$count")
+           
           ],
         ),
-      );
+      ));
 
     },);
   final url=await task.whenComplete(() => null);

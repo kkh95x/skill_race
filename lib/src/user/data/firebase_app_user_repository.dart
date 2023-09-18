@@ -33,11 +33,12 @@ class FirebaseAppUserRepository implements AppUserRepository {
   }
 
   @override
-  Future<void> update(AppUser appUser) async {
+  Future<AppUser> update(AppUser appUser) async {
     await _firestore
         .collection(Collections.users)
         .doc(appUser.id)
         .set(appUser.toJson());
+    return appUser;
   }
   
   @override

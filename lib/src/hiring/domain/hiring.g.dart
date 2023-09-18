@@ -8,8 +8,10 @@ part of 'hiring.dart';
 
 _$_Hiring _$$_HiringFromJson(Map<String, dynamic> json) => _$_Hiring(
       companyName: json['companyName'] as String?,
+      companyField: json['companyField'] as String?,
     );
 
 Map<String, dynamic> _$$_HiringToJson(_$_Hiring instance) => <String, dynamic>{
       'companyName': instance.companyName,
+      'companyField': instance.companyField,
     };

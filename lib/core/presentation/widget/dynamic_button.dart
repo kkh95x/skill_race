@@ -70,7 +70,7 @@ class DynamicButton extends ConsumerWidget {
             border: Border.all(color:Theme.of(context).colorScheme.primary ),
           //  gradient: LinearGradient(
           // colors:  [Theme.of(context).colorScheme.secondary,Theme.of(context).colorScheme.primary],),
-          borderRadius: BorderRadius.circular(20.r)
+          borderRadius: BorderRadius.circular(25.r)
           ),
       child:ElevatedButton(
           style:ElevatedButton.styleFrom(

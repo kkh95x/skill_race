@@ -3,7 +3,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:skill_race/src/video/presentation/components/feeds_component.dart';
-import 'package:skill_race/src/user/presintation/components/profile_component.dart';
 
 class ReallsPage extends StatelessWidget {
   const ReallsPage({super.key ,});

@@ -66,7 +66,9 @@ class AddNewProjectPage extends ConsumerWidget {
                     
                   },),
                 ),
-                AddProjectBottomComponent(pc: controller,isFirstPage:ref.watch(pageIndexAddNewPost)==0,isLastPage: ref.watch(pageIndexAddNewPost)==(pages.length-1),)
+                SizedBox(
+                  height: 100.h,
+                  child: AddProjectBottomComponent(pc: controller,isFirstPage:ref.watch(pageIndexAddNewPost)==0,isLastPage: ref.watch(pageIndexAddNewPost)==(pages.length-1),))
       
               ],
             ),

@@ -12,7 +12,7 @@ part 'hiring.g.dart';
 class Hiring with _$Hiring {
   const factory Hiring({
     String? companyName,
-    // String? country,
+    String? companyField,
     // String? city,
   }) = _Hiring;
 

@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'need_employ_form.dart';
+part of 'firestore_faculty_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addEmployeFormHash() => r'1f4b689e610366dc1034052795d6a69aeed297fb';
+String _$facultyRepositoryHash() => r'267f847c2f2de0fb60f099304cca4b1d26e45e0a';
 
-/// See also [addEmployeForm].
-@ProviderFor(addEmployeForm)
-final addEmployeFormProvider = AutoDisposeProvider<FormGroup>.internal(
-  addEmployeForm,
-  name: r'addEmployeFormProvider',
+/// See also [facultyRepository].
+@ProviderFor(facultyRepository)
+final facultyRepositoryProvider =
+    AutoDisposeProvider<FacultyRepository>.internal(
+  facultyRepository,
+  name: r'facultyRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$addEmployeFormHash,
+      : _$facultyRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AddEmployeFormRef = AutoDisposeProviderRef<FormGroup>;
+typedef FacultyRepositoryRef = AutoDisposeProviderRef<FacultyRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

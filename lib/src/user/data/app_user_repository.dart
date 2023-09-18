@@ -4,5 +4,5 @@ abstract class AppUserRepository {
   Future<AppUser> create(AppUser appUser);
   Future<AppUser?> getById(String id);
   Future<AppUser?> getByEmail(String email);
-  Future<void> update(AppUser appUser);
+  Future<AppUser> update(AppUser appUser);
 }

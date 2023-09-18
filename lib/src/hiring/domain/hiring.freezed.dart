@@ -21,6 +21,7 @@ Hiring _$HiringFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Hiring {
   String? get companyName => throw _privateConstructorUsedError;
+  String? get companyField => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +33,7 @@ abstract class $HiringCopyWith<$Res> {
   factory $HiringCopyWith(Hiring value, $Res Function(Hiring) then) =
       _$HiringCopyWithImpl<$Res, Hiring>;
   @useResult
-  $Res call({String? companyName});
+  $Res call({String? companyName, String? companyField});
 }
 
 /// @nodoc
@@ -49,11 +50,16 @@ class _$HiringCopyWithImpl<$Res, $Val extends Hiring>
   @override
   $Res call({
     Object? companyName = freezed,
+    Object? companyField = freezed,
   }) {
     return _then(_value.copyWith(
       companyName: freezed == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyField: freezed == companyField
+          ? _value.companyField
+          : companyField // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -65,7 +71,7 @@ abstract class _$$_HiringCopyWith<$Res> implements $HiringCopyWith<$Res> {
       __$$_HiringCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? companyName});
+  $Res call({String? companyName, String? companyField});
 }
 
 /// @nodoc
@@ -79,11 +85,16 @@ class __$$_HiringCopyWithImpl<$Res>
   @override
   $Res call({
     Object? companyName = freezed,
+    Object? companyField = freezed,
   }) {
     return _then(_$_Hiring(
       companyName: freezed == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyField: freezed == companyField
+          ? _value.companyField
+          : companyField // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -92,17 +103,19 @@ class __$$_HiringCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Hiring with DiagnosticableTreeMixin implements _Hiring {
-  const _$_Hiring({this.companyName});
+  const _$_Hiring({this.companyName, this.companyField});
 
   factory _$_Hiring.fromJson(Map<String, dynamic> json) =>
       _$$_HiringFromJson(json);
 
   @override
   final String? companyName;
+  @override
+  final String? companyField;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Hiring(companyName: $companyName)';
+    return 'Hiring(companyName: $companyName, companyField: $companyField)';
   }
 
   @override
@@ -110,7 +123,8 @@ class _$_Hiring with DiagnosticableTreeMixin implements _Hiring {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Hiring'))
-      ..add(DiagnosticsProperty('companyName', companyName));
+      ..add(DiagnosticsProperty('companyName', companyName))
+      ..add(DiagnosticsProperty('companyField', companyField));
   }
 
   @override
@@ -119,12 +133,14 @@ class _$_Hiring with DiagnosticableTreeMixin implements _Hiring {
         (other.runtimeType == runtimeType &&
             other is _$_Hiring &&
             (identical(other.companyName, companyName) ||
-                other.companyName == companyName));
+                other.companyName == companyName) &&
+            (identical(other.companyField, companyField) ||
+                other.companyField == companyField));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, companyName);
+  int get hashCode => Object.hash(runtimeType, companyName, companyField);
 
   @JsonKey(ignore: true)
   @override
@@ -141,12 +157,15 @@ class _$_Hiring with DiagnosticableTreeMixin implements _Hiring {
 }
 
 abstract class _Hiring implements Hiring {
-  const factory _Hiring({final String? companyName}) = _$_Hiring;
+  const factory _Hiring(
+      {final String? companyName, final String? companyField}) = _$_Hiring;
 
   factory _Hiring.fromJson(Map<String, dynamic> json) = _$_Hiring.fromJson;
 
   @override
   String? get companyName;
+  @override
+  String? get companyField;
   @override
   @JsonKey(ignore: true)
   _$$_HiringCopyWith<_$_Hiring> get copyWith =>

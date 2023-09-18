@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skill_race/src/home/presentation/pages/filter_page.dart';
-import 'package:skill_race/src/home/presentation/pages/need_employ_page.dart';
+import 'package:skill_race/src/hiring/presentation/pages/need_employ_page.dart';
 import 'package:skill_race/src/user/application/user_un_auth_helper.dart';
 import 'package:skill_race/src/video/application/get_videos_pagination.dart';
 import 'package:skill_race/src/video/application/video_controller_provider.dart';

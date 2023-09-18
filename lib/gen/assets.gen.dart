@@ -60,9 +60,25 @@ class $AssetsIconsPngGen {
   /// File path: assets/icons/png/ai.png
   AssetGenImage get ai => const AssetGenImage('assets/icons/png/ai.png');
 
+  /// File path: assets/icons/png/attach_file.png
+  AssetGenImage get attachFile =>
+      const AssetGenImage('assets/icons/png/attach_file.png');
+
+  /// File path: assets/icons/png/calendar.png
+  AssetGenImage get calendar =>
+      const AssetGenImage('assets/icons/png/calendar.png');
+
+  /// File path: assets/icons/png/close_dialog.png
+  AssetGenImage get closeDialog =>
+      const AssetGenImage('assets/icons/png/close_dialog.png');
+
   /// File path: assets/icons/png/comint.png
   AssetGenImage get comint =>
       const AssetGenImage('assets/icons/png/comint.png');
+
+  /// File path: assets/icons/png/delete.png
+  AssetGenImage get delete =>
+      const AssetGenImage('assets/icons/png/delete.png');
 
   /// File path: assets/icons/png/edit.png
   AssetGenImage get edit => const AssetGenImage('assets/icons/png/edit.png');
@@ -99,6 +115,10 @@ class $AssetsIconsPngGen {
   /// File path: assets/icons/png/play.png
   AssetGenImage get play => const AssetGenImage('assets/icons/png/play.png');
 
+  /// File path: assets/icons/png/plus_cirlce.png
+  AssetGenImage get plusCirlce =>
+      const AssetGenImage('assets/icons/png/plus_cirlce.png');
+
   /// File path: assets/icons/png/saved.png
   AssetGenImage get saved => const AssetGenImage('assets/icons/png/saved.png');
 
@@ -109,7 +129,11 @@ class $AssetsIconsPngGen {
   List<AssetGenImage> get values => [
         plus,
         ai,
+        attachFile,
+        calendar,
+        closeDialog,
         comint,
+        delete,
         edit,
         job,
         jobMe,
@@ -120,6 +144,7 @@ class $AssetsIconsPngGen {
         loveWhite,
         notification,
         play,
+        plusCirlce,
         saved,
         send
       ];

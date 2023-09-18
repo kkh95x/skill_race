@@ -21,7 +21,7 @@ _$_AuthState _$$_AuthStateFromJson(Map<String, dynamic> json) => _$_AuthState(
 Map<String, dynamic> _$$_AuthStateToJson(_$_AuthState instance) =>
     <String, dynamic>{
       'state': _$AuthStatusEnumMap[instance.state]!,
-      'currentUser': instance.currentUser,
+      'currentUser': instance.currentUser?.toJson(),
       'id': instance.id,
       'email': instance.email,
       'fullName': instance.fullName,

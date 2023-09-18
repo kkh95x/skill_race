@@ -21,8 +21,10 @@ CeritificateInfo _$CeritificateInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CeritificateInfo {
   String get name => throw _privateConstructorUsedError;
-  DateTime? get date => throw _privateConstructorUsedError;
-  String? get trainedEntity => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  String? get certificateFrom => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,12 @@ abstract class $CeritificateInfoCopyWith<$Res> {
           CeritificateInfo value, $Res Function(CeritificateInfo) then) =
       _$CeritificateInfoCopyWithImpl<$Res, CeritificateInfo>;
   @useResult
-  $Res call({String name, DateTime? date, String? trainedEntity});
+  $Res call(
+      {String name,
+      DateTime createdAt,
+      DateTime? startDate,
+      DateTime? endDate,
+      String? certificateFrom});
 }
 
 /// @nodoc
@@ -53,21 +60,31 @@ class _$CeritificateInfoCopyWithImpl<$Res, $Val extends CeritificateInfo>
   @override
   $Res call({
     Object? name = null,
-    Object? date = freezed,
-    Object? trainedEntity = freezed,
+    Object? createdAt = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? certificateFrom = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      trainedEntity: freezed == trainedEntity
-          ? _value.trainedEntity
-          : trainedEntity // ignore: cast_nullable_to_non_nullable
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      certificateFrom: freezed == certificateFrom
+          ? _value.certificateFrom
+          : certificateFrom // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -81,7 +98,12 @@ abstract class _$$_CeritificateInfoCopyWith<$Res>
       __$$_CeritificateInfoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, DateTime? date, String? trainedEntity});
+  $Res call(
+      {String name,
+      DateTime createdAt,
+      DateTime? startDate,
+      DateTime? endDate,
+      String? certificateFrom});
 }
 
 /// @nodoc
@@ -96,21 +118,31 @@ class __$$_CeritificateInfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? date = freezed,
-    Object? trainedEntity = freezed,
+    Object? createdAt = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? certificateFrom = freezed,
   }) {
     return _then(_$_CeritificateInfo(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      trainedEntity: freezed == trainedEntity
-          ? _value.trainedEntity
-          : trainedEntity // ignore: cast_nullable_to_non_nullable
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      certificateFrom: freezed == certificateFrom
+          ? _value.certificateFrom
+          : certificateFrom // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -122,7 +154,11 @@ class _$_CeritificateInfo
     with DiagnosticableTreeMixin
     implements _CeritificateInfo {
   const _$_CeritificateInfo(
-      {required this.name, this.date, this.trainedEntity});
+      {required this.name,
+      required this.createdAt,
+      this.startDate,
+      this.endDate,
+      this.certificateFrom});
 
   factory _$_CeritificateInfo.fromJson(Map<String, dynamic> json) =>
       _$$_CeritificateInfoFromJson(json);
@@ -130,13 +166,17 @@ class _$_CeritificateInfo
   @override
   final String name;
   @override
-  final DateTime? date;
+  final DateTime createdAt;
   @override
-  final String? trainedEntity;
+  final DateTime? startDate;
+  @override
+  final DateTime? endDate;
+  @override
+  final String? certificateFrom;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CeritificateInfo(name: $name, date: $date, trainedEntity: $trainedEntity)';
+    return 'CeritificateInfo(name: $name, createdAt: $createdAt, startDate: $startDate, endDate: $endDate, certificateFrom: $certificateFrom)';
   }
 
   @override
@@ -145,8 +185,10 @@ class _$_CeritificateInfo
     properties
       ..add(DiagnosticsProperty('type', 'CeritificateInfo'))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('date', date))
-      ..add(DiagnosticsProperty('trainedEntity', trainedEntity));
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('startDate', startDate))
+      ..add(DiagnosticsProperty('endDate', endDate))
+      ..add(DiagnosticsProperty('certificateFrom', certificateFrom));
   }
 
   @override
@@ -155,14 +197,19 @@ class _$_CeritificateInfo
         (other.runtimeType == runtimeType &&
             other is _$_CeritificateInfo &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.trainedEntity, trainedEntity) ||
-                other.trainedEntity == trainedEntity));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.certificateFrom, certificateFrom) ||
+                other.certificateFrom == certificateFrom));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, date, trainedEntity);
+  int get hashCode => Object.hash(
+      runtimeType, name, createdAt, startDate, endDate, certificateFrom);
 
   @JsonKey(ignore: true)
   @override
@@ -181,8 +228,10 @@ class _$_CeritificateInfo
 abstract class _CeritificateInfo implements CeritificateInfo {
   const factory _CeritificateInfo(
       {required final String name,
-      final DateTime? date,
-      final String? trainedEntity}) = _$_CeritificateInfo;
+      required final DateTime createdAt,
+      final DateTime? startDate,
+      final DateTime? endDate,
+      final String? certificateFrom}) = _$_CeritificateInfo;
 
   factory _CeritificateInfo.fromJson(Map<String, dynamic> json) =
       _$_CeritificateInfo.fromJson;
@@ -190,9 +239,13 @@ abstract class _CeritificateInfo implements CeritificateInfo {
   @override
   String get name;
   @override
-  DateTime? get date;
+  DateTime get createdAt;
   @override
-  String? get trainedEntity;
+  DateTime? get startDate;
+  @override
+  DateTime? get endDate;
+  @override
+  String? get certificateFrom;
   @override
   @JsonKey(ignore: true)
   _$$_CeritificateInfoCopyWith<_$_CeritificateInfo> get copyWith =>
