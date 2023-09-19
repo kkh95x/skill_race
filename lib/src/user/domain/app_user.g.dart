@@ -15,6 +15,8 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
       birthDay: json['birthDay'] == null
           ? null
           : DateTime.parse(json['birthDay'] as String),
+      state: $enumDecodeNullable(_$UserStateEnumMap, json['state']) ??
+          UserState.avalible,
       fullname: json['fullname'] as String,
       accountType: $enumDecode(_$AccountTypeEnumMap, json['accountType']),
       password: json['password'] as String?,
@@ -42,6 +44,7 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'phone': instance.phone,
       'email': instance.email,
       'birthDay': instance.birthDay?.toIso8601String(),
+      'state': _$UserStateEnumMap[instance.state]!,
       'fullname': instance.fullname,
       'accountType': _$AccountTypeEnumMap[instance.accountType]!,
       'password': instance.password,
@@ -54,6 +57,12 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'employee': instance.employee?.toJson(),
       'hiring': instance.hiring?.toJson(),
     };
+
+const _$UserStateEnumMap = {
+  UserState.avalible: 'avalible',
+  UserState.away: 'away',
+  UserState.inWeekend: 'inWeekend',
+};
 
 const _$AccountTypeEnumMap = {
   AccountType.employe: 'employe',

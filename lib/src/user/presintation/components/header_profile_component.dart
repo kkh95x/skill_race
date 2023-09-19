@@ -4,15 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:skill_race/gen/assets.gen.dart';
+import 'package:skill_race/src/user/presintation/widgets/chat_icon_widget.dart';
 import 'package:skill_race/src/user/presintation/widgets/edit_icon_widget.dart';
+import 'package:skill_race/src/user/presintation/widgets/save_icon_widget.dart';
 class HeaderProfileComponent extends StatelessWidget {
   const HeaderProfileComponent({super.key,required this.picUrl,required this.countryName,required this.specialization,required this.state,required
-   this.username});
+   this.username,
+   this.isMineProfile=true,
+   });
   final String picUrl;
   final String username;
   final String specialization;
   final String countryName;
   final String state;
+  final bool isMineProfile;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,8 +78,25 @@ class HeaderProfileComponent extends StatelessWidget {
 
         ],
       ),
-      Spacer(),
-     EditIconWidget()
+      const Spacer(),
+      if(isMineProfile)
+     const EditIconWidget(),
+     if(!isMineProfile)
+     
+      Container(
+        padding: EdgeInsets.symmetric(vertical: 5.h),
+        child: const Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+                 
+         SaveIconWidget(),
+         ChatIconWidget(),
+      
+        ],
+           ),
+      )
 
       
       ]),

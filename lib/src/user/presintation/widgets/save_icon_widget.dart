@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skill_race/gen/assets.gen.dart';
 
-class EditIconWidget extends StatelessWidget {
-  const EditIconWidget({super.key,this.onTap,this.showText=true});
+class SaveIconWidget extends StatelessWidget {
+  const SaveIconWidget({super.key,this.onTap,this.showText=true});
   final void Function()?onTap;
   final bool showText;
   @override
@@ -12,10 +12,11 @@ class EditIconWidget extends StatelessWidget {
       onTap: onTap,
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Assets.icons.png.edit.image(),
+            Assets.icons.png.saveGarden.image(fit: BoxFit.fitWidth),
             if(showText)
-            SizedBox(width: 3.w,),
+            SizedBox(width: 4.w,),
             if(showText)
               ShaderMask(
                         shaderCallback: (Rect bounds) {
@@ -27,7 +28,7 @@ class EditIconWidget extends StatelessWidget {
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ).createShader(bounds);
-                        },child: Text("Edit",style: TextStyle(color: Colors.white,fontSize: 12.sp,fontWeight: FontWeight.w400),)),
+                        },child: Text("Save",style: TextStyle(color: Colors.white,fontSize: 12.sp,fontWeight: FontWeight.w400),)),
           ],
         ),
     );

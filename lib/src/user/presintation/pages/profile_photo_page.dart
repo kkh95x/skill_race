@@ -10,8 +10,8 @@ import 'package:skill_race/src/images/application/get_my_images_provider.dart';
 import 'package:skill_race/src/images/presentation/widgets/image_profile_card.dart';
 
 class ProfilePhotosPage extends ConsumerWidget {
-  const ProfilePhotosPage({super.key});
-
+  const ProfilePhotosPage({super.key,required this.userId});
+final String userId;
   @override
   Widget build(BuildContext context,WidgetRef ref) {
 
@@ -19,10 +19,10 @@ class ProfilePhotosPage extends ConsumerWidget {
     controller.addListener(() { 
 
       if(controller.position.pixels==controller.position.maxScrollExtent){
-        ref.read(getMyImagesPagenation.notifier).fetchNextBatch();
+        ref.read(getMyImagesPagenation(userId).notifier).fetchNextBatch();
       }
     });
-    return ref.watch(getMyImagesPagenation).when(data: (recipes) {
+    return ref.watch(getMyImagesPagenation(userId)).when(data: (recipes) {
       if(recipes.isEmpty){
         return const Center(child: Text("No Projects Found"),);
       }

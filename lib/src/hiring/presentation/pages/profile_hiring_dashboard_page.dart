@@ -2,7 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:skill_race/core/presentation/widget/dynamic_button.dart';
 import 'package:skill_race/gen/assets.gen.dart';
+import 'package:skill_race/src/hiring/presentation/pages/need_employ_page.dart';
 import 'package:skill_race/src/user/presintation/widgets/edit_icon_widget.dart';
 import 'package:skill_race/src/user/presintation/widgets/expanded_list_widget.dart';
 
@@ -17,6 +20,13 @@ class ProfileHiringDashboardPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 10.h),
         child: Column(
           children: [
+
+            DynamicButton(
+              title: "Need Employees",
+              onPressed: () {
+              context.push(NeedEmpolyPage.routePath);
+            },),
+            SizedBox(height: 16.h,),
             ExpandedListWidget(
                 title: Row(
                   children: [

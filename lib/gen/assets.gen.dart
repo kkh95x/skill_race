@@ -68,6 +68,10 @@ class $AssetsIconsPngGen {
   AssetGenImage get calendar =>
       const AssetGenImage('assets/icons/png/calendar.png');
 
+  /// File path: assets/icons/png/chat_garden.png
+  AssetGenImage get chatGarden =>
+      const AssetGenImage('assets/icons/png/chat_garden.png');
+
   /// File path: assets/icons/png/close_dialog.png
   AssetGenImage get closeDialog =>
       const AssetGenImage('assets/icons/png/close_dialog.png');
@@ -119,6 +123,10 @@ class $AssetsIconsPngGen {
   AssetGenImage get plusCirlce =>
       const AssetGenImage('assets/icons/png/plus_cirlce.png');
 
+  /// File path: assets/icons/png/save_garden.png
+  AssetGenImage get saveGarden =>
+      const AssetGenImage('assets/icons/png/save_garden.png');
+
   /// File path: assets/icons/png/saved.png
   AssetGenImage get saved => const AssetGenImage('assets/icons/png/saved.png');
 
@@ -131,6 +139,7 @@ class $AssetsIconsPngGen {
         ai,
         attachFile,
         calendar,
+        chatGarden,
         closeDialog,
         comint,
         delete,
@@ -145,6 +154,7 @@ class $AssetsIconsPngGen {
         notification,
         play,
         plusCirlce,
+        saveGarden,
         saved,
         send
       ];

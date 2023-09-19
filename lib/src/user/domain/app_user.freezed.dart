@@ -26,6 +26,7 @@ mixin _$AppUser {
   String? get phone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   DateTime? get birthDay => throw _privateConstructorUsedError;
+  UserState get state => throw _privateConstructorUsedError;
   String get fullname => throw _privateConstructorUsedError;
   AccountType get accountType => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
@@ -55,6 +56,7 @@ abstract class $AppUserCopyWith<$Res> {
       String? phone,
       String? email,
       DateTime? birthDay,
+      UserState state,
       String fullname,
       AccountType accountType,
       String? password,
@@ -90,6 +92,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? phone = freezed,
     Object? email = freezed,
     Object? birthDay = freezed,
+    Object? state = null,
     Object? fullname = null,
     Object? accountType = null,
     Object? password = freezed,
@@ -127,6 +130,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.birthDay
           : birthDay // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as UserState,
       fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -213,6 +220,7 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       String? phone,
       String? email,
       DateTime? birthDay,
+      UserState state,
       String fullname,
       AccountType accountType,
       String? password,
@@ -247,6 +255,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? email = freezed,
     Object? birthDay = freezed,
+    Object? state = null,
     Object? fullname = null,
     Object? accountType = null,
     Object? password = freezed,
@@ -284,6 +293,10 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.birthDay
           : birthDay // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as UserState,
       fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -342,6 +355,7 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
       this.phone,
       this.email,
       this.birthDay,
+      this.state = UserState.avalible,
       required this.fullname,
       required this.accountType,
       this.password,
@@ -372,6 +386,9 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
   final String? email;
   @override
   final DateTime? birthDay;
+  @override
+  @JsonKey()
+  final UserState state;
   @override
   final String fullname;
   @override
@@ -406,7 +423,7 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AppUser(id: $id, isActive: $isActive, isOnline: $isOnline, phone: $phone, email: $email, birthDay: $birthDay, fullname: $fullname, accountType: $accountType, password: $password, interests: $interests, token: $token, country: $country, city: $city, bio: $bio, imgUrl: $imgUrl, employee: $employee, hiring: $hiring)';
+    return 'AppUser(id: $id, isActive: $isActive, isOnline: $isOnline, phone: $phone, email: $email, birthDay: $birthDay, state: $state, fullname: $fullname, accountType: $accountType, password: $password, interests: $interests, token: $token, country: $country, city: $city, bio: $bio, imgUrl: $imgUrl, employee: $employee, hiring: $hiring)';
   }
 
   @override
@@ -420,6 +437,7 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
       ..add(DiagnosticsProperty('phone', phone))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('birthDay', birthDay))
+      ..add(DiagnosticsProperty('state', state))
       ..add(DiagnosticsProperty('fullname', fullname))
       ..add(DiagnosticsProperty('accountType', accountType))
       ..add(DiagnosticsProperty('password', password))
@@ -447,6 +465,7 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.birthDay, birthDay) ||
                 other.birthDay == birthDay) &&
+            (identical(other.state, state) || other.state == state) &&
             (identical(other.fullname, fullname) ||
                 other.fullname == fullname) &&
             (identical(other.accountType, accountType) ||
@@ -475,6 +494,7 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
       phone,
       email,
       birthDay,
+      state,
       fullname,
       accountType,
       password,
@@ -509,6 +529,7 @@ abstract class _AppUser implements AppUser {
       final String? phone,
       final String? email,
       final DateTime? birthDay,
+      final UserState state,
       required final String fullname,
       required final AccountType accountType,
       final String? password,
@@ -535,6 +556,8 @@ abstract class _AppUser implements AppUser {
   String? get email;
   @override
   DateTime? get birthDay;
+  @override
+  UserState get state;
   @override
   String get fullname;
   @override

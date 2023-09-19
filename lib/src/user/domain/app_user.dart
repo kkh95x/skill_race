@@ -19,12 +19,12 @@ class AppUser with _$AppUser {
     String? phone,
     String? email,
     DateTime? birthDay,
+   @Default(UserState.avalible) UserState state,
    required String fullname,
    required AccountType accountType,
     String? password,
     List<String>? interests,//اهتمامات
-    String? token,
-    
+    String? token,    
     String? country,
     String? city,
     String? bio,
@@ -45,4 +45,24 @@ class AppUser with _$AppUser {
 enum AccountType{
   employe,
   hiring
+}
+
+enum UserState{
+  avalible,away,inWeekend
+}
+
+extension ConvertState on UserState{
+  String toScreen(){
+    switch (this) {
+      
+    
+      case UserState.avalible:
+        return "Available Now";
+        
+      case UserState.away:
+        return "Away";
+      case UserState.inWeekend:
+        return "In Weekend";
+    }
+  }
 }

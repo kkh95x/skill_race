@@ -15,6 +15,7 @@ import 'package:skill_race/src/employe/presentation/pages/emp_add_certificate_pa
 import 'package:skill_race/src/employe/presentation/pages/emp_add_education_page.dart';
 import 'package:skill_race/src/employe/presentation/pages/emp_add_expertise_page.dart';
 import 'package:skill_race/src/employe/presentation/pages/emp_add_looking_job_page.dart';
+import 'package:skill_race/src/employe/presentation/pages/global_profile_emp.dart';
 import 'package:skill_race/src/home/presentation/pages/filter_page.dart';
 import 'package:skill_race/src/home/presentation/pages/home_navigation_page.dart';
 import 'package:skill_race/src/home/presentation/pages/home_page.dart';
@@ -63,6 +64,8 @@ final routerProvider = StateProvider<GoRouter>((ref) {
     observers: [BotToastNavigatorObserver()],
 
     routes: [
+      GoRoute(path: GlobalEmpProfilePage.routePath,name: GlobalEmpProfilePage.routeName,
+      builder: (context, state) => GlobalEmpProfilePage(userId: state.extra.toString()), ),
       GoRoute(path: EmpAddLookingForJobPage.routePath,name: EmpAddLookingForJobPage.routeName,
       builder: (context, state) => EmpAddLookingForJobPage(lookingForAJob: state.extra as LookingForAJob?),)
 ,      GoRoute(

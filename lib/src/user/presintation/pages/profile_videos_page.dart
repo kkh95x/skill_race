@@ -3,22 +3,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_pinput/reactive_pinput.dart';
+import 'package:skill_race/src/auth/application/auth_notifer.dart';
 import 'package:skill_race/src/user/application/get_may_video_provider.dart';
 import 'package:skill_race/src/video/presentation/pages/single_video_page.dart';
 import 'package:skill_race/src/video/presentation/widgets/videos_profile_card_widget.dart';
 
 class ProfileVideosPage extends ConsumerWidget {
-  const ProfileVideosPage({super.key});
-
+  const ProfileVideosPage({super.key,required this.id});
+  final String id;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+   ;
     final controller = ScrollController();
     controller.addListener(() {
       if (controller.position.pixels == controller.position.maxScrollExtent) {
-        ref.read(getMyVideoPagination.notifier).fetchNextBatch();
+        ref.read(getMyVideoPagination(id).notifier).fetchNextBatch();
       }
     });
-    return ref.watch(getMyVideoPagination).when(
+    return ref.watch(getMyVideoPagination(id)).when(
       data: (recipes) {
         if (recipes.isEmpty) {
           return const Center(
