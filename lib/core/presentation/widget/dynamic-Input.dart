@@ -59,7 +59,8 @@ class DynamicInput extends ConsumerWidget {
     this.onchange,
     this.validationMessages,
     this.fieldType = "تكون كلمة المرور",
-    this.fillColor
+    this.fillColor,
+    this.readOnly=false
   });
   final String fieldType;
   final String? control;
@@ -72,7 +73,7 @@ class DynamicInput extends ConsumerWidget {
   final double height;
   final IconPosition titleIconPosition;
   final IconPosition placeholderIconPosition;
-
+  final bool readOnly;
   final String placeholder;
   final String? description;
   final intl.NumberFormat? numreicFormat;
@@ -179,6 +180,7 @@ class DynamicInput extends ConsumerWidget {
                     : ReactiveTextField(
                         onChanged: onchange,
                         autofocus: autoFoucs,
+                        readOnly: readOnly,
                         maxLines: multiLine == true ? 5 : 1,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
                         formControlName: control,
@@ -233,7 +235,7 @@ class DynamicInput extends ConsumerWidget {
                     padding: EdgeInsets.only(top: 5.h),
                     child: Text(
                       description ?? '',
-                      style: Theme.of(context).textTheme.labelSmall,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(color: Colors.grey,fontSize: 12.sp),
                     
                     ),
                   )

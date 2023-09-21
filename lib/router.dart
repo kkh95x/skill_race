@@ -22,6 +22,7 @@ import 'package:skill_race/src/home/presentation/pages/home_page.dart';
 import 'package:skill_race/src/home/presentation/pages/messages_page.dart';
 import 'package:skill_race/src/home/presentation/pages/more_page.dart';
 import 'package:skill_race/src/project/presentaion/pages/add_new_project_page.dart';
+import 'package:skill_race/src/user/presintation/pages/edit_my_profile_page.dart';
 import 'package:skill_race/src/user/presintation/pages/profile_page.dart';
 
 import 'package:skill_race/src/video/presentation/pages/realls_page.dart';
@@ -64,6 +65,9 @@ final routerProvider = StateProvider<GoRouter>((ref) {
     observers: [BotToastNavigatorObserver()],
 
     routes: [
+      GoRoute(
+        parentNavigatorKey: mainkey,
+        path:EditMyProfilePage.routePath,name: EditMyProfilePage.routeName,builder: (context, state) =>const EditMyProfilePage(), ),
       GoRoute(path: GlobalEmpProfilePage.routePath,name: GlobalEmpProfilePage.routeName,
       builder: (context, state) => GlobalEmpProfilePage(userId: state.extra.toString()), ),
       GoRoute(path: EmpAddLookingForJobPage.routePath,name: EmpAddLookingForJobPage.routeName,

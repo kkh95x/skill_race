@@ -22,6 +22,7 @@ Employee _$EmployeeFromJson(Map<String, dynamic> json) {
 mixin _$Employee {
   String? get specialization => throw _privateConstructorUsedError; //تخصص
   String? get supSpecialization => throw _privateConstructorUsedError;
+  DateTime? get lastEditSpecialization => throw _privateConstructorUsedError;
   String? get jobType => throw _privateConstructorUsedError;
   List<CeritificateInfo>? get ceritificates =>
       throw _privateConstructorUsedError; //شهادات
@@ -45,6 +46,7 @@ abstract class $EmployeeCopyWith<$Res> {
   $Res call(
       {String? specialization,
       String? supSpecialization,
+      DateTime? lastEditSpecialization,
       String? jobType,
       List<CeritificateInfo>? ceritificates,
       List<String>? language,
@@ -71,6 +73,7 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
   $Res call({
     Object? specialization = freezed,
     Object? supSpecialization = freezed,
+    Object? lastEditSpecialization = freezed,
     Object? jobType = freezed,
     Object? ceritificates = freezed,
     Object? language = freezed,
@@ -88,6 +91,10 @@ class _$EmployeeCopyWithImpl<$Res, $Val extends Employee>
           ? _value.supSpecialization
           : supSpecialization // ignore: cast_nullable_to_non_nullable
               as String?,
+      lastEditSpecialization: freezed == lastEditSpecialization
+          ? _value.lastEditSpecialization
+          : lastEditSpecialization // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       jobType: freezed == jobType
           ? _value.jobType
           : jobType // ignore: cast_nullable_to_non_nullable
@@ -142,6 +149,7 @@ abstract class _$$_EmployeeCopyWith<$Res> implements $EmployeeCopyWith<$Res> {
   $Res call(
       {String? specialization,
       String? supSpecialization,
+      DateTime? lastEditSpecialization,
       String? jobType,
       List<CeritificateInfo>? ceritificates,
       List<String>? language,
@@ -167,6 +175,7 @@ class __$$_EmployeeCopyWithImpl<$Res>
   $Res call({
     Object? specialization = freezed,
     Object? supSpecialization = freezed,
+    Object? lastEditSpecialization = freezed,
     Object? jobType = freezed,
     Object? ceritificates = freezed,
     Object? language = freezed,
@@ -184,6 +193,10 @@ class __$$_EmployeeCopyWithImpl<$Res>
           ? _value.supSpecialization
           : supSpecialization // ignore: cast_nullable_to_non_nullable
               as String?,
+      lastEditSpecialization: freezed == lastEditSpecialization
+          ? _value.lastEditSpecialization
+          : lastEditSpecialization // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       jobType: freezed == jobType
           ? _value.jobType
           : jobType // ignore: cast_nullable_to_non_nullable
@@ -222,6 +235,7 @@ class _$_Employee with DiagnosticableTreeMixin implements _Employee {
   const _$_Employee(
       {this.specialization,
       this.supSpecialization,
+      this.lastEditSpecialization,
       this.jobType,
       final List<CeritificateInfo>? ceritificates,
       final List<String>? language,
@@ -243,6 +257,8 @@ class _$_Employee with DiagnosticableTreeMixin implements _Employee {
 //تخصص
   @override
   final String? supSpecialization;
+  @override
+  final DateTime? lastEditSpecialization;
   @override
   final String? jobType;
   final List<CeritificateInfo>? _ceritificates;
@@ -302,7 +318,7 @@ class _$_Employee with DiagnosticableTreeMixin implements _Employee {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Employee(specialization: $specialization, supSpecialization: $supSpecialization, jobType: $jobType, ceritificates: $ceritificates, language: $language, expertises: $expertises, skills: $skills, educations: $educations, lookingForAJob: $lookingForAJob)';
+    return 'Employee(specialization: $specialization, supSpecialization: $supSpecialization, lastEditSpecialization: $lastEditSpecialization, jobType: $jobType, ceritificates: $ceritificates, language: $language, expertises: $expertises, skills: $skills, educations: $educations, lookingForAJob: $lookingForAJob)';
   }
 
   @override
@@ -312,6 +328,8 @@ class _$_Employee with DiagnosticableTreeMixin implements _Employee {
       ..add(DiagnosticsProperty('type', 'Employee'))
       ..add(DiagnosticsProperty('specialization', specialization))
       ..add(DiagnosticsProperty('supSpecialization', supSpecialization))
+      ..add(
+          DiagnosticsProperty('lastEditSpecialization', lastEditSpecialization))
       ..add(DiagnosticsProperty('jobType', jobType))
       ..add(DiagnosticsProperty('ceritificates', ceritificates))
       ..add(DiagnosticsProperty('language', language))
@@ -330,6 +348,8 @@ class _$_Employee with DiagnosticableTreeMixin implements _Employee {
                 other.specialization == specialization) &&
             (identical(other.supSpecialization, supSpecialization) ||
                 other.supSpecialization == supSpecialization) &&
+            (identical(other.lastEditSpecialization, lastEditSpecialization) ||
+                other.lastEditSpecialization == lastEditSpecialization) &&
             (identical(other.jobType, jobType) || other.jobType == jobType) &&
             const DeepCollectionEquality()
                 .equals(other._ceritificates, _ceritificates) &&
@@ -349,6 +369,7 @@ class _$_Employee with DiagnosticableTreeMixin implements _Employee {
       runtimeType,
       specialization,
       supSpecialization,
+      lastEditSpecialization,
       jobType,
       const DeepCollectionEquality().hash(_ceritificates),
       const DeepCollectionEquality().hash(_language),
@@ -375,6 +396,7 @@ abstract class _Employee implements Employee {
   const factory _Employee(
       {final String? specialization,
       final String? supSpecialization,
+      final DateTime? lastEditSpecialization,
       final String? jobType,
       final List<CeritificateInfo>? ceritificates,
       final List<String>? language,
@@ -389,6 +411,8 @@ abstract class _Employee implements Employee {
   String? get specialization;
   @override //تخصص
   String? get supSpecialization;
+  @override
+  DateTime? get lastEditSpecialization;
   @override
   String? get jobType;
   @override

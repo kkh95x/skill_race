@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skill_race/src/employe/presentation/pages/global_emp_about_page.dart';
 import 'package:skill_race/src/employe/presentation/pages/profile_emp_about_page.dart';
-import 'package:skill_race/src/employe/presentation/pages/reviews_page.dart';
+import 'package:skill_race/src/reviews/presentation/pages/reviews_page.dart';
 import 'package:skill_race/src/home/presentation/components/appbar_component.dart';
 import 'package:skill_race/src/user/application/get_user_py_id_provider.dart';
 import 'package:skill_race/src/user/domain/app_user.dart';
@@ -42,12 +42,13 @@ class GlobalEmpProfileComponent extends ConsumerWidget {
       children: [
   appBarComponent(title: "Profile", context: context),
         HeaderProfileComponent(
+          userId: user.id,
           isMineProfile: false,
           picUrl: user.imgUrl ??
               "https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/1dg6rpsglt7JUxmlLlau--1--gck8s.webp?alt=media&token=53b85936-706b-4594-aca6-389225c7a465",
           countryName: user.country ?? "Country",
           specialization: user.employee?.specialization ?? '-',
-          state: user.state.toScreen(),
+          state: user.state,
           username: user.fullname,
         ),
         Expanded(
@@ -92,7 +93,7 @@ class GlobalEmpProfileComponent extends ConsumerWidget {
   ProfileVideosPage(id: userId),
   ProfilePhotosPage(userId: userId,),
   GlobalEmpAbouteProfilePage(user: user),
-  ReviewsComponent()
+  ReviewsComponent(userId: userId,)
 ]),
         )
 

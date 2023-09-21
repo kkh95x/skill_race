@@ -8,7 +8,7 @@ import 'package:skill_race/src/employe/presentation/pages/profile_emp_dashboard_
 import 'package:skill_race/src/home/presentation/components/appbar_component.dart';
 import 'package:skill_race/src/user/domain/app_user.dart';
 import 'package:skill_race/src/user/presintation/components/header_profile_component.dart';
-import 'package:skill_race/src/employe/presentation/pages/reviews_page.dart';
+import 'package:skill_race/src/reviews/presentation/pages/reviews_page.dart';
 import 'package:skill_race/src/user/presintation/components/tabs_buttons_component.dart';
 
 import 'package:skill_race/src/hiring/presentation/pages/profile_hiring_aboute_page.dart';
@@ -36,31 +36,31 @@ class ProfileComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userId=ref.read(userAuthNotifer).currentUser?.id;
-    final _profileEmployeedPages = [
-  ProfileVideosPage(id: userId??""),
-   ProfilePhotosPage(userId: userId??"",),
+    final user = ref.watch(userAuthNotifer).currentUser;
+    final profileEmployeedPages = [
+  ProfileVideosPage(id: user?.id??""),
+   ProfilePhotosPage(userId: user?.id??"",),
   const ProfileEmpAboutePage(),
   const ProfileEmpDashboardPage(),
-  const ReviewsComponent()
+   ReviewsComponent(userId: user?.id??"",)
 ];
 
-    final user = ref.read(userAuthNotifer).currentUser;
     final isEmpoloyeed = user?.accountType == AccountType.employe;
-    final pages = isEmpoloyeed ? _profileEmployeedPages : _profileHiringPages;
+    final pages = isEmpoloyeed ? profileEmployeedPages : _profileHiringPages;
     final tabs =
         isEmpoloyeed ? _profilePagesEmployeedTitle : _profilePagesHiringTitle;
     return Column(
       children: [
         appBarComponent(title: "Profile", context: context),
         HeaderProfileComponent(
+          userId: user?.id,
           picUrl: user?.imgUrl ??
               "https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/1dg6rpsglt7JUxmlLlau--1--gck8s.webp?alt=media&token=53b85936-706b-4594-aca6-389225c7a465",
           countryName: user?.country ?? "Country",
           specialization: user?.accountType == AccountType.hiring
               ? "Hiring"
               : user?.employee?.specialization ?? '-',
-          state: "Available now",
+          state:user?.state??UserState.avalible,
           username: user?.fullname ?? "-",
         ),
         SizedBox(

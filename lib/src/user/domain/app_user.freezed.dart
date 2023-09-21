@@ -38,6 +38,7 @@ mixin _$AppUser {
   String? get imgUrl => throw _privateConstructorUsedError;
   Employee? get employee => throw _privateConstructorUsedError;
   Hiring? get hiring => throw _privateConstructorUsedError;
+  DateTime? get lastEdtiName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -67,7 +68,8 @@ abstract class $AppUserCopyWith<$Res> {
       String? bio,
       String? imgUrl,
       Employee? employee,
-      Hiring? hiring});
+      Hiring? hiring,
+      DateTime? lastEdtiName});
 
   $EmployeeCopyWith<$Res>? get employee;
   $HiringCopyWith<$Res>? get hiring;
@@ -104,6 +106,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? imgUrl = freezed,
     Object? employee = freezed,
     Object? hiring = freezed,
+    Object? lastEdtiName = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -178,6 +181,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.hiring
           : hiring // ignore: cast_nullable_to_non_nullable
               as Hiring?,
+      lastEdtiName: freezed == lastEdtiName
+          ? _value.lastEdtiName
+          : lastEdtiName // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -231,7 +238,8 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       String? bio,
       String? imgUrl,
       Employee? employee,
-      Hiring? hiring});
+      Hiring? hiring,
+      DateTime? lastEdtiName});
 
   @override
   $EmployeeCopyWith<$Res>? get employee;
@@ -267,6 +275,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? imgUrl = freezed,
     Object? employee = freezed,
     Object? hiring = freezed,
+    Object? lastEdtiName = freezed,
   }) {
     return _then(_$_AppUser(
       id: freezed == id
@@ -341,13 +350,17 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.hiring
           : hiring // ignore: cast_nullable_to_non_nullable
               as Hiring?,
+      lastEdtiName: freezed == lastEdtiName
+          ? _value.lastEdtiName
+          : lastEdtiName // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
+class _$_AppUser implements _AppUser {
   const _$_AppUser(
       {this.id,
       this.isActive = true,
@@ -366,7 +379,8 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
       this.bio,
       this.imgUrl,
       this.employee,
-      this.hiring})
+      this.hiring,
+      this.lastEdtiName})
       : _interests = interests;
 
   factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
@@ -420,35 +434,12 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
   final Employee? employee;
   @override
   final Hiring? hiring;
+  @override
+  final DateTime? lastEdtiName;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AppUser(id: $id, isActive: $isActive, isOnline: $isOnline, phone: $phone, email: $email, birthDay: $birthDay, state: $state, fullname: $fullname, accountType: $accountType, password: $password, interests: $interests, token: $token, country: $country, city: $city, bio: $bio, imgUrl: $imgUrl, employee: $employee, hiring: $hiring)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'AppUser'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('isActive', isActive))
-      ..add(DiagnosticsProperty('isOnline', isOnline))
-      ..add(DiagnosticsProperty('phone', phone))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('birthDay', birthDay))
-      ..add(DiagnosticsProperty('state', state))
-      ..add(DiagnosticsProperty('fullname', fullname))
-      ..add(DiagnosticsProperty('accountType', accountType))
-      ..add(DiagnosticsProperty('password', password))
-      ..add(DiagnosticsProperty('interests', interests))
-      ..add(DiagnosticsProperty('token', token))
-      ..add(DiagnosticsProperty('country', country))
-      ..add(DiagnosticsProperty('city', city))
-      ..add(DiagnosticsProperty('bio', bio))
-      ..add(DiagnosticsProperty('imgUrl', imgUrl))
-      ..add(DiagnosticsProperty('employee', employee))
-      ..add(DiagnosticsProperty('hiring', hiring));
+  String toString() {
+    return 'AppUser(id: $id, isActive: $isActive, isOnline: $isOnline, phone: $phone, email: $email, birthDay: $birthDay, state: $state, fullname: $fullname, accountType: $accountType, password: $password, interests: $interests, token: $token, country: $country, city: $city, bio: $bio, imgUrl: $imgUrl, employee: $employee, hiring: $hiring, lastEdtiName: $lastEdtiName)';
   }
 
   @override
@@ -481,31 +472,35 @@ class _$_AppUser with DiagnosticableTreeMixin implements _AppUser {
             (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
             (identical(other.employee, employee) ||
                 other.employee == employee) &&
-            (identical(other.hiring, hiring) || other.hiring == hiring));
+            (identical(other.hiring, hiring) || other.hiring == hiring) &&
+            (identical(other.lastEdtiName, lastEdtiName) ||
+                other.lastEdtiName == lastEdtiName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      isActive,
-      isOnline,
-      phone,
-      email,
-      birthDay,
-      state,
-      fullname,
-      accountType,
-      password,
-      const DeepCollectionEquality().hash(_interests),
-      token,
-      country,
-      city,
-      bio,
-      imgUrl,
-      employee,
-      hiring);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        isActive,
+        isOnline,
+        phone,
+        email,
+        birthDay,
+        state,
+        fullname,
+        accountType,
+        password,
+        const DeepCollectionEquality().hash(_interests),
+        token,
+        country,
+        city,
+        bio,
+        imgUrl,
+        employee,
+        hiring,
+        lastEdtiName
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -540,7 +535,8 @@ abstract class _AppUser implements AppUser {
       final String? bio,
       final String? imgUrl,
       final Employee? employee,
-      final Hiring? hiring}) = _$_AppUser;
+      final Hiring? hiring,
+      final DateTime? lastEdtiName}) = _$_AppUser;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
@@ -580,6 +576,8 @@ abstract class _AppUser implements AppUser {
   Employee? get employee;
   @override
   Hiring? get hiring;
+  @override
+  DateTime? get lastEdtiName;
   @override
   @JsonKey(ignore: true)
   _$$_AppUserCopyWith<_$_AppUser> get copyWith =>

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:skill_race/src/employe/domain/employe.dart';
@@ -31,6 +32,8 @@ class AppUser with _$AppUser {
     String? imgUrl,
     Employee? employee,
     Hiring? hiring,
+    DateTime? lastEdtiName,
+    
     // List<EdaucationInfo>? educations,
     // String? cvUrl,
   
@@ -48,7 +51,7 @@ enum AccountType{
 }
 
 enum UserState{
-  avalible,away,inWeekend
+  avalible,away,inWeekend,busy
 }
 
 extension ConvertState on UserState{
@@ -63,6 +66,23 @@ extension ConvertState on UserState{
         return "Away";
       case UserState.inWeekend:
         return "In Weekend";
+      case UserState.busy:
+        return "Busy";
+    }
+  }
+  Color toColor(){
+    switch (this) {
+      
+    
+      case UserState.avalible:
+        return Colors.green;
+        
+      case UserState.away:
+        return Colors.orange;
+      case UserState.inWeekend:
+        return Colors.grey;
+        case UserState.busy:
+        return Colors.red;
     }
   }
 }

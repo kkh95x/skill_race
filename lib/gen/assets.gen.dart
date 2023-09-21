@@ -68,6 +68,10 @@ class $AssetsIconsPngGen {
   AssetGenImage get calendar =>
       const AssetGenImage('assets/icons/png/calendar.png');
 
+  /// File path: assets/icons/png/camera.png
+  AssetGenImage get camera =>
+      const AssetGenImage('assets/icons/png/camera.png');
+
   /// File path: assets/icons/png/chat_garden.png
   AssetGenImage get chatGarden =>
       const AssetGenImage('assets/icons/png/chat_garden.png');
@@ -139,6 +143,7 @@ class $AssetsIconsPngGen {
         ai,
         attachFile,
         calendar,
+        camera,
         chatGarden,
         closeDialog,
         comint,

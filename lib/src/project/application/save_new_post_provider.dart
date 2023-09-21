@@ -121,52 +121,56 @@ BotToast.closeAllLoading();
 
 BotToast.showCustomLoading(toastBuilder: (cancelFunc) {
      
-      return Material(
-                  borderRadius: BorderRadius.circular(20.r),
-elevation: 9,
-     child: Container(
-        padding: EdgeInsets.all(50.sp),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.r),
-          color: Colors.grey.shade400,
-          // boxShadow: const [BoxShadow(color: Colors.black,blurRadius: 0.5,offset: Offset(-1, -1))]
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+      return Container(
+                margin: EdgeInsets.symmetric(horizontal: 10.w),
 
-            StreamBuilder(
-              stream: task.snapshotEvents,
-              builder:(context, snapshot)  {
-
-                
-                double uploade=0;
-                if(snapshot.data?.bytesTransferred!=null&&snapshot.data?.totalBytes!=null){
-                  uploade=snapshot.data!.bytesTransferred/snapshot.data!.totalBytes;
+        child: Material(
+                    borderRadius: BorderRadius.circular(20.r),
+      elevation: 9,
+           child: Container(
+          padding: EdgeInsets.all(50.sp),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.r),
+            color: Colors.grey.shade400,
+            // boxShadow: const [BoxShadow(color: Colors.black,blurRadius: 0.5,offset: Offset(-1, -1))]
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+      
+              StreamBuilder(
+                stream: task.snapshotEvents,
+                builder:(context, snapshot)  {
+      
+                  
+                  double uploade=0;
+                  if(snapshot.data?.bytesTransferred!=null&&snapshot.data?.totalBytes!=null){
+                    uploade=snapshot.data!.bytesTransferred/snapshot.data!.totalBytes;
+                  }
+                  return Column(
+                    children: [
+                                  SizedBox(height: 10.h,),
+      
+                      LinearProgressIndicator(
+                        value:  uploade,
+                       
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children:[
+                        Text("$count/$lenght"),
+                         Text("${(uploade *100).toInt()}%")
+                      ])
+                    ],
+                  );
                 }
-                return Column(
-                  children: [
-                                SizedBox(height: 10.h,),
-
-                    LinearProgressIndicator(
-                      value:  uploade,
-                     
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:[
-                      Text("$count/$lenght"),
-                       Text("${(uploade *100).toInt()}%")
-                    ])
-                  ],
-                );
-              }
-            ),
-           
-          ],
-        ),
-      ));
+              ),
+             
+            ],
+          ),
+        )),
+      );
 
     },);
   final url=await task.whenComplete(() => null);

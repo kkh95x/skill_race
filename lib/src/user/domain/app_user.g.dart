@@ -34,6 +34,9 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
       hiring: json['hiring'] == null
           ? null
           : Hiring.fromJson(json['hiring'] as Map<String, dynamic>),
+      lastEdtiName: json['lastEdtiName'] == null
+          ? null
+          : DateTime.parse(json['lastEdtiName'] as String),
     );
 
 Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
@@ -56,12 +59,14 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'imgUrl': instance.imgUrl,
       'employee': instance.employee?.toJson(),
       'hiring': instance.hiring?.toJson(),
+      'lastEdtiName': instance.lastEdtiName?.toIso8601String(),
     };
 
 const _$UserStateEnumMap = {
   UserState.avalible: 'avalible',
   UserState.away: 'away',
   UserState.inWeekend: 'inWeekend',
+  UserState.busy: 'busy',
 };
 
 const _$AccountTypeEnumMap = {

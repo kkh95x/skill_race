@@ -9,6 +9,9 @@ part of 'employe.dart';
 _$_Employee _$$_EmployeeFromJson(Map<String, dynamic> json) => _$_Employee(
       specialization: json['specialization'] as String?,
       supSpecialization: json['supSpecialization'] as String?,
+      lastEditSpecialization: json['lastEditSpecialization'] == null
+          ? null
+          : DateTime.parse(json['lastEditSpecialization'] as String),
       jobType: json['jobType'] as String?,
       ceritificates: (json['ceritificates'] as List<dynamic>?)
           ?.map((e) => CeritificateInfo.fromJson(e as Map<String, dynamic>))
@@ -34,6 +37,8 @@ Map<String, dynamic> _$$_EmployeeToJson(_$_Employee instance) =>
     <String, dynamic>{
       'specialization': instance.specialization,
       'supSpecialization': instance.supSpecialization,
+      'lastEditSpecialization':
+          instance.lastEditSpecialization?.toIso8601String(),
       'jobType': instance.jobType,
       'ceritificates': instance.ceritificates?.map((e) => e.toJson()).toList(),
       'language': instance.language,

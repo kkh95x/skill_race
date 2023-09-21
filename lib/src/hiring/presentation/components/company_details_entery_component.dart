@@ -48,6 +48,9 @@ class CompanyDeatilsEnteryComponent extends StatelessWidget {
                         title: "Country",
                         placeholder: "",
                         formControlName: "country",
+                        onTap: () {
+                          formGroup.control("city").reset();
+                        },
                         item: AllCountres.countries.keys.toList());
                   }),
                   SizedBox(

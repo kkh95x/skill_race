@@ -17,6 +17,7 @@ class Employee with _$Employee {
   const factory Employee({
     String? specialization,//تخصص
     String? supSpecialization,
+    DateTime? lastEditSpecialization,
     String? jobType,
     List<CeritificateInfo>? ceritificates,//شهادات
     List<String>? language,

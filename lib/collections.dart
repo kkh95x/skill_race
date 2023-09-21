@@ -6,6 +6,8 @@ class Collections {
     static const String skills="skills";
       static const String faculaty="facultySpecializations";
           static const String needEmployeeRequest="needEmployeeRequest";
+              static const String review="review";
+
 
 
 }

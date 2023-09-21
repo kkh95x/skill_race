@@ -1,14 +1,21 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skill_race/gen/assets.gen.dart';
+import 'package:skill_race/src/auth/application/auth_notifer.dart';
+import 'package:skill_race/src/user/domain/app_user.dart';
+import 'package:skill_race/src/user/presintation/pages/edit_my_profile_page.dart';
 import 'package:skill_race/src/user/presintation/widgets/chat_icon_widget.dart';
 import 'package:skill_race/src/user/presintation/widgets/edit_icon_widget.dart';
 import 'package:skill_race/src/user/presintation/widgets/save_icon_widget.dart';
-class HeaderProfileComponent extends StatelessWidget {
-  const HeaderProfileComponent({super.key,required this.picUrl,required this.countryName,required this.specialization,required this.state,required
+class HeaderProfileComponent extends ConsumerWidget {
+  const HeaderProfileComponent({super.key,
+  required this.userId,
+  required this.picUrl,required this.countryName,required this.specialization,required this.state,required
    this.username,
    this.isMineProfile=true,
    });
@@ -16,10 +23,11 @@ class HeaderProfileComponent extends StatelessWidget {
   final String username;
   final String specialization;
   final String countryName;
-  final String state;
+  final UserState state;
   final bool isMineProfile;
+  final String? userId;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return Container(
       height: 111.h,
       width: MediaQuery.of(context).size.width,
@@ -40,11 +48,11 @@ class HeaderProfileComponent extends StatelessWidget {
             child: Stack(
               children: [
                 ClipRRect(
-          borderRadius: BorderRadius.circular(95.r),child: CachedNetworkImage(imageUrl: picUrl,fit: BoxFit.cover,)),
+          borderRadius: BorderRadius.circular(95.r),child: CachedNetworkImage(imageUrl: picUrl,fit: BoxFit.cover,placeholder: (context, url) =>const Center(child: CircularProgressIndicator(),),)),
           Positioned(
             bottom: 5.h,
             right: 5.w,
-            child:  Icon(Icons.circle,color: Colors.green,size: 18.sp,))
+            child:  Icon(Icons.circle,color:state.toColor(),size: 18.sp,))
               ],
             ),
           ),
@@ -74,13 +82,21 @@ class HeaderProfileComponent extends StatelessWidget {
                           end: Alignment.centerRight,
                         ).createShader(bounds);
                       },child: Text(specialization,style: TextStyle(color: Colors.white,fontSize: 12.sp,fontWeight: FontWeight.w400),)),
-          Text(state,style:  TextStyle(color: Colors.green,fontSize: 12.sp,fontWeight: FontWeight.w400),)
+          Text(state.toScreen(),style:  TextStyle(color:state.toColor(),fontSize: 12.sp,fontWeight: FontWeight.w400),)
 
         ],
       ),
       const Spacer(),
       if(isMineProfile)
-     const EditIconWidget(),
+      EditIconWidget(
+      onTap:(){
+       final user=ref.read(userAuthNotifer).currentUser;
+       if(user?.id==userId){
+        context.push(EditMyProfilePage.routePath);
+
+       }
+      }
+     ),
      if(!isMineProfile)
      
       Container(
