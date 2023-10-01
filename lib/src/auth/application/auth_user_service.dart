@@ -6,6 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
  import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:skill_race/core/application/sharef_pref_service.dart';
+import 'package:skill_race/src/financial_account/data/financial_account_repository.dart';
+import 'package:skill_race/src/financial_account/data/firestore_financial_account_repository.dart';
+import 'package:skill_race/src/financial_account/domain/financial_account.dart';
 import 'package:skill_race/src/user/data/app_user_repository.dart';
 import 'package:skill_race/src/user/data/firebase_app_user_repository.dart';
 import 'package:skill_race/src/user/domain/app_user.dart';
@@ -18,12 +21,13 @@ part 'auth_user_service.g.dart';
 
 
 @riverpod
-UserService userService(UserServiceRef ref)=>UserService(SharefPrefranceService.instance,ref.read(userRepositoryProvider)); 
+UserService userService(UserServiceRef ref)=>UserService(SharefPrefranceService.instance,ref.read(userRepositoryProvider),ref.read(financialAccountReposiotryProvider)); 
 
 class UserService {
-  UserService(this._preferences,this._repository);
+  UserService(this._preferences,this._repository,this._financialAccountReposiotry);
   final AppUserRepository _repository;
 final SharedPreferences _preferences;
+final FinancialAccountReposiotry _financialAccountReposiotry;
 
 final _key="dfjsldnflsjdkfklshdf";
 
@@ -64,6 +68,14 @@ Future<UserCredential> signInWithFacebook() async {
  }
 Future<AppUser> createNewUser(AppUser appUser)async{
 return await _repository.create(appUser);
+}
+Future<FinancialAccount> creatFinancialAccount(FinancialAccount financialAccount)async{
+  return _financialAccountReposiotry.create(financialAccount);
+
+}
+Future<FinancialAccount?> getFinancialAccount(String referenceId)async{
+  return await  _financialAccountReposiotry.get(referenceId);
+
 }
 
  Future<bool?> saveUserLocaly(String? id)async{

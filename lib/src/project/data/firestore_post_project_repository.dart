@@ -1,6 +1,8 @@
 
 
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:skill_race/collections.dart';
@@ -38,15 +40,11 @@ class FirestorePostProjectRepository implements PostProjectRepository{
   }
   
   @override
-  Future<PostProject?> get(String id)async {
+  Stream<PostProject?> get(String id) {
 
-
-   final respone=await _firebaseFirestore.collection(Collections.postProject).doc(id).get();
-   if(respone.exists){
-    return PostProject.fromJson(respone.data() as Map<String ,Object?>).copyWith(id: respone.id);
-   }else{
-    return null;
-   }
+return _firebaseFirestore.collection(Collections.postProject).doc(id).snapshots().map((event) => event.exists&&event.data()!=null?PostProject.fromJson(event.data()!).copyWith(id:event.id):null);
+  
+   
   }
   
   @override
@@ -67,6 +65,11 @@ class FirestorePostProjectRepository implements PostProjectRepository{
 
     .limit(limit).snapshots().map((event) => event.docs.map((e) => PostProject.fromJson(e.data()).copyWith(id: e.id)).toList());
  
+  }
+  
+  @override
+  Future<void> update(PostProject postProject) async{
+    await _firebaseFirestore.collection(Collections.postProject).doc(postProject.id).set(postProject.toJson());
   }
 
 }

@@ -31,6 +31,8 @@ mixin _$PostProject {
   double get stars => throw _privateConstructorUsedError;
   int get likesCount => throw _privateConstructorUsedError;
   int get comintsCount => throw _privateConstructorUsedError;
+  List<String>? get likesUsers => throw _privateConstructorUsedError;
+  List<ComintPost>? get comintUsers => throw _privateConstructorUsedError;
   String? get supSpecialization => throw _privateConstructorUsedError;
   String? get videoUrl => throw _privateConstructorUsedError;
   List<String>? get images => throw _privateConstructorUsedError;
@@ -59,6 +61,8 @@ abstract class $PostProjectCopyWith<$Res> {
       double stars,
       int likesCount,
       int comintsCount,
+      List<String>? likesUsers,
+      List<ComintPost>? comintUsers,
       String? supSpecialization,
       String? videoUrl,
       List<String>? images});
@@ -88,6 +92,8 @@ class _$PostProjectCopyWithImpl<$Res, $Val extends PostProject>
     Object? stars = null,
     Object? likesCount = null,
     Object? comintsCount = null,
+    Object? likesUsers = freezed,
+    Object? comintUsers = freezed,
     Object? supSpecialization = freezed,
     Object? videoUrl = freezed,
     Object? images = freezed,
@@ -137,6 +143,14 @@ class _$PostProjectCopyWithImpl<$Res, $Val extends PostProject>
           ? _value.comintsCount
           : comintsCount // ignore: cast_nullable_to_non_nullable
               as int,
+      likesUsers: freezed == likesUsers
+          ? _value.likesUsers
+          : likesUsers // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      comintUsers: freezed == comintUsers
+          ? _value.comintUsers
+          : comintUsers // ignore: cast_nullable_to_non_nullable
+              as List<ComintPost>?,
       supSpecialization: freezed == supSpecialization
           ? _value.supSpecialization
           : supSpecialization // ignore: cast_nullable_to_non_nullable
@@ -173,6 +187,8 @@ abstract class _$$_PostProjectCopyWith<$Res>
       double stars,
       int likesCount,
       int comintsCount,
+      List<String>? likesUsers,
+      List<ComintPost>? comintUsers,
       String? supSpecialization,
       String? videoUrl,
       List<String>? images});
@@ -200,6 +216,8 @@ class __$$_PostProjectCopyWithImpl<$Res>
     Object? stars = null,
     Object? likesCount = null,
     Object? comintsCount = null,
+    Object? likesUsers = freezed,
+    Object? comintUsers = freezed,
     Object? supSpecialization = freezed,
     Object? videoUrl = freezed,
     Object? images = freezed,
@@ -249,6 +267,14 @@ class __$$_PostProjectCopyWithImpl<$Res>
           ? _value.comintsCount
           : comintsCount // ignore: cast_nullable_to_non_nullable
               as int,
+      likesUsers: freezed == likesUsers
+          ? _value._likesUsers
+          : likesUsers // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      comintUsers: freezed == comintUsers
+          ? _value._comintUsers
+          : comintUsers // ignore: cast_nullable_to_non_nullable
+              as List<ComintPost>?,
       supSpecialization: freezed == supSpecialization
           ? _value.supSpecialization
           : supSpecialization // ignore: cast_nullable_to_non_nullable
@@ -280,10 +306,14 @@ class _$_PostProject implements _PostProject {
       this.stars = 0.0,
       this.likesCount = 0,
       this.comintsCount = 0,
+      final List<String>? likesUsers,
+      final List<ComintPost>? comintUsers,
       this.supSpecialization,
       this.videoUrl,
       final List<String>? images})
-      : _images = images;
+      : _likesUsers = likesUsers,
+        _comintUsers = comintUsers,
+        _images = images;
 
   factory _$_PostProject.fromJson(Map<String, dynamic> json) =>
       _$$_PostProjectFromJson(json);
@@ -313,6 +343,26 @@ class _$_PostProject implements _PostProject {
   @override
   @JsonKey()
   final int comintsCount;
+  final List<String>? _likesUsers;
+  @override
+  List<String>? get likesUsers {
+    final value = _likesUsers;
+    if (value == null) return null;
+    if (_likesUsers is EqualUnmodifiableListView) return _likesUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ComintPost>? _comintUsers;
+  @override
+  List<ComintPost>? get comintUsers {
+    final value = _comintUsers;
+    if (value == null) return null;
+    if (_comintUsers is EqualUnmodifiableListView) return _comintUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? supSpecialization;
   @override
@@ -329,7 +379,7 @@ class _$_PostProject implements _PostProject {
 
   @override
   String toString() {
-    return 'PostProject(id: $id, title: $title, description: $description, specialization: $specialization, price: $price, createdAt: $createdAt, userId: $userId, postProjectType: $postProjectType, stars: $stars, likesCount: $likesCount, comintsCount: $comintsCount, supSpecialization: $supSpecialization, videoUrl: $videoUrl, images: $images)';
+    return 'PostProject(id: $id, title: $title, description: $description, specialization: $specialization, price: $price, createdAt: $createdAt, userId: $userId, postProjectType: $postProjectType, stars: $stars, likesCount: $likesCount, comintsCount: $comintsCount, likesUsers: $likesUsers, comintUsers: $comintUsers, supSpecialization: $supSpecialization, videoUrl: $videoUrl, images: $images)';
   }
 
   @override
@@ -354,6 +404,10 @@ class _$_PostProject implements _PostProject {
                 other.likesCount == likesCount) &&
             (identical(other.comintsCount, comintsCount) ||
                 other.comintsCount == comintsCount) &&
+            const DeepCollectionEquality()
+                .equals(other._likesUsers, _likesUsers) &&
+            const DeepCollectionEquality()
+                .equals(other._comintUsers, _comintUsers) &&
             (identical(other.supSpecialization, supSpecialization) ||
                 other.supSpecialization == supSpecialization) &&
             (identical(other.videoUrl, videoUrl) ||
@@ -376,6 +430,8 @@ class _$_PostProject implements _PostProject {
       stars,
       likesCount,
       comintsCount,
+      const DeepCollectionEquality().hash(_likesUsers),
+      const DeepCollectionEquality().hash(_comintUsers),
       supSpecialization,
       videoUrl,
       const DeepCollectionEquality().hash(_images));
@@ -407,6 +463,8 @@ abstract class _PostProject implements PostProject {
       final double stars,
       final int likesCount,
       final int comintsCount,
+      final List<String>? likesUsers,
+      final List<ComintPost>? comintUsers,
       final String? supSpecialization,
       final String? videoUrl,
       final List<String>? images}) = _$_PostProject;
@@ -436,6 +494,10 @@ abstract class _PostProject implements PostProject {
   int get likesCount;
   @override
   int get comintsCount;
+  @override
+  List<String>? get likesUsers;
+  @override
+  List<ComintPost>? get comintUsers;
   @override
   String? get supSpecialization;
   @override

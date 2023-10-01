@@ -20,6 +20,12 @@ _$_PostProject _$$_PostProjectFromJson(Map<String, dynamic> json) =>
       stars: (json['stars'] as num?)?.toDouble() ?? 0.0,
       likesCount: json['likesCount'] as int? ?? 0,
       comintsCount: json['comintsCount'] as int? ?? 0,
+      likesUsers: (json['likesUsers'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      comintUsers: (json['comintUsers'] as List<dynamic>?)
+          ?.map((e) => ComintPost.fromJson(e as Map<String, dynamic>))
+          .toList(),
       supSpecialization: json['supSpecialization'] as String?,
       videoUrl: json['videoUrl'] as String?,
       images:
@@ -39,6 +45,8 @@ Map<String, dynamic> _$$_PostProjectToJson(_$_PostProject instance) =>
       'stars': instance.stars,
       'likesCount': instance.likesCount,
       'comintsCount': instance.comintsCount,
+      'likesUsers': instance.likesUsers,
+      'comintUsers': instance.comintUsers?.map((e) => e.toJson()).toList(),
       'supSpecialization': instance.supSpecialization,
       'videoUrl': instance.videoUrl,
       'images': instance.images,

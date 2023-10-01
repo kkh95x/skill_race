@@ -1,5 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skill_race/src/project/domain/comint_post.dart';
 part 'project.freezed.dart';
 
 part 'project.g.dart';
@@ -17,6 +18,8 @@ class PostProject with _$PostProject {
    @Default(0.0) double stars,
    @Default(0) int likesCount,
    @Default(0) int comintsCount,   
+    List<String>? likesUsers,
+   List<ComintPost>? comintUsers, 
    String? supSpecialization,
    String? videoUrl,
    List<String>? images,

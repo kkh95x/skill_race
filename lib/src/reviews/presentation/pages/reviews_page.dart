@@ -44,7 +44,7 @@ class ReviewsComponent extends ConsumerWidget {
                  return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                    children: [
-                  Text("Rating And Reviews (${data.lenght} Reviews)",style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 14.sp),),
+                  Text("Rating And Reviews (${data.limit} Reviews)",style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 14.sp),),
       
                      Row(
                 children: [
@@ -172,15 +172,18 @@ class ReviewsComponent extends ConsumerWidget {
               ref.watch(getMyReviewProvider(GetMyReviewProvider(currentId: userId, myId: ref.read(userAuthNotifer).currentUser?.id??""))).when(data: (data) {
                 if(data==null){
       
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 20.h),
-                    child: DynamicButton(
-                      title: "Add Review",
-                      onPressed: ()async {
-                      await  ref.read(showCreateReviewProvider(ShowCreateReviewProvider(context: context, currentUserId: userId)).future).then((value) {});
-                                ref.read(calculateStarsForUserProvider(userId).notifier).init();
-      
-                    },),
+                  return Visibility(
+                    visible: userId!=ref.watch(userAuthNotifer).currentUser?.id,
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 20.h),
+                      child: DynamicButton(
+                        title: "Add Review",
+                        onPressed: ()async {
+                        await  ref.read(showCreateReviewProvider(ShowCreateReviewProvider(context: context, currentUserId: userId)).future).then((value) {});
+                                  ref.read(calculateStarsForUserProvider(userId).notifier).init();
+                        
+                      },),
+                    ),
                   );
                 }
       

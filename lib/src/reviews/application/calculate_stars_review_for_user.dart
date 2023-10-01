@@ -15,24 +15,30 @@ class StateCalclateStarsNotifer extends StateNotifier<AsyncValue<CalculateStarsF
   final stars=await ref.read(reviewsRepostoryProvider).getStarsCount(currentId);
 
 
-  final limit=stars.oneStars+stars.towStars+stars.threeStars+stars.forueStars+stars.fiveStars;
+  int limit=stars.oneStars+stars.towStars+stars.threeStars+stars.forueStars+stars.fiveStars;
+  int lenght =limit;
+  
+  limit= limit==0?1:limit;
+
   double av=((1*stars.oneStars)+(2*stars.towStars)+(3*stars.threeStars)+(4*stars.forueStars)+(5*stars.fiveStars))/limit;
  
 
  av =(av*10).floor()/10;
   
 
-  state=AsyncData(CalculateStarsForUserOutput(av: av, lenght: limit, starsCount: stars));
+  state=AsyncData(CalculateStarsForUserOutput(av: av, lenght: limit, starsCount: stars,limit: lenght));
   }
 }
 class CalculateStarsForUserOutput{
   double av;
   StarsCount starsCount;
   int lenght;
+  int limit;
   CalculateStarsForUserOutput({
     required this.av,
     required this.lenght,
-    required this.starsCount
+    required this.starsCount,
+    required this.limit
   });
   
 }

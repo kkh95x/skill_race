@@ -14,6 +14,9 @@ import 'package:flutter/services.dart';
 class $AssetsHomeIconGen {
   const $AssetsHomeIconGen();
 
+  /// File path: assets/home_icon/finance.svg
+  SvgGenImage get finance => const SvgGenImage('assets/home_icon/finance.svg');
+
   /// File path: assets/home_icon/home.svg
   SvgGenImage get home => const SvgGenImage('assets/home_icon/home.svg');
 
@@ -23,6 +26,9 @@ class $AssetsHomeIconGen {
 
   /// File path: assets/home_icon/more.svg
   SvgGenImage get more => const SvgGenImage('assets/home_icon/more.svg');
+
+  /// File path: assets/home_icon/offer.svg
+  SvgGenImage get offer => const SvgGenImage('assets/home_icon/offer.svg');
 
   /// File path: assets/home_icon/profile.svg
   SvgGenImage get profile => const SvgGenImage('assets/home_icon/profile.svg');
@@ -35,13 +41,20 @@ class $AssetsHomeIconGen {
 
   /// List of all assets
   List<SvgGenImage> get values =>
-      [home, massenger, more, profile, realls, saved];
+      [finance, home, massenger, more, offer, profile, realls, saved];
 }
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/notification.svg
+  SvgGenImage get notification =>
+      const SvgGenImage('assets/icons/notification.svg');
+
   $AssetsIconsPngGen get png => const $AssetsIconsPngGen();
+
+  /// List of all assets
+  List<SvgGenImage> get values => [notification];
 }
 
 class $AssetsImagesGen {
@@ -49,6 +62,19 @@ class $AssetsImagesGen {
 
   $AssetsImagesPngGen get png => const $AssetsImagesPngGen();
   $AssetsImagesSvgGen get svg => const $AssetsImagesSvgGen();
+}
+
+class $AssetsMp3Gen {
+  const $AssetsMp3Gen();
+
+  /// File path: assets/mp3/start_recoard.mp3
+  String get startRecoard => 'assets/mp3/start_recoard.mp3';
+
+  /// File path: assets/mp3/stop_recoard.mp3
+  String get stopRecoard => 'assets/mp3/stop_recoard.mp3';
+
+  /// List of all assets
+  List<String> get values => [startRecoard, stopRecoard];
 }
 
 class $AssetsIconsPngGen {
@@ -72,6 +98,10 @@ class $AssetsIconsPngGen {
   AssetGenImage get camera =>
       const AssetGenImage('assets/icons/png/camera.png');
 
+  /// File path: assets/icons/png/camera_message.png
+  AssetGenImage get cameraMessage =>
+      const AssetGenImage('assets/icons/png/camera_message.png');
+
   /// File path: assets/icons/png/chat_garden.png
   AssetGenImage get chatGarden =>
       const AssetGenImage('assets/icons/png/chat_garden.png');
@@ -87,6 +117,10 @@ class $AssetsIconsPngGen {
   /// File path: assets/icons/png/delete.png
   AssetGenImage get delete =>
       const AssetGenImage('assets/icons/png/delete.png');
+
+  /// File path: assets/icons/png/delete_border.png
+  AssetGenImage get deleteBorder =>
+      const AssetGenImage('assets/icons/png/delete_border.png');
 
   /// File path: assets/icons/png/edit.png
   AssetGenImage get edit => const AssetGenImage('assets/icons/png/edit.png');
@@ -116,6 +150,10 @@ class $AssetsIconsPngGen {
   AssetGenImage get loveWhite =>
       const AssetGenImage('assets/icons/png/love_white.png');
 
+  /// File path: assets/icons/png/messagner.png
+  AssetGenImage get messagner =>
+      const AssetGenImage('assets/icons/png/messagner.png');
+
   /// File path: assets/icons/png/notification.png
   AssetGenImage get notification =>
       const AssetGenImage('assets/icons/png/notification.png');
@@ -137,6 +175,9 @@ class $AssetsIconsPngGen {
   /// File path: assets/icons/png/send.png
   AssetGenImage get send => const AssetGenImage('assets/icons/png/send.png');
 
+  /// File path: assets/icons/png/voice.png
+  AssetGenImage get voice => const AssetGenImage('assets/icons/png/voice.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         plus,
@@ -144,10 +185,12 @@ class $AssetsIconsPngGen {
         attachFile,
         calendar,
         camera,
+        cameraMessage,
         chatGarden,
         closeDialog,
         comint,
         delete,
+        deleteBorder,
         edit,
         job,
         jobMe,
@@ -156,12 +199,14 @@ class $AssetsIconsPngGen {
         logoWhite,
         loveRed,
         loveWhite,
+        messagner,
         notification,
         play,
         plusCirlce,
         saveGarden,
         saved,
-        send
+        send,
+        voice
       ];
 }
 
@@ -222,6 +267,7 @@ class Assets {
   static const $AssetsHomeIconGen homeIcon = $AssetsHomeIconGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsMp3Gen mp3 = $AssetsMp3Gen();
 
   /// List of all assets
   List<String> get values => [countries];

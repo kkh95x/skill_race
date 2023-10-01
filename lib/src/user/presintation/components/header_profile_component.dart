@@ -6,12 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skill_race/gen/assets.gen.dart';
+import 'package:skill_race/src/archive/domain/archives.dart';
+import 'package:skill_race/src/archive/presentaion/pages/saved_page.dart';
 import 'package:skill_race/src/auth/application/auth_notifer.dart';
+import 'package:skill_race/src/messages/application/open_chat_provider.dart';
 import 'package:skill_race/src/user/domain/app_user.dart';
 import 'package:skill_race/src/user/presintation/pages/edit_my_profile_page.dart';
 import 'package:skill_race/src/user/presintation/widgets/chat_icon_widget.dart';
 import 'package:skill_race/src/user/presintation/widgets/edit_icon_widget.dart';
-import 'package:skill_race/src/user/presintation/widgets/save_icon_widget.dart';
+import 'package:skill_race/src/archive/presentaion/widgets/save_icon_widget.dart';
 class HeaderProfileComponent extends ConsumerWidget {
   const HeaderProfileComponent({super.key,
   required this.userId,
@@ -88,31 +91,71 @@ class HeaderProfileComponent extends ConsumerWidget {
       ),
       const Spacer(),
       if(isMineProfile)
-      EditIconWidget(
-      onTap:(){
-       final user=ref.read(userAuthNotifer).currentUser;
-       if(user?.id==userId){
-        context.push(EditMyProfilePage.routePath);
+      Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          EditIconWidget(
+          onTap:(){
+           final user=ref.read(userAuthNotifer).currentUser;
+           if(user?.id==userId){
+            context.push(EditMyProfilePage.routePath);
 
-       }
-      }
+           }
+          }
      ),
+     GestureDetector(
+      onTap: () {
+        context.push(SavedPage.routePath);
+      },
+       child: Row(
+         children: [
+           Assets.icons.png.saveGarden.image(),
+                       SizedBox(width: 3.w,),
+     
+            ShaderMask(
+                          shaderCallback: (Rect bounds) {
+                            return LinearGradient(
+                              colors: [
+                                Theme.of(context).colorScheme.secondary,
+                                Theme.of(context).colorScheme.primary
+                              ], // Define your gradient colors
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ).createShader(bounds);
+                          },child: Text("Saved",style: TextStyle(color: Colors.white,fontSize: 12.sp,fontWeight: FontWeight.w400),)),
+           
+         ],
+       ),
+     )
+        ],
+      ),
+     
      if(!isMineProfile)
      
       Container(
         padding: EdgeInsets.symmetric(vertical: 5.h),
-        child: const Column(
+        child:  Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
                  
-         SaveIconWidget(),
-         ChatIconWidget(),
+         SaveIconWidget(
+          archivesType: ArchivesType.user,
+          refrenceId: userId??"",
+         ),
+          ChatIconWidget(
+          onTap: () {
+            if(userId!=null){
+            ref.read(openChatParamesProvider(OpenChatParamesProvider(name: username, userId: userId!, context: context)));}
+          },
+         ),
       
         ],
            ),
       )
+      
 
       
       ]),

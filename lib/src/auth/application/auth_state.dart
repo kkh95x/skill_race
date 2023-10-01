@@ -2,6 +2,7 @@
 
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:skill_race/src/financial_account/domain/financial_account.dart';
 import 'package:skill_race/src/user/domain/app_user.dart';
 
 part 'auth_state.g.dart';
@@ -17,6 +18,7 @@ class AuthState with _$AuthState {
    String? email, 
    String? fullName,
    AccountType? accountType,
+   String? financialAccountId,
     
   }) = _AuthState;
 

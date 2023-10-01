@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skill_race/src/auth/application/auth_notifer.dart';
 import 'package:skill_race/src/home/presentation/pages/filter_page.dart';
 import 'package:skill_race/src/hiring/presentation/pages/need_employ_page.dart';
+import 'package:skill_race/src/project/data/firestore_post_project_repository.dart';
 import 'package:skill_race/src/user/application/user_un_auth_helper.dart';
 import 'package:skill_race/src/video/application/get_videos_pagination.dart';
 import 'package:skill_race/src/video/application/video_controller_provider.dart';
 import 'package:skill_race/src/video/presentation/widgets/video_card_widgets.dart';
-List<String> urls=[
-"https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/Download%20(1).mp4?alt=media&token=9e952105-bf77-41a3-a437-805a452e252b",
-"https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/Download%20(2).mp4?alt=media&token=c81cc4ac-8c42-4759-8625-f35ee877370f",
-"https://firebasestorage.googleapis.com/v0/b/skill-race-e16d3.appspot.com/o/Download.mp4?alt=media&token=7e8cf9ed-28c9-4efe-9770-bd4d4e213214"
-];
+
 class FeedsComponent extends ConsumerStatefulWidget  {
   const FeedsComponent({super.key});
   @override
@@ -37,19 +35,41 @@ class _FeedsComponentState extends ConsumerState<FeedsComponent> {
       });
     
     return ref.watch(getVideosPagination).when(data: (recipes) {
-      
+      final urls=recipes.map((e) => e.videoUrl).toList();
       return  PageView.builder(
         controller: controller,
         itemCount: recipes.length,
         itemBuilder: (context, index) {
-    
+          if(index+1<recipes.length){
+            if(urls[index+1]!=null) {
+              ref.read(videoControllerProvider(urls[index+1]!));
+            }        
+            
+          }
+          if(index+2<recipes.length){
+            if(urls[index+2]!=null) {
+              ref.read(videoControllerProvider(urls[index+2]!));
+            }
+          }
       return  VideoCard(url:recipes[index].videoUrl??"",
+      project: recipes[index],
       description: recipes[index].description,
       onTapAi: () {
         ref.read(userUnAuthHelper(context));
       },
       onTapLike: () {
-                ref.read(userUnAuthHelper(context));
+         ref.read(userUnAuthHelper(context));
+        final user= ref.read(userAuthNotifer).currentUser;
+        if(user!=null){
+          List<String> oldLikes=recipes[index].likesUsers??[];
+          if(oldLikes.contains(user.id)){
+         final newLikes=   oldLikes.where((element) => element!=user.id,).toList();
+         ref.read(postProjectRepositoryProvider).update(recipes[index].copyWith(likesUsers: newLikes));
+          }else{
+         final newLikes= [...oldLikes,user.id!];
+         ref.read(postProjectRepositoryProvider).update(recipes[index].copyWith(likesUsers: newLikes));
+          }
+        }
 
       },
       onTapJob: () {
@@ -97,6 +117,7 @@ class _FeedsComponentState extends ConsumerState<FeedsComponent> {
           }
     
       return  VideoCard(url:recipes[index].videoUrl??"",
+      project: recipes[index],
         description: recipes[index].description,
         onTapAi: () {
           ref.read(userUnAuthHelper(context));
@@ -147,6 +168,8 @@ class _FeedsComponentState extends ConsumerState<FeedsComponent> {
     
       return  VideoCard(url:recipes[index].videoUrl??"",
       description: recipes[index].description,
+            project: recipes[index],
+
       onTapAi: () {
         ref.read(userUnAuthHelper(context));
       },

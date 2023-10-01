@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:skill_race/src/home/presentation/components/bottom_nave_bar_component.dart';
 
 class HomePageNavigation extends StatelessWidget {

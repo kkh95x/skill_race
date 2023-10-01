@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skill_race/core/presentation/widget/starts_rating_widget.dart';
 import 'package:skill_race/gen/assets.gen.dart';
+import 'package:skill_race/src/archive/domain/archives.dart';
+import 'package:skill_race/src/archive/presentaion/widgets/save_icon_widget.dart';
 import 'package:skill_race/src/images/presentation/components/images_post_component.dart';
 import 'package:skill_race/src/project/domain/project.dart';
 import 'package:skill_race/src/project/presentaion/widgets/profile_pic_name_spcial.dart';
@@ -102,21 +104,22 @@ class PostWidget extends ConsumerWidget {
                           SizedBox(
                             height: 20.h,
                           ),
-                          Row(
-                            children: [
-                              Assets.icons.png.saved.image(),
-                              SizedBox(
-                                width: 8.w,
-                              ),
-                              Text(
-                                "Save",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400),
-                              )
-                            ],
-                          )
+                          SaveIconWidget(archivesType: ArchivesType.post, refrenceId: postId,isWhite: true,)
+                          // Row(
+                          //   children: [
+                          //     Assets.icons.png.saved.image(),
+                          //     SizedBox(
+                          //       width: 8.w,
+                          //     ),
+                          //     Text(
+                          //       "Save",
+                          //       style: TextStyle(
+                          //           color: Colors.white,
+                          //           fontSize: 14.sp,
+                          //           fontWeight: FontWeight.w400),
+                          //     )
+                          //   ],
+                          // )
                         ],
                       )
                     ],

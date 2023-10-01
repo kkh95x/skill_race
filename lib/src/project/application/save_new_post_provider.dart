@@ -174,5 +174,6 @@ BotToast.showCustomLoading(toastBuilder: (cancelFunc) {
 
     },);
   final url=await task.whenComplete(() => null);
+  BotToast.cleanAll();
 return await url.ref.getDownloadURL();
 }

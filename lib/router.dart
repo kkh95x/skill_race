@@ -16,17 +16,22 @@ import 'package:skill_race/src/employe/presentation/pages/emp_add_education_page
 import 'package:skill_race/src/employe/presentation/pages/emp_add_expertise_page.dart';
 import 'package:skill_race/src/employe/presentation/pages/emp_add_looking_job_page.dart';
 import 'package:skill_race/src/employe/presentation/pages/global_profile_emp.dart';
+import 'package:skill_race/src/financial_account/presenation/pages/balance_page.dart';
 import 'package:skill_race/src/home/presentation/pages/filter_page.dart';
 import 'package:skill_race/src/home/presentation/pages/home_navigation_page.dart';
 import 'package:skill_race/src/home/presentation/pages/home_page.dart';
-import 'package:skill_race/src/home/presentation/pages/messages_page.dart';
 import 'package:skill_race/src/home/presentation/pages/more_page.dart';
+import 'package:skill_race/src/messages/domain/chat.dart';
+import 'package:skill_race/src/messages/presentation/pages/chats_page.dart';
+import 'package:skill_race/src/messages/presentation/pages/messages_page.dart';
+import 'package:skill_race/src/officer/presentation/pages/officer_page.dart';
 import 'package:skill_race/src/project/presentaion/pages/add_new_project_page.dart';
+import 'package:skill_race/src/project/presentaion/pages/singe_project_page.dart';
 import 'package:skill_race/src/user/presintation/pages/edit_my_profile_page.dart';
 import 'package:skill_race/src/user/presintation/pages/profile_page.dart';
 
 import 'package:skill_race/src/video/presentation/pages/realls_page.dart';
-import 'package:skill_race/src/home/presentation/pages/saved_page.dart';
+import 'package:skill_race/src/archive/presentaion/pages/saved_page.dart';
 import 'package:skill_race/src/video/presentation/pages/single_video_page.dart';
 import 'package:skill_race/testi_page.dart';
 import 'src/hiring/presentation/pages/need_employ_page.dart';
@@ -66,24 +71,52 @@ final routerProvider = StateProvider<GoRouter>((ref) {
 
     routes: [
       GoRoute(
+        path: MessagesPage.routePath,
         parentNavigatorKey: mainkey,
-        path:EditMyProfilePage.routePath,name: EditMyProfilePage.routeName,builder: (context, state) =>const EditMyProfilePage(), ),
-      GoRoute(path: GlobalEmpProfilePage.routePath,name: GlobalEmpProfilePage.routeName,
-      builder: (context, state) => GlobalEmpProfilePage(userId: state.extra.toString()), ),
-      GoRoute(path: EmpAddLookingForJobPage.routePath,name: EmpAddLookingForJobPage.routeName,
-      builder: (context, state) => EmpAddLookingForJobPage(lookingForAJob: state.extra as LookingForAJob?),)
-,      GoRoute(
+        name: MessagesPage.routeName,
+        builder: (context, state) => MessagesPage(chat: state.extra as Chat?),
+      ),
+      GoRoute(
+        parentNavigatorKey: mainkey,
+        path: SingleProjectPage.routePath,
+        name: SingleProjectPage.routeName,
+        builder: (context, state) =>
+            SingleProjectPage(projectId: state.extra as String? ?? ""),
+      ),
+      GoRoute(
+        parentNavigatorKey: mainkey,
+        path: EditMyProfilePage.routePath,
+        name: EditMyProfilePage.routeName,
+        builder: (context, state) => const EditMyProfilePage(),
+      ),
+      GoRoute(
+        path: GlobalEmpProfilePage.routePath,
+        name: GlobalEmpProfilePage.routeName,
+        builder: (context, state) =>
+            GlobalEmpProfilePage(userId: state.extra.toString()),
+      ),
+      GoRoute(
+        path: EmpAddLookingForJobPage.routePath,
+        name: EmpAddLookingForJobPage.routeName,
+        builder: (context, state) => EmpAddLookingForJobPage(
+            lookingForAJob: state.extra as LookingForAJob?),
+      ),
+      GoRoute(
         parentNavigatorKey: mainkey,
         path: EmpAddExpertisePage.routePath,
         name: EmpAddExpertisePage.routeName,
         builder: (context, state) {
-          return  EmpAddExpertisePage(expertise: state.extra as Expertise?,);
+          return EmpAddExpertisePage(
+            expertise: state.extra as Expertise?,
+          );
         },
       ),
       GoRoute(
         parentNavigatorKey: mainkey,
-        path: EmpAddEducationPage.routePath,name: EmpAddEducationPage.routeName,
-      builder: (context, state) => EmpAddEducationPage(education: state.extra as Education?),
+        path: EmpAddEducationPage.routePath,
+        name: EmpAddEducationPage.routeName,
+        builder: (context, state) =>
+            EmpAddEducationPage(education: state.extra as Education?),
       ),
       GoRoute(
         parentNavigatorKey: mainkey,
@@ -98,6 +131,12 @@ final routerProvider = StateProvider<GoRouter>((ref) {
         name: AddNewProjectPage.routeName,
         builder: (context, state) => const AddNewProjectPage(),
       ),
+       GoRoute(
+              parentNavigatorKey: mainkey,
+              path: BalancePage.routePath,
+              name: BalancePage.routeName,
+              builder: (context, state) => const BalancePage(),
+            ),
 
       GoRoute(
         path: SingleVideoPage.routePath,
@@ -114,12 +153,28 @@ final routerProvider = StateProvider<GoRouter>((ref) {
           );
         },
       ),
+      GoRoute(
+        parentNavigatorKey: mainkey,
+        path: SavedPage.routePath,
+        name: SavedPage.routeName,
+        builder: (context, state) => const SavedPage(),
+      ),
+       GoRoute(
+              parentNavigatorKey: mainkey,
+              path: ChatsPage.routePath,
+              name: ChatsPage.routeName,
+              builder: (context, state) => const ChatsPage(),
+            ),
 
       ShellRoute(
           navigatorKey: homeKey,
           builder: (context, state, child) => HomePageNavigation(child: child),
           // pageBuilder: (context, state, child) =>   buildPageWithDefaultTransition(context: context, state: state, child: HomePageNavigation(child: child)) ,
           routes: [
+            GoRoute(path: OffersPage.routePath,
+            name: OffersPage.routeName,
+            parentNavigatorKey: homeKey,
+            builder: (context, state) =>const OffersPage(),),
             GoRoute(
               path: ReallsPage.routePath,
               parentNavigatorKey: homeKey,
@@ -131,18 +186,8 @@ final routerProvider = StateProvider<GoRouter>((ref) {
               path: HomePage.routePath, //name: HomePage.routeName,
               builder: (context, state) => const HomePage(),
             ),
-            GoRoute(
-              parentNavigatorKey: homeKey,
-              path: SavedPage.routePath,
-              name: SavedPage.routeName,
-              builder: (context, state) => const SavedPage(),
-            ),
-            GoRoute(
-              parentNavigatorKey: homeKey,
-              path: MessagesPage.routePath,
-              name: MessagesPage.routeName,
-              builder: (context, state) => const MessagesPage(),
-            ),
+           
+           
             GoRoute(
               parentNavigatorKey: homeKey,
               path: ProfilePage.routePath,

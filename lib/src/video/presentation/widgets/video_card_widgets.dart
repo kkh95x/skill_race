@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skill_race/gen/assets.gen.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:skill_race/src/auth/application/auth_notifer.dart';
+import 'package:skill_race/src/employe/presentation/pages/global_profile_emp.dart';
+import 'package:skill_race/src/project/domain/project.dart';
+import 'package:skill_race/src/user/application/get_user_py_id_provider.dart';
 import 'package:skill_race/src/user/domain/app_user.dart';
 import 'package:skill_race/src/video/application/video_controller_provider.dart';
 import 'package:video_player/video_player.dart';
@@ -22,7 +26,8 @@ class VideoCard extends ConsumerStatefulWidget {
       this.onTapJobMore,
       this.description,
       this.onTapLike,
-      this.isSingePage=false,
+      this.isSingePage = false,
+      required this.project,
       this.onTapFilter});
   final String url;
 //  final AsyncValue<VideoPlayerController> controller;
@@ -35,78 +40,77 @@ class VideoCard extends ConsumerStatefulWidget {
   final bool isSingePage;
   final void Function()? onTapFilter;
   final String? description;
+  final PostProject project;
 
   @override
   ConsumerState<VideoCard> createState() => _VideoCardState();
 }
 
 class _VideoCardState extends ConsumerState<VideoCard> {
-  @override
-  void dispose() {
-    super.dispose();
-    // ref.watch(videoController(widget.url)).value?.pause();
-  }
+  VideoPlayerController? _controller;
 
   @override
-  void initState() {
-    // WidgetsBinding.instance.addObserver(this);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext contextf) {
-    final controller =widget.isSingePage?ref.watch(videoSingleController(widget.url)): ref.watch(videoController(widget.url));
-    final userAccount=ref.read(userAuthNotifer).currentUser?.accountType;
+  Widget build(BuildContext context) {
+    final userAccount = ref.read(userAuthNotifer).currentUser?.accountType;
+    try {
+      _controller = ref.watch(videoControllerProvider(widget.url)).value;
+    } catch (e) {
+      return const Expanded(
+          child: Center(
+        child: Text(
+          "Server Error, Cant playing The Video",
+          style: TextStyle(color: Colors.white),
+        ),
+      ));
+    }
     return VisibilityDetector(
       key: UniqueKey(),
       onVisibilityChanged: (info) {
         final isVisible = info.visibleFraction > 0.5;
         if (isVisible) {
-          controller.value?.play();
+          if (_controller?.value.isInitialized ?? false) {
+            _controller?.play();
+          }
         } else {
-          controller.value?.pause();
+          if (_controller?.value.isInitialized ?? false) {
+            _controller?.pause();
+          }
         }
       },
       child: SafeArea(
         top: false,
         child: Stack(
           children: [
-            controller.when(
-              data: (data) {
-                data.play();
-                data.setLooping(true);
-                return GestureDetector(
-                  onTap: () {
-                    if (data.value.isPlaying) {
-                      data.pause();
-                    } else {
-                      data.play();
-                    }
-                  },
-                  child: SizedBox.expand(
-                      child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: SizedBox(
-                      width: data.value.size.width,
-                      height: data.value.size.height,
-                      child: VideoPlayer(data),
-                    ),
-                  )),
-                );
+            Builder(
+              builder: (context) {
+                _controller?.play();
+                _controller?.setLooping(true);
+                return _controller?.value.isInitialized ?? false
+                    ? GestureDetector(
+                        onTap: () {
+                          if (_controller?.value.isPlaying ?? false) {
+                            _controller?.pause();
+                          } else {
+                            _controller?.play();
+                          }
+                        },
+                        child: SizedBox.expand(
+                            child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: SizedBox(
+                            width: _controller?.value.size.width,
+                            height: _controller?.value.size.height,
+                            child: VideoPlayer(_controller!),
+                          ),
+                        )),
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(
+                        color: Colors.grey,
+                      ));
               },
-              error: (error, stackTrace) => Center(
-                child: Text(
-                  "Error: ${error.toString()}",
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-              loading: () => const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.grey,
-                ),
-              ),
             )
-      
+
             // : Container(
             //     color: Colors.black,
             //     child: const Center(
@@ -130,7 +134,7 @@ class _VideoCardState extends ConsumerState<VideoCard> {
                             size: 25.sp,
                             color: Colors.white.withOpacity(.8),
                           )),
-      
+
                       const Spacer(),
                       GestureDetector(
                           onTap: () async {
@@ -146,9 +150,9 @@ class _VideoCardState extends ConsumerState<VideoCard> {
                       SizedBox(
                         height: 30.h,
                       ),
-      
+
                       Visibility(
-                        visible:!( userAccount==AccountType.employe),
+                        visible: !(userAccount == AccountType.employe),
                         child: GestureDetector(
                             onTap: () async {
                               if (widget.onTapJob != null) {
@@ -159,7 +163,7 @@ class _VideoCardState extends ConsumerState<VideoCard> {
                             child: Assets.icons.png.job
                                 .image(width: 30.r, height: 30.r)),
                       ),
-      
+
                       SizedBox(
                         height: 30.h,
                       ),
@@ -175,7 +179,11 @@ class _VideoCardState extends ConsumerState<VideoCard> {
                               child: CachedNetworkImage(
                                   width: 60.r,
                                   height: 60.r,
-                                  imageUrl:
+                                  imageUrl: ref
+                                          .watch(getUserById(
+                                              widget.project.userId))
+                                          .value
+                                          ?.imgUrl ??
                                       "https://images.nightcafe.studio/jobs/1dg6rpsglt7JUxmlLlau/1dg6rpsglt7JUxmlLlau--1--gck8s.jpg?tr=w-1600,c-at_max"),
                             ),
                             Positioned(
@@ -196,12 +204,27 @@ class _VideoCardState extends ConsumerState<VideoCard> {
                           ],
                         ),
                       ),
-                      Text(
-                        "@username",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () {
+                          final user = ref
+                              .read(getUserById(widget.project.userId))
+                              .value;
+                          if (user != null) {
+                            context.push(GlobalEmpProfilePage.routePath,
+                                extra: user);
+                          }
+                        },
+                        child: Text(
+                          ref
+                                  .watch(getUserById(widget.project.userId))
+                                  .value
+                                  ?.fullname ??
+                              "@username",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                       SizedBox(
                         height: 10.h,
@@ -209,7 +232,7 @@ class _VideoCardState extends ConsumerState<VideoCard> {
                       SizedBox(
                           width: MediaQuery.of(context).size.width / 2,
                           child: Text(
-                            widget.description??"-",
+                            widget.description ?? "-",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 12.sp,
@@ -218,7 +241,7 @@ class _VideoCardState extends ConsumerState<VideoCard> {
                       SizedBox(
                         height: 10.h,
                       ),
-      
+
                       //  Icon(Icons.)
                     ],
                   ),
@@ -246,10 +269,18 @@ class _VideoCardState extends ConsumerState<VideoCard> {
                               widget.onTapLike?.call();
                             }
                           },
-                          child: Assets.icons.png.loveWhite
-                              .image(height: 30.r, width: 30.r)),
+                          child: widget.project.likesUsers?.contains(ref
+                                          .read(userAuthNotifer)
+                                          .currentUser
+                                          ?.id ??
+                                      "") ??
+                                  false
+                              ? Assets.icons.png.loveRed
+                                  .image(height: 30.r, width: 30.r)
+                              : Assets.icons.png.loveWhite
+                                  .image(height: 30.r, width: 30.r)),
                       Text(
-                        "1000",
+                        "${widget.project.likesUsers?.length ?? 0}",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12.sp,

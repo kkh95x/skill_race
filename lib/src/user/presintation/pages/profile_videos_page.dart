@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_pinput/reactive_pinput.dart';
 import 'package:skill_race/src/auth/application/auth_notifer.dart';
+import 'package:skill_race/src/project/presentaion/pages/singe_project_page.dart';
 import 'package:skill_race/src/user/application/get_may_video_provider.dart';
 import 'package:skill_race/src/video/presentation/pages/single_video_page.dart';
 import 'package:skill_race/src/video/presentation/widgets/videos_profile_card_widget.dart';
@@ -35,8 +36,9 @@ class ProfileVideosPage extends ConsumerWidget {
           itemBuilder: (context, index) {
             return VideoProfileCard(
               onTap: () {
-                context.push(SingleVideoPage.routePath,
-                    extra: recipes[index].id);
+                // context.push(SingleVideoPage.routePath,
+                //     extra: recipes[index].id);
+                context.push(SingleProjectPage.routePath,extra: recipes[index].id);
               },
               price: recipes[index].price,
               stars: recipes[index].stars,

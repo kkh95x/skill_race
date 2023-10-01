@@ -6,8 +6,10 @@ import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skill_race/src/images/application/get_my_images_provider.dart';
 import 'package:skill_race/src/images/presentation/widgets/image_profile_card.dart';
+import 'package:skill_race/src/project/presentaion/pages/singe_project_page.dart';
 
 class ProfilePhotosPage extends ConsumerWidget {
   const ProfilePhotosPage({super.key,required this.userId});
@@ -34,12 +36,19 @@ final String userId;
      itemBuilder: (context, index) {
         return ImageProfileCard(
           onTap: () {
- showImageViewer(
-                      context,
-                        CachedNetworkImageProvider(recipes[index].images?.first??"") ,
-                      swipeDismissible: true,
+            context.push(SingleProjectPage.routePath,extra: recipes[index].id);
+//  showImageViewerPager(
+//                       context,
+//                      MultiImageProvider(recipes.map((e) => CachedNetworkImageProvider(e.images?.first??"")).toList()), 
+//                       immersive: true,
+//                       useSafeArea: true,                      
+//                         //  CachedNetworkImageProvider(recipes[index].images?.first??"") ,
+//                       swipeDismissible: true,                      
+//                       doubleTapZoomable: true);
                       
-                      doubleTapZoomable: true);          },
+                      
+                      }
+                      ,
 
               onTapMore: () {
                 showBottomSheet(context: context, builder: (context) {

@@ -11,21 +11,23 @@ class NeedSginUpComponent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    return Container(
-      padding: EdgeInsets.all(20.sp),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text("You need To login first"),
-          SizedBox(height: 20.h,),
-         DynamicButton(
-          title: "Sgin in",
-          onPressed: () {
-           ref.read(userUnAuthHelper(context));
-         },)
-        ],
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.all(20.sp),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("You need To login first"),
+            SizedBox(height: 20.h,),
+           DynamicButton(
+            title: "Sgin in",
+            onPressed: () {
+             ref.read(userUnAuthHelper(context));
+           },)
+          ],
+        ),
       ),
     );
   }

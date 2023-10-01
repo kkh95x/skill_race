@@ -10,27 +10,59 @@ import 'package:visibility_detector/visibility_detector.dart';
 final secoundToHidden=StateProvider((ref) => 0);
 final isPlayingProvider = StateProvider<bool>((ref) => false);
 final hiddenHelperControlls = StateProvider<bool>((ref) => true);
-final isMuteProvider = StateProvider<bool>((ref) => false);
-
-class PostVideoCard extends ConsumerWidget {
+final isMuteProvider = StateProvider.family<bool,BuildContext>((ref,co) => false);
+class PostVideoCard extends ConsumerStatefulWidget {
   const PostVideoCard({super.key, required this.url,required this.postId});
   final String url;
   final String postId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(videoPostController(
-      url,
-    ));
+  ConsumerState<PostVideoCard> createState() => _PostVideoCardState();
+}
 
+class _PostVideoCardState extends ConsumerState<PostVideoCard> {
+   VideoPlayerController? _controller;
+  @override
+  void initState() {
+    // _controller=VideoPlayerController.networkUrl(Uri.parse(widget.url))
+    // ..initialize().then((value) {
+    //   setState(() {
+        
+    //   });
+    // });
+    super.initState();
+  }
+  // @override
+  // void deactivate() {
+
+  //   if(_controller?.value.isInitialized??false){
+  //     _controller?.play();
+  //     setState(() {
+        
+  //     });
+  //   }
+  //   super.deactivate();
+  // }
+  @override
+  Widget build(BuildContext context) {
+    try{
+_controller=ref.watch(videoControllerProvider(widget.url)).value;
+
+    
+    }catch(e){
+      return  SizedBox(
+            height: 500.h,
+                        width: MediaQuery.of(context).size.width,
+        child:const  Center(child: Text("Server Error, Cant playing The Video"),));
+    }
     return VisibilityDetector(
       key: UniqueKey(),
       onVisibilityChanged: (info) {
         final isVisible = info.visibleFraction == 0.0;
         if (isVisible) {
-          if(controller.hasValue){
-          controller.value?.pause();}
-        } else {}
+          
+          _controller?.pause();
+        } 
 
         // if(info.visibleFraction<0.2){
         //   data.pause();
@@ -46,9 +78,8 @@ class PostVideoCard extends ConsumerWidget {
         width: MediaQuery.of(context).size.width,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20.r),
-          child: controller.when(
-            data: (data) {
-              return GestureDetector(
+          child: _controller?.value.isInitialized??false ?
+               GestureDetector(
                   onTap: () async {
                     ref.read(hiddenHelperControlls.notifier).state=!ref.read(hiddenHelperControlls.notifier).state;
 
@@ -73,9 +104,9 @@ Future.delayed(
                           fit: BoxFit.cover,
                           alignment: Alignment.center,
                           child: SizedBox(
-                            width: data.value.size.width,
-                            height: data.value.size.height,
-                            child: VideoPlayer(data),
+                            width: _controller?.value.size.width,
+                            height: _controller?.value.size.height,
+                            child: VideoPlayer(_controller!),
                           ),
                         ),
                       ),
@@ -97,9 +128,9 @@ Future.delayed(
                               child: GestureDetector(
                                   onTap: () async {
                                     if (isPlaying) {
-                                      await data.pause();
+                                      await _controller?.pause();
                                     } else {
-                                      await data.play();
+                                      await _controller?.play();
                                     }
                                     ref.read(isPlayingProvider.notifier).state =
                                         !isPlaying;
@@ -116,7 +147,7 @@ Future.delayed(
                                       },
                                     );
                                   },
-                                  child: isPlaying
+                                  child: _controller?.value.isPlaying??false
                                       ? Icon(
                                           Icons.pause,
                                           color: Colors.grey.shade50,
@@ -141,23 +172,23 @@ Future.delayed(
                               colors: VideoProgressColors(
                                   playedColor:
                                       Theme.of(context).colorScheme.primary),
-                              data,
+                              _controller!,
                               allowScrubbing: true),
                         ),
                       ),
                       Consumer(builder: (context, ref, child) {
-                        final isMute = ref.watch(isMuteProvider);
+                        final isMute = ref.watch(isMuteProvider(context));
                         return Positioned(
                             top: 10.h,
                             left: 0,
                             child: IconButton(
                                 onPressed: () {
                                   if (isMute) {
-                                    data.setVolume(100);
+                                    _controller?.setVolume(100);
                                   } else {
-                                    data.setVolume(0);
+                                    _controller?.setVolume(0);
                                   }
-                                  ref.read(isMuteProvider.notifier).state =
+                                  ref.read(isMuteProvider(context).notifier).state =
                                       !isMute;
                                 },
                                 icon: Icon(isMute
@@ -169,29 +200,22 @@ Future.delayed(
                           right: 0,
                           child: IconButton(
                               onPressed: () {
-                                data.pause();
+                                _controller?.pause();
                                 context.push(SingleVideoPage.routePath,
-                                    extra: postId);
+                                    extra: widget.postId);
                               },
                               icon: const Icon(Icons.zoom_out_map)))
                     ],
-                  ));
-            },
-            error: (error, stackTrace) {
-              return Center(
-                child: Text("Error: ${error.toString()}"),
-              );
-            },
-            loading: () {
-              return Container(
+                  )):Container(
                 color: Colors.black,
                 child: const Center(
                   child: CircularProgressIndicator(),
                 ),
-              );
-            },
-          ),
-        ),
+              )
+            )
+            
+          
+        
       ),
     );
   }

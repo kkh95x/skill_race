@@ -33,11 +33,16 @@ class ImagesPostComponent extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(20.r),
                   child: GestureDetector(
                     onTap: () {
-                       showImageViewer(
+                      showImageViewerPager(
+
                       context,
-                        CachedNetworkImageProvider(imagesUrl[index]) ,
-                      swipeDismissible: true,
-                      
+                     MultiImageProvider(imagesUrl.map((e) => CachedNetworkImageProvider(e)).toList(),
+                     initialIndex: ref.read(isImageChanged)), 
+                      immersive: true,
+                      useSafeArea: true,      
+                                      
+                        //  CachedNetworkImageProvider(recipes[index].images?.first??"") ,
+                      swipeDismissible: true,                      
                       doubleTapZoomable: true);
                     },
                     child: CachedNetworkImage(imageUrl: imagesUrl[index],fit: BoxFit.cover,
