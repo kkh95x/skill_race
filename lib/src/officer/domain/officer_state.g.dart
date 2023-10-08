@@ -21,13 +21,10 @@ Map<String, dynamic> _$$_OfficerStateToJson(_$_OfficerState instance) =>
 const _$OfficerStutasEnumMap = {
   OfficerStutas.pending: 'pending',
   OfficerStutas.acceptedFromEmployee: 'acceptedFromEmployee',
-  OfficerStutas.editFromEmployeed: 'editFromEmployeed',
-  OfficerStutas.acceptedEditFromHiring: 'acceptedEditFromHiring',
-  OfficerStutas.rejectedEditFromHiring: 'rejectedEditFromHiring',
   OfficerStutas.rejectedFromEmployee: 'rejectedFromEmployee',
-  OfficerStutas.employeeAddAnotheroption: 'employeeAddAnotheroption',
   OfficerStutas.wattingHiringToPay: 'wattingHiringToPay',
   OfficerStutas.waitingEmpToStart: 'waitingEmpToStart',
+  OfficerStutas.active: 'active',
   OfficerStutas.finishTheOfficerFromEmployee: 'finishTheOfficerFromEmployee',
   OfficerStutas.claimFinancialEntitlements: 'claimFinancialEntitlements',
   OfficerStutas.adminTheOfficerInReview: 'adminTheOfficerInReview',
@@ -37,4 +34,5 @@ const _$OfficerStutasEnumMap = {
   OfficerStutas.adminDisputeInReview: 'adminDisputeInReview',
   OfficerStutas.adminReturnMoneyToHiring: 'adminReturnMoneyToHiring',
   OfficerStutas.finshedFromEmployee: 'finshedFromEmployee',
+  OfficerStutas.complete: 'complete',
 };

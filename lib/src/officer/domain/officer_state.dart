@@ -17,19 +17,20 @@ enum  OfficerStutas{
   //whene accepte from emp
   acceptedFromEmployee, 
   //whene wmp need to edit the description,
-  editFromEmployeed,
+  // editFromEmployeed,
   //applye hiring the edit,
-  acceptedEditFromHiring,
+  // acceptedEditFromHiring,
   //not applye hiring the edit,
-  rejectedEditFromHiring,
+  // rejectedEditFromHiring,
   //rejected the office from the 
   rejectedFromEmployee,
   //emp add description
-  employeeAddAnotheroption,
+  // employeeAddAnotheroption,
   //wait the hiring to Pay 
   wattingHiringToPay,
   //then wait emp to start
   waitingEmpToStart,
+  active,
   //when End
   finishTheOfficerFromEmployee,
   //claimFinancialEntitlements
@@ -41,4 +42,6 @@ enum  OfficerStutas{
   submitADisputeFromHiring,
   adminDisputeInReview,
   adminReturnMoneyToHiring,
-  finshedFromEmployee,}
+  finshedFromEmployee,
+  complete,
+  }

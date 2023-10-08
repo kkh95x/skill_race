@@ -8,9 +8,11 @@ import 'package:skill_race/src/auth/application/auth_notifer.dart';
 import 'package:skill_race/src/auth/application/auth_state.dart';
 import 'package:skill_race/src/financial_account/presenation/pages/balance_page.dart';
 import 'package:skill_race/src/home/presentation/components/appbar_component.dart';
+import 'package:skill_race/src/officer/presentation/components/active_offer_component.dart';
+import 'package:skill_race/src/officer/presentation/components/complete_offer_component.dart';
 import 'package:skill_race/src/officer/presentation/components/request_offer_component.dart';
 import 'package:skill_race/src/user/presintation/components/need_sgin_up_component.dart';
-List<Widget> _pages=const [RequestOfferComponent(),SizedBox(),SizedBox()];
+List<Widget> _pages=const [RequestOfferComponent(),ActiveOfferComponent(),ComplelteOfferComponent()];
 List<String> _tabs=["Request","Active","Complete"];
 class OffersPage extends ConsumerWidget {
   const OffersPage({super.key});

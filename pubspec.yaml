@@ -59,6 +59,7 @@ dependencies:
   v_chat_voice_player: ^1.2.1
   flutter_vibrate: ^1.3.0
   flutter_ringtone_player: ^3.2.0
+  url_launcher: ^6.1.14
   # assets_audio_player: ^3.0.8
 
 

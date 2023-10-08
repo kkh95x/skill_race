@@ -27,6 +27,7 @@ mixin _$Officer {
   String? get description => throw _privateConstructorUsedError;
   OfficerState get currentStatus => throw _privateConstructorUsedError;
   List<OfficerState>? get status => throw _privateConstructorUsedError;
+  String? get link => throw _privateConstructorUsedError;
   String get hiringId => throw _privateConstructorUsedError;
   DateTime get createAt => throw _privateConstructorUsedError;
   DateTime get updateAt => throw _privateConstructorUsedError;
@@ -50,6 +51,7 @@ abstract class $OfficerCopyWith<$Res> {
       String? description,
       OfficerState currentStatus,
       List<OfficerState>? status,
+      String? link,
       String hiringId,
       DateTime createAt,
       DateTime updateAt,
@@ -78,6 +80,7 @@ class _$OfficerCopyWithImpl<$Res, $Val extends Officer>
     Object? description = freezed,
     Object? currentStatus = null,
     Object? status = freezed,
+    Object? link = freezed,
     Object? hiringId = null,
     Object? createAt = null,
     Object? updateAt = null,
@@ -112,6 +115,10 @@ class _$OfficerCopyWithImpl<$Res, $Val extends Officer>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as List<OfficerState>?,
+      link: freezed == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String?,
       hiringId: null == hiringId
           ? _value.hiringId
           : hiringId // ignore: cast_nullable_to_non_nullable
@@ -155,6 +162,7 @@ abstract class _$$_OfficerCopyWith<$Res> implements $OfficerCopyWith<$Res> {
       String? description,
       OfficerState currentStatus,
       List<OfficerState>? status,
+      String? link,
       String hiringId,
       DateTime createAt,
       DateTime updateAt,
@@ -181,6 +189,7 @@ class __$$_OfficerCopyWithImpl<$Res>
     Object? description = freezed,
     Object? currentStatus = null,
     Object? status = freezed,
+    Object? link = freezed,
     Object? hiringId = null,
     Object? createAt = null,
     Object? updateAt = null,
@@ -215,6 +224,10 @@ class __$$_OfficerCopyWithImpl<$Res>
           ? _value._status
           : status // ignore: cast_nullable_to_non_nullable
               as List<OfficerState>?,
+      link: freezed == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String?,
       hiringId: null == hiringId
           ? _value.hiringId
           : hiringId // ignore: cast_nullable_to_non_nullable
@@ -246,6 +259,7 @@ class _$_Officer implements _Officer {
       this.description,
       required this.currentStatus,
       final List<OfficerState>? status,
+      this.link,
       required this.hiringId,
       required this.createAt,
       required this.updateAt,
@@ -278,6 +292,8 @@ class _$_Officer implements _Officer {
   }
 
   @override
+  final String? link;
+  @override
   final String hiringId;
   @override
   final DateTime createAt;
@@ -288,7 +304,7 @@ class _$_Officer implements _Officer {
 
   @override
   String toString() {
-    return 'Officer(id: $id, title: $title, price: $price, deadLine: $deadLine, description: $description, currentStatus: $currentStatus, status: $status, hiringId: $hiringId, createAt: $createAt, updateAt: $updateAt, employeeId: $employeeId)';
+    return 'Officer(id: $id, title: $title, price: $price, deadLine: $deadLine, description: $description, currentStatus: $currentStatus, status: $status, link: $link, hiringId: $hiringId, createAt: $createAt, updateAt: $updateAt, employeeId: $employeeId)';
   }
 
   @override
@@ -306,6 +322,7 @@ class _$_Officer implements _Officer {
             (identical(other.currentStatus, currentStatus) ||
                 other.currentStatus == currentStatus) &&
             const DeepCollectionEquality().equals(other._status, _status) &&
+            (identical(other.link, link) || other.link == link) &&
             (identical(other.hiringId, hiringId) ||
                 other.hiringId == hiringId) &&
             (identical(other.createAt, createAt) ||
@@ -327,6 +344,7 @@ class _$_Officer implements _Officer {
       description,
       currentStatus,
       const DeepCollectionEquality().hash(_status),
+      link,
       hiringId,
       createAt,
       updateAt,
@@ -355,6 +373,7 @@ abstract class _Officer implements Officer {
       final String? description,
       required final OfficerState currentStatus,
       final List<OfficerState>? status,
+      final String? link,
       required final String hiringId,
       required final DateTime createAt,
       required final DateTime updateAt,
@@ -376,6 +395,8 @@ abstract class _Officer implements Officer {
   OfficerState get currentStatus;
   @override
   List<OfficerState>? get status;
+  @override
+  String? get link;
   @override
   String get hiringId;
   @override

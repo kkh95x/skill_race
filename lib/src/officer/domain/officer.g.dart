@@ -19,6 +19,7 @@ _$_Officer _$$_OfficerFromJson(Map<String, dynamic> json) => _$_Officer(
       status: (json['status'] as List<dynamic>?)
           ?.map((e) => OfficerState.fromJson(e as Map<String, dynamic>))
           .toList(),
+      link: json['link'] as String?,
       hiringId: json['hiringId'] as String,
       createAt: DateTime.parse(json['createAt'] as String),
       updateAt: DateTime.parse(json['updateAt'] as String),
@@ -34,6 +35,7 @@ Map<String, dynamic> _$$_OfficerToJson(_$_Officer instance) =>
       'description': instance.description,
       'currentStatus': instance.currentStatus.toJson(),
       'status': instance.status?.map((e) => e.toJson()).toList(),
+      'link': instance.link,
       'hiringId': instance.hiringId,
       'createAt': instance.createAt.toIso8601String(),
       'updateAt': instance.updateAt.toIso8601String(),

@@ -15,6 +15,7 @@ abstract class Officer with _$Officer{
   String? description,
   required OfficerState currentStatus,
  List<OfficerState>? status,
+ String? link,
  required String hiringId,
  required DateTime createAt,
  required DateTime updateAt,

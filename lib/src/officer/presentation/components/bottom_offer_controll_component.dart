@@ -42,15 +42,15 @@ class BottomOfferControllComponent extends ConsumerWidget {
               children: [
                 if(user?.accountType==AccountType.employe)
                  Text("Waiting for the client to pay the amount to us",style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.primary),),
-                if(user?.accountType==AccountType.hiring)
-               Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-               const Icon(Icons.done),
-               SizedBox(width: 5.w,),
-               const Text("Pay the amount")
-                ],
-              ),
+              //   if(user?.accountType==AccountType.hiring)
+              //  Row(
+              //   mainAxisSize: MainAxisSize.min,
+              //   children: [
+              //  const Icon(Icons.done),
+              //  SizedBox(width: 5.w,),
+              //  const Text("Pay the amount")
+              //   ],
+              // ),
               ],
             );
           }
@@ -67,13 +67,85 @@ class BottomOfferControllComponent extends ConsumerWidget {
                const Text("Start")
                 ],
               ),
-              if(user?.accountType==AccountType.hiring)
-              const Text("Waiting for the employee to start working")
+              // if(user?.accountType==AccountType.hiring)
+              // const Text("Waiting for the employee to start working")
               ],
             );
           }
+         else if(state == OfficerStutas.active){
+          return Column(
+            children: [
+              if(officer.deadLine!=null&&DateTime.now().compareTo(officer.deadLine!)>0)
+             
+                ...[   Text("Deadline has expired",style: TextStyle(color: Theme.of(context).colorScheme.error),),
+                  SizedBox(height: 5.w,),
+                GestureDetector(child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                     Icon(Icons.send ),
+                     Text(" delivery now")
+                  ],
+                ),)],
+              if(officer.deadLine!=null&&DateTime.now().compareTo(officer.deadLine!)<=0)
+               ...[   Text("Deadline will end in ${officer.deadLine!.difference(DateTime.now()).inDays} days",style: TextStyle(color: Theme.of(context).colorScheme.primary),),
+                  SizedBox(height: 5.w,),
+                GestureDetector(child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                     Icon(Icons.send ),
+                     Text(" delivery now")
+                  ],
+                ),)],
 
+            ],
+          );
+         }
+          else if(state==OfficerStutas.finshedFromEmployee){
+          return const Row(
 
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Row(children: [
+                Icon(Icons.attach_money_sharp),
+                Text("Withdraw money")
+              ],),
+          
+                Row(children: [
+                Icon(Icons.edit_sharp),
+                Text("Edit The Link")
+              ],),
+          
+            ],
+          );
+          }
+           else if(state==OfficerStutas.claimFinancialEntitlements){
+          return  Row(
+
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+               Text("Waiting for admin review",style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.primary),),
+            ],
+          );
+          }
+          else if(state==OfficerStutas.adminTheOfficerInReview){
+          return  Row(
+
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+               Text("offer is under review",style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.primary),),
+            ],
+          );
+          }
+           else if(state==OfficerStutas.complete){
+          return  Row(
+
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+               Text("Verified and balance transferred",style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.primary),),
+            ],
+          );
+          }
           return const SizedBox();
   }
+ 
 }
